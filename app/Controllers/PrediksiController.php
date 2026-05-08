@@ -18,7 +18,6 @@ use App\Models\ProdukModel;
  *   GET  prediksi/riwayat               → riwayat()
  *   GET  prediksi/akurasi               → akurasi()
  *   GET  prediksi/detail/:id            → detail()
- *   POST prediksi/sinkron-aktual        → sinkronAktual()   ← BARU
  */
 class PrediksiController extends BaseController
 {
@@ -218,58 +217,16 @@ class PrediksiController extends BaseController
         $predictions = $result['predictions'] ?? [];
         $savedCount  = 0;
 
-        if (! empty($predictions)) {
-            $savedCount = $this->prediksiModel->bulkUpsert($predictions, $tahun, $bulan);
-        }
+        $savedCount = $this->prediksiModel->bulkUpsert($predictions, $tahun, $bulan);
 
         @unlink($produkFile);
         @unlink($resultFile);
 
-        // Hitung berapa produk yang langsung terverifikasi (qty_aktual terisi)
-        $summary = $this->prediksiModel->getSummaryPeriode($tahun, $bulan);
-        $terverifikasi = (int) ($summary['total_terverifikasi'] ?? 0);
-
-        $message = "Prediksi berhasil untuk {$savedCount} produk.";
-        if ($terverifikasi > 0) {
-            $message .= " {$terverifikasi} produk langsung terverifikasi dari data penjualan.";
-        }
-
-        return $this->response->setJSON([
-            'status'        => 'success',
-            'message'       => $message,
-            'total'         => $savedCount,
-            'terverifikasi' => $terverifikasi,
-            'durasi'        => $durasi,
-        ]);
-    }
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // SINKRON AKTUAL — Isi qty_aktual manual dari data penjualan (AJAX POST)
-    // POST prediksi/sinkron-aktual
-    // ══════════════════════════════════════════════════════════════════════════
-
-    public function sinkronAktual(): \CodeIgniter\HTTP\ResponseInterface
-    {
-        if (! $this->request->isAJAX()) {
-            return $this->response->setStatusCode(403)
-                ->setJSON(['status' => 'error', 'message' => 'Forbidden']);
-        }
-
-        $tahun = (int) $this->request->getPost('tahun');
-        $bulan = (int) $this->request->getPost('bulan');
-
-        if ($bulan < 1 || $bulan > 12 || $tahun < 2020) {
-            return $this->response->setJSON(['status' => 'error', 'message' => 'Parameter periode tidak valid.']);
-        }
-
-        $count = $this->prediksiModel->sinkronAktual($tahun, $bulan);
-
         return $this->response->setJSON([
             'status'  => 'success',
-            'message' => $count > 0
-                ? "{$count} produk berhasil disinkronkan dengan data penjualan."
-                : 'Tidak ada data penjualan yang cocok untuk periode ini.',
-            'total'   => $count,
+            'message' => "Prediksi berhasil untuk {$savedCount} produk.",
+            'total'   => $savedCount,
+            'durasi'  => $durasi,
         ]);
     }
 

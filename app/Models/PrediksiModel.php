@@ -24,8 +24,6 @@ class PrediksiModel extends Model
         'tahun_prediksi',
         'bulan_prediksi',
         'qty_prediksi',
-        'qty_aktual',
-        // kolom 'selisih' adalah GENERATED COLUMN — tidak boleh diisi lewat insert/update
     ];
 
     protected $useSoftDeletes   = false;
@@ -142,26 +140,16 @@ class PrediksiModel extends Model
     public function getSummaryPeriode(int $tahun, int $bulan): array
     {
         $row = $this->db->query("
-            SELECT
-                COUNT(*)                                    AS total_produk,
-                COALESCE(SUM(qty_prediksi), 0)              AS total_qty_prediksi,
-                COALESCE(SUM(qty_aktual), 0)                AS total_qty_aktual,
-                COALESCE(AVG(
-                    CASE WHEN qty_aktual > 0
-                    THEN ABS(qty_aktual - qty_prediksi) / qty_aktual * 100
-                    END
-                ), 0)                                       AS rata_mape,
-                COUNT(CASE WHEN qty_aktual IS NOT NULL THEN 1 END) AS total_terverifikasi
-            FROM {$this->table}
-            WHERE tahun_prediksi = ? AND bulan_prediksi = ?
-        ", [$tahun, $bulan])->getRowArray();
+        SELECT
+            COUNT(*)                       AS total_produk,
+            COALESCE(SUM(qty_prediksi), 0) AS total_qty_prediksi
+        FROM {$this->table}
+        WHERE tahun_prediksi = ? AND bulan_prediksi = ?
+    ", [$tahun, $bulan])->getRowArray();
 
         return $row ?? [
-            'total_produk'        => 0,
-            'total_qty_prediksi'  => 0,
-            'total_qty_aktual'    => 0,
-            'rata_mape'           => 0,
-            'total_terverifikasi' => 0,
+            'total_produk'       => 0,
+            'total_qty_prediksi' => 0,
         ];
     }
 
@@ -218,9 +206,6 @@ class PrediksiModel extends Model
             if ($ok) $inserted++;
         }
 
-        // ── Otomatis isi qty_aktual jika data penjualan periode ini sudah ada ──
-        $this->sinkronAktual($tahun, $bulan);
-
         return $inserted;
     }
 
@@ -234,112 +219,25 @@ class PrediksiModel extends Model
             ->delete();
     }
 
-    /**
-     * Update qty_aktual untuk verifikasi setelah bulan berjalan.
-     */
-    public function updateAktual(string $idPrediksi, int $qtyAktual): bool
-    {
-        return $this->update($idPrediksi, [
-            'qty_aktual' => $qtyAktual,
-        ]);
-    }
-
-    // ══════════════════════════════════════════════════════════════════════════
-    // SINKRONISASI AKTUAL
-    // ══════════════════════════════════════════════════════════════════════════
-
-    /**
-     * Sinkronisasi qty_aktual dari tabel penjualan ke tabel prediksi
-     * untuk satu periode tertentu.
-     *
-     * Cara kerja:
-     *   1. GROUP BY nama_produk dari penjualan bulan/tahun tersebut → total qty
-     *   2. UPDATE prediksi.qty_aktual yang nama_produknya cocok
-     *
-     * Dipanggil otomatis oleh bulkUpsert() dan bisa juga dipanggil manual
-     * dari controller (tombol "Sinkron Aktual" atau cron job).
-     *
-     * @return int jumlah baris prediksi yang berhasil diupdate
-     */
-    public function sinkronAktual(int $tahun, int $bulan): int
-    {
-        // Gunakan single UPDATE + JOIN agar efisien — satu query, bukan loop
-        $sql = "
-            UPDATE {$this->table} p
-            INNER JOIN (
-                SELECT
-                    UPPER(TRIM(nama_produk)) AS nama_produk,
-                    SUM(qty)                 AS qty_aktual
-                FROM penjualan
-                WHERE YEAR(tanggal)  = ?
-                  AND MONTH(tanggal) = ?
-                GROUP BY UPPER(TRIM(nama_produk))
-            ) pj ON pj.nama_produk = UPPER(TRIM(p.nama_produk))
-            SET
-                p.qty_aktual  = pj.qty_aktual,
-                p.updated_at  = NOW()
-            WHERE p.tahun_prediksi = ?
-              AND p.bulan_prediksi  = ?
-        ";
-
-        $this->db->query($sql, [$tahun, $bulan, $tahun, $bulan]);
-
-        // Kembalikan jumlah baris yang terpengaruh
-        return $this->db->affectedRows();
-    }
-
     // ══════════════════════════════════════════════════════════════════════════
     // EVALUASI & AKURASI
     // ══════════════════════════════════════════════════════════════════════════
 
     /**
-     * Hitung MAPE keseluruhan dari semua prediksi yang sudah ada aktualnya.
-     */
-    public function hitungMapeGlobal(): ?float
-    {
-        $row = $this->db->query("
-            SELECT AVG(
-                CASE WHEN qty_aktual > 0
-                THEN ABS(qty_aktual - qty_prediksi) / qty_aktual * 100
-                END
-            ) AS mape
-            FROM {$this->table}
-            WHERE qty_aktual IS NOT NULL
-        ")->getRowArray();
-
-        return isset($row['mape']) ? round((float) $row['mape'], 4) : null;
-    }
-
-    /**
-     * Hitung akurasi global (100 - MAPE).
-     */
-    public function hitungAkurasiGlobal(): ?float
-    {
-        $mape = $this->hitungMapeGlobal();
-        return $mape !== null ? max(0, round(100 - $mape, 2)) : null;
-    }
-
-    /**
      * Ringkasan per-produk lintas semua periode (untuk laporan).
      */
+
     public function getRingkasanPerProduk(): array
     {
         return $this->db->query("
-            SELECT
-                nama_produk,
-                COUNT(*)                                    AS total_periode,
-                COALESCE(SUM(qty_prediksi), 0)              AS total_prediksi,
-                COALESCE(SUM(qty_aktual), 0)                AS total_aktual,
-                COALESCE(AVG(
-                    CASE WHEN qty_aktual > 0
-                    THEN ABS(qty_aktual - qty_prediksi) / qty_aktual * 100
-                    END
-                ), NULL)                                    AS mape_avg,
-                COUNT(CASE WHEN qty_aktual IS NOT NULL THEN 1 END) AS terverifikasi
-            FROM {$this->table}
-            GROUP BY nama_produk
-            ORDER BY total_prediksi DESC
-        ")->getResultArray();
+        SELECT
+            nama_produk,
+            COUNT(*)                       AS total_periode,
+            COALESCE(SUM(qty_prediksi), 0) AS total_prediksi
+        FROM {$this->table}
+        GROUP BY nama_produk
+        ORDER BY total_prediksi DESC
+    ")->getResultArray();
     }
 
     /**

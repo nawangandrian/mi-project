@@ -57685,3 +57685,959 @@ KeyError: "['qty_lag1', 'qty_roll3_mean'] not in index"
 2026-05-08 22:34:13,176 [INFO]   XIOMI TV A PRO 32": y_log=0.7293 → qty=1.07
 2026-05-08 22:34:13,190 [INFO] Prediksi selesai: 405 produk, 0 dilewati.
 2026-05-08 22:34:13,194 [INFO] === predict_rf.py v3 selesai ===
+2026-05-09 06:54:54,958 [INFO] === predict_rf.py v3 dimulai ===
+2026-05-09 06:54:56,161 [INFO] Target: 405 produk | 5/2026 (time_idx=24317)
+2026-05-09 06:54:58,931 [INFO] Model   : C:\laragon\www\ci4-store\python\models\model_rf_v68.pkl
+2026-05-09 06:54:58,932 [INFO] Encoder : C:\laragon\www\ci4-store\python\models\label_encoder_v68.pkl | kelas: 405
+2026-05-09 06:54:58,983 [INFO] Koneksi database berhasil.
+2026-05-09 06:54:59,112 [INFO] Data historis penjualan: 968 baris, 405 produk
+2026-05-09 06:54:59,123 [INFO] [10.000 MAH REDMI POWERBANK] encoded=0 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=180000
+2026-05-09 06:54:59,127 [INFO] [10000MAH REDMI POWERBANK] encoded=1 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=180000
+2026-05-09 06:54:59,130 [INFO] [20.000 MAH POWERBANK 18W] encoded=2 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=290000
+2026-05-09 06:54:59,133 [INFO] [DP XIAOMI 14T 12/512 BLACK] encoded=3 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=250000
+2026-05-09 06:54:59,137 [INFO] [DP XIAOMI PAD 7 PRO 12/512 GREEN] encoded=4 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=0
+2026-05-09 06:54:59,140 [INFO] [DP XIAOMI TV A PRO QLED 55"] encoded=5 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=300000
+2026-05-09 06:54:59,144 [INFO] [GTV A PRO 32"] encoded=6 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:54:59,148 [INFO] [HUAWEI MATEPAD SE 11" 6/128] encoded=7 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,151 [INFO] [INFINIX GT 30 PRO 8/256 WHITE] encoded=8 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,156 [INFO] [INFINIX HOT 50 PRO PLUS 8/256] encoded=9 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,160 [INFO] [INFINIX HOT 60 PRO 8/256 BLACK] encoded=10 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,163 [INFO] [INFINIX HOT 60I 6/128 PURPLE] encoded=11 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1950000
+2026-05-09 06:54:59,166 [INFO] [INFINIX HOT 60I 8/256 SILVER] encoded=12 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,171 [INFO] [INFINIX SMART 10 + 8/128] encoded=13 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1500000
+2026-05-09 06:54:59,174 [INFO] [INFINIX SMART 10 PLUS 8/128] encoded=14 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1500000
+2026-05-09 06:54:59,177 [INFO] [INFINIX SMART 20 4/64] encoded=15 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1500000
+2026-05-09 06:54:59,180 [INFO] [IPHONE 13 128] encoded=16 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=8500000
+2026-05-09 06:54:59,183 [INFO] [MI 1M BRAIDED CABLE] encoded=17 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=50000
+2026-05-09 06:54:59,187 [INFO] [MI EXTENDER PRO] encoded=18 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=250000
+2026-05-09 06:54:59,191 [INFO] [MI IN EAR HEADPHONES BASIC] encoded=19 lag1=1.0 lag2=2.0 lag3=2.0 | roll3_mean=1.67 roll6_mean=1.67 | time_idx=24317 harga_avg=70000
+2026-05-09 06:54:59,193 [INFO] [MI TV STICK] encoded=20 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=600000
+2026-05-09 06:54:59,195 [INFO] [MI TV STICK FHD] encoded=21 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=600000
+2026-05-09 06:54:59,198 [INFO] [MI TYPE C 18W] encoded=22 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=50000
+2026-05-09 06:54:59,200 [INFO] [MI TYPE C BRAIDED CABLE] encoded=23 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=50000
+2026-05-09 06:54:59,204 [INFO] [MI TYPE C TO TYPE C CABLE] encoded=24 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=70000
+2026-05-09 06:54:59,208 [INFO] [MI USB CABLE 100CM TYPE C] encoded=25 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=50000
+2026-05-09 06:54:59,210 [INFO] [MI USB TYPE C] encoded=26 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=50000
+2026-05-09 06:54:59,213 [INFO] [MI USB TYPE C 100 CM] encoded=27 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=50000
+2026-05-09 06:54:59,216 [INFO] [MI USB TYPE C 100CM] encoded=28 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=50000
+2026-05-09 06:54:59,218 [INFO] [MI USB TYPE C CABLE 100CM] encoded=29 lag1=3.0 lag2=0.0 lag3=0.0 | roll3_mean=3.00 roll6_mean=3.00 | time_idx=24317 harga_avg=50000
+2026-05-09 06:54:59,221 [INFO] [MI USB TYPE C TO TYPEC] encoded=30 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=70000
+2026-05-09 06:54:59,223 [INFO] [MI USB TYPE C100CFM] encoded=31 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=50000
+2026-05-09 06:54:59,225 [INFO] [MI WIFI EXTENDER PRO] encoded=32 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=150000
+2026-05-09 06:54:59,228 [INFO] [MI WIFI RANGE EXTENDER AC1200] encoded=33 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=250000
+2026-05-09 06:54:59,230 [INFO] [MI WIFI RANGE EXTENDER PRO] encoded=34 lag1=2.0 lag2=1.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.33 | time_idx=24317 harga_avg=150000
+2026-05-09 06:54:59,232 [INFO] [OPPO A3X 4/64 NEBULA] encoded=35 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1500000
+2026-05-09 06:54:59,234 [INFO] [PB 10000 MAH 22.5W] encoded=36 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=210000
+2026-05-09 06:54:59,237 [INFO] [PB 10000MAH] encoded=37 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=180000
+2026-05-09 06:54:59,240 [INFO] [POCO C71 4/128 BLACK] encoded=38 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1100000
+2026-05-09 06:54:59,242 [INFO] [POCO C71 4/128 BLUE] encoded=39 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1500000
+2026-05-09 06:54:59,244 [INFO] [POCO C85 6/128 BLACK] encoded=40 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=1500000
+2026-05-09 06:54:59,246 [INFO] [POCO X8 PRO 8/256 WHITE] encoded=41 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5000000
+2026-05-09 06:54:59,248 [INFO] [POWER BANK REDMI 10000MAH] encoded=42 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=180000
+2026-05-09 06:54:59,251 [INFO] [PRE ORDER REDMI NOTE 15 PRO 8/256] encoded=43 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,253 [INFO] [REALME C71 6/128 WHITE] encoded=44 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,256 [INFO] [REDMI  13X 8/256 BLACK] encoded=45 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,258 [INFO] [REDMI  NOTE 14 5G 8/256 BLACK] encoded=46 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3200000
+2026-05-09 06:54:59,260 [INFO] [REDMI  NOTE 14 PRO 5G 12/512 GOLD] encoded=47 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,262 [INFO] [REDMI  NOTE 14 PRO 5G 8/256 BLACK] encoded=48 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,264 [INFO] [REDMI  NOTE 145G 12/512] encoded=49 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3700000
+2026-05-09 06:54:59,267 [INFO] [REDMI 13 8/128 BLACK] encoded=50 lag1=1.0 lag2=5.0 lag3=2.0 | roll3_mean=2.67 roll6_mean=2.50 | time_idx=24317 harga_avg=1700000
+2026-05-09 06:54:59,270 [INFO] [REDMI 13 8/128 BLUE] encoded=51 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.75 | time_idx=24317 harga_avg=1700000
+2026-05-09 06:54:59,273 [INFO] [REDMI 13 8/128 GOLD] encoded=52 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1700000
+2026-05-09 06:54:59,275 [INFO] [REDMI 13 8/256] encoded=53 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,278 [INFO] [REDMI 13 8/256 BLACK] encoded=54 lag1=1.0 lag2=11.0 lag3=5.0 | roll3_mean=5.67 roll6_mean=5.60 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,281 [INFO] [REDMI 13 8/256 BLUE] encoded=55 lag1=2.0 lag2=1.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=2.25 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,284 [INFO] [REDMI 13 8/256 GOLD] encoded=56 lag1=2.0 lag2=2.0 lag3=2.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,287 [INFO] [REDMI 13X  8/256 GOLD] encoded=57 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,290 [INFO] [REDMI 13X 8/128 BLACK] encoded=58 lag1=2.0 lag2=2.0 lag3=3.0 | roll3_mean=2.33 roll6_mean=2.00 | time_idx=24317 harga_avg=1700000
+2026-05-09 06:54:59,292 [INFO] [REDMI 13X 8/128 BLUE] encoded=59 lag1=1.0 lag2=3.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=1700000
+2026-05-09 06:54:59,295 [INFO] [REDMI 13X 8/128 GOLD] encoded=60 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1700000
+2026-05-09 06:54:59,297 [INFO] [REDMI 13X 8/256] encoded=61 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=180000
+2026-05-09 06:54:59,299 [INFO] [REDMI 13X 8/256 BLACK] encoded=62 lag1=1.0 lag2=4.0 lag3=6.0 | roll3_mean=3.67 roll6_mean=4.67 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,301 [INFO] [REDMI 13X 8/256 BLUE] encoded=63 lag1=2.0 lag2=1.0 lag3=5.0 | roll3_mean=2.67 roll6_mean=2.75 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,305 [INFO] [REDMI 13X 8/256 GOLD] encoded=64 lag1=1.0 lag2=1.0 lag3=2.0 | roll3_mean=1.33 roll6_mean=1.33 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,307 [INFO] [REDMI 14 C 8/256 BLACK] encoded=65 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,309 [INFO] [REDMI 145 6/128 ORANGE] encoded=66 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1650000
+2026-05-09 06:54:59,312 [INFO] [REDMI 14C 4/128 PURPLE] encoded=67 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1400000
+2026-05-09 06:54:59,314 [INFO] [REDMI 14C 6/128 B;ACK] encoded=68 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1400000
+2026-05-09 06:54:59,317 [INFO] [REDMI 14C 6/128 BLACK] encoded=69 lag1=2.0 lag2=1.0 lag3=3.0 | roll3_mean=2.00 roll6_mean=2.17 | time_idx=24317 harga_avg=1400000
+2026-05-09 06:54:59,321 [INFO] [REDMI 14C 6/128 BLUE] encoded=70 lag1=3.0 lag2=1.0 lag3=3.0 | roll3_mean=2.33 roll6_mean=2.33 | time_idx=24317 harga_avg=1400000
+2026-05-09 06:54:59,323 [INFO] [REDMI 14C 6/128 PURPLE] encoded=71 lag1=1.0 lag2=1.0 lag3=3.0 | roll3_mean=1.67 roll6_mean=2.00 | time_idx=24317 harga_avg=1400000
+2026-05-09 06:54:59,326 [INFO] [REDMI 14C 8/256] encoded=72 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,328 [INFO] [REDMI 14C 8/256 BLACK] encoded=73 lag1=1.0 lag2=1.0 lag3=3.0 | roll3_mean=1.67 roll6_mean=2.67 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,330 [INFO] [REDMI 14C 8/256 BLUE] encoded=74 lag1=4.0 lag2=6.0 lag3=7.0 | roll3_mean=5.67 roll6_mean=4.00 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,332 [INFO] [REDMI 14C 8/256 PURPLE] encoded=75 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,334 [INFO] [REDMI 15  8/256] encoded=76 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2300000
+2026-05-09 06:54:59,337 [INFO] [REDMI 15 8/128 BLACK] encoded=77 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.33 | time_idx=24317 harga_avg=2500000
+2026-05-09 06:54:59,340 [INFO] [REDMI 15 8/128 BLUE] encoded=78 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2100000
+2026-05-09 06:54:59,342 [INFO] [REDMI 15 8/128 GRAY] encoded=79 lag1=3.0 lag2=1.0 lag3=2.0 | roll3_mean=2.00 roll6_mean=1.75 | time_idx=24317 harga_avg=2300000
+2026-05-09 06:54:59,344 [INFO] [REDMI 15 8/128 PURPLE] encoded=80 lag1=1.0 lag2=5.0 lag3=1.0 | roll3_mean=2.33 roll6_mean=2.40 | time_idx=24317 harga_avg=2500000
+2026-05-09 06:54:59,347 [INFO] [REDMI 15 8/256] encoded=81 lag1=2.0 lag2=1.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.60 | time_idx=24317 harga_avg=2500000
+2026-05-09 06:54:59,349 [INFO] [REDMI 15 8/256 BLACK] encoded=82 lag1=3.0 lag2=4.0 lag3=6.0 | roll3_mean=4.33 roll6_mean=4.00 | time_idx=24317 harga_avg=2700000
+2026-05-09 06:54:59,351 [INFO] [REDMI 15 8/256 GRAY] encoded=83 lag1=1.0 lag2=1.0 lag3=3.0 | roll3_mean=1.67 roll6_mean=2.40 | time_idx=24317 harga_avg=2700000
+2026-05-09 06:54:59,355 [INFO] [REDMI 15 8/256 GREY] encoded=84 lag1=4.0 lag2=1.0 lag3=1.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=2500000
+2026-05-09 06:54:59,357 [INFO] [REDMI 15 8/256 PURPLE] encoded=85 lag1=1.0 lag2=1.0 lag3=4.0 | roll3_mean=2.00 roll6_mean=2.50 | time_idx=24317 harga_avg=2700000
+2026-05-09 06:54:59,360 [INFO] [REDMI 15 8/256 UNGU] encoded=86 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2500000
+2026-05-09 06:54:59,362 [INFO] [REDMI 15/256 BLACK] encoded=87 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2300000
+2026-05-09 06:54:59,364 [INFO] [REDMI 15C 6/128] encoded=88 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1750000
+2026-05-09 06:54:59,366 [INFO] [REDMI 15C 6/128 BLACK] encoded=89 lag1=1.0 lag2=2.0 lag3=2.0 | roll3_mean=1.67 roll6_mean=2.50 | time_idx=24317 harga_avg=2050000
+2026-05-09 06:54:59,368 [INFO] [REDMI 15C 6/128 BLUE] encoded=90 lag1=2.0 lag2=5.0 lag3=3.0 | roll3_mean=3.33 roll6_mean=2.75 | time_idx=24317 harga_avg=1900000
+2026-05-09 06:54:59,371 [INFO] [REDMI 15C 6/128 GREEN] encoded=91 lag1=2.0 lag2=2.0 lag3=1.0 | roll3_mean=1.67 roll6_mean=1.50 | time_idx=24317 harga_avg=2050000
+2026-05-09 06:54:59,374 [INFO] [REDMI 15C 6/128 ORANGE] encoded=92 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2050000
+2026-05-09 06:54:59,376 [INFO] [REDMI 15C 8/256] encoded=93 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1950000
+2026-05-09 06:54:59,378 [INFO] [REDMI 15C 8/256 BLACK] encoded=94 lag1=2.0 lag2=2.0 lag3=1.0 | roll3_mean=1.67 roll6_mean=1.83 | time_idx=24317 harga_avg=2250000
+2026-05-09 06:54:59,381 [INFO] [REDMI 15C 8/256 BLUE] encoded=95 lag1=2.0 lag2=1.0 lag3=2.0 | roll3_mean=1.67 roll6_mean=1.50 | time_idx=24317 harga_avg=2275000
+2026-05-09 06:54:59,383 [INFO] [REDMI 15C 8/256 GREEN] encoded=96 lag1=3.0 lag2=1.0 lag3=1.0 | roll3_mean=1.67 roll6_mean=1.50 | time_idx=24317 harga_avg=2150000
+2026-05-09 06:54:59,386 [INFO] [REDMI 15C 8/256 ORANGE] encoded=97 lag1=2.0 lag2=2.0 lag3=3.0 | roll3_mean=2.33 roll6_mean=2.17 | time_idx=24317 harga_avg=2250000
+2026-05-09 06:54:59,389 [INFO] [REDMI 15C 88/256 BLUE] encoded=98 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1850000
+2026-05-09 06:54:59,391 [INFO] [REDMI A3 4/128 BLACK] encoded=99 lag1=2.0 lag2=1.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=2.00 | time_idx=24317 harga_avg=1100000
+2026-05-09 06:54:59,394 [INFO] [REDMI A3 4/128 BLUE] encoded=100 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1200000
+2026-05-09 06:54:59,396 [INFO] [REDMI A5 4/128] encoded=101 lag1=1.0 lag2=3.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=1400000
+2026-05-09 06:54:59,398 [INFO] [REDMI A5 4/128 BLACK] encoded=102 lag1=2.0 lag2=3.0 lag3=2.0 | roll3_mean=2.33 roll6_mean=2.33 | time_idx=24317 harga_avg=1400000
+2026-05-09 06:54:59,400 [INFO] [REDMI A5 4/128 GOLD] encoded=103 lag1=2.0 lag2=5.0 lag3=2.0 | roll3_mean=3.00 roll6_mean=2.50 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,405 [INFO] [REDMI A5 4/128 GREEN] encoded=104 lag1=3.0 lag2=1.0 lag3=2.0 | roll3_mean=2.00 roll6_mean=1.50 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,407 [INFO] [REDMI A5 4/129 GOLD] encoded=105 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1200000
+2026-05-09 06:54:59,409 [INFO] [REDMI A7 PRO 4/128] encoded=106 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,411 [INFO] [REDMI A7 PRO 4/128 BLACK] encoded=107 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,414 [INFO] [REDMI A7 PRO 4/128 BLUE] encoded=108 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,416 [INFO] [REDMI A7 PRO 4/128 ORANGE] encoded=109 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,419 [INFO] [REDMI A7 PRO 4/64 GREEN] encoded=110 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1650000
+2026-05-09 06:54:59,422 [INFO] [REDMI A7PRO 4/64] encoded=111 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1650000
+2026-05-09 06:54:59,424 [INFO] [REDMI BAND 10] encoded=112 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=650000
+2026-05-09 06:54:59,426 [INFO] [REDMI BAND 9] encoded=113 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=520000
+2026-05-09 06:54:59,428 [INFO] [REDMI BAND 9 ACTIVE] encoded=114 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=350000
+2026-05-09 06:54:59,430 [INFO] [REDMI BUDS 4] encoded=115 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=500000
+2026-05-09 06:54:59,433 [INFO] [REDMI BUDS 4LITE] encoded=116 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=200000
+2026-05-09 06:54:59,435 [INFO] [REDMI BUDS 5] encoded=117 lag1=1.0 lag2=2.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=500000
+2026-05-09 06:54:59,438 [INFO] [REDMI BUDS 6 BLACK] encoded=118 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=250000
+2026-05-09 06:54:59,441 [INFO] [REDMI BUDS 6 LITE] encoded=119 lag1=1.0 lag2=2.0 lag3=2.0 | roll3_mean=1.67 roll6_mean=1.67 | time_idx=24317 harga_avg=250000
+2026-05-09 06:54:59,443 [INFO] [REDMI BUDS 6 PLAY] encoded=120 lag1=2.0 lag2=1.0 lag3=2.0 | roll3_mean=1.67 roll6_mean=2.00 | time_idx=24317 harga_avg=150000
+2026-05-09 06:54:59,445 [INFO] [REDMI BUDS 6LITE] encoded=121 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=250000
+2026-05-09 06:54:59,448 [INFO] [REDMI BUDS 6PLAY] encoded=122 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=150000
+2026-05-09 06:54:59,451 [INFO] [REDMI BUDS 8 LITE] encoded=123 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=320000
+2026-05-09 06:54:59,454 [INFO] [REDMI NOOTE 14 LTE 8/128 BLACK] encoded=124 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,456 [INFO] [REDMI NOOTE 15 LTE 8/256] encoded=125 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3100000
+2026-05-09 06:54:59,458 [INFO] [REDMI NOTE 13 4G 8/256 BLUE] encoded=126 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,460 [INFO] [REDMI NOTE 13 5G 8/256 BLACK] encoded=127 lag1=6.0 lag2=0.0 lag3=0.0 | roll3_mean=6.00 roll6_mean=6.00 | time_idx=24317 harga_avg=2800000
+2026-05-09 06:54:59,463 [INFO] [REDMI NOTE 13 8/256 ICE BLUE] encoded=128 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,465 [INFO] [REDMI NOTE 13 8/256 LTE] encoded=129 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,467 [INFO] [REDMI NOTE 13 LTE 8/256 BLACK] encoded=130 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,470 [INFO] [REDMI NOTE 13 LTE 8/256 BLUE] encoded=131 lag1=10.0 lag2=0.0 lag3=0.0 | roll3_mean=10.00 roll6_mean=10.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,473 [INFO] [REDMI NOTE 13 PRO 4G 8/256 BLACK] encoded=132 lag1=3.0 lag2=0.0 lag3=0.0 | roll3_mean=3.00 roll6_mean=3.00 | time_idx=24317 harga_avg=3500000
+2026-05-09 06:54:59,475 [INFO] [REDMI NOTE 13 PRO 5G 12/512] encoded=133 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,477 [INFO] [REDMI NOTE 13 PRO 5G 12/512 GREEN] encoded=134 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,479 [INFO] [REDMI NOTE 13 PRO 5G 12/512 PURPLE] encoded=135 lag1=1.0 lag2=3.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,482 [INFO] [REDMI NOTE 13 PRO 8/256 BLACK 4G] encoded=136 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3500000
+2026-05-09 06:54:59,484 [INFO] [REDMI NOTE 13 PRO LTE 8/256 BLACK] encoded=137 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3500000
+2026-05-09 06:54:59,486 [INFO] [REDMI NOTE 13 PRO LTE 8/356 BLACK] encoded=138 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3500000
+2026-05-09 06:54:59,489 [INFO] [REDMI NOTE 135G 8/256 BLACK] encoded=139 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2800000
+2026-05-09 06:54:59,491 [INFO] [REDMI NOTE 13LTE 8/256] encoded=140 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,493 [INFO] [REDMI NOTE 14  8/256 PURPLE] encoded=141 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,496 [INFO] [REDMI NOTE 14 4G 8/256 PURPLE] encoded=142 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,498 [INFO] [REDMI NOTE 14 5G 12/512] encoded=143 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3700000
+2026-05-09 06:54:59,500 [INFO] [REDMI NOTE 14 5G 12/512 BLACK] encoded=144 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.17 | time_idx=24317 harga_avg=3700000
+2026-05-09 06:54:59,503 [INFO] [REDMI NOTE 14 5G 12/512 GREEN] encoded=145 lag1=1.0 lag2=2.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.25 | time_idx=24317 harga_avg=3700000
+2026-05-09 06:54:59,505 [INFO] [REDMI NOTE 14 5G 12/512 PURPLE] encoded=146 lag1=2.0 lag2=1.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.33 | time_idx=24317 harga_avg=3700000
+2026-05-09 06:54:59,508 [INFO] [REDMI NOTE 14 5G 8/256] encoded=147 lag1=1.0 lag2=3.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=3200000
+2026-05-09 06:54:59,510 [INFO] [REDMI NOTE 14 5G 8/256 BLACK] encoded=148 lag1=4.0 lag2=1.0 lag3=2.0 | roll3_mean=2.33 roll6_mean=2.33 | time_idx=24317 harga_avg=3200000
+2026-05-09 06:54:59,513 [INFO] [REDMI NOTE 14 5G 8/256 BLUE] encoded=149 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3800000
+2026-05-09 06:54:59,517 [INFO] [REDMI NOTE 14 5G 8/256 GREEN] encoded=150 lag1=2.0 lag2=1.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.67 | time_idx=24317 harga_avg=3200000
+2026-05-09 06:54:59,523 [INFO] [REDMI NOTE 14 5G 8/256 PURPLE] encoded=151 lag1=1.0 lag2=2.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=2.00 | time_idx=24317 harga_avg=3200000
+2026-05-09 06:54:59,527 [INFO] [REDMI NOTE 14 5G 8/256 PUTPLE] encoded=152 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=3200000
+2026-05-09 06:54:59,531 [INFO] [REDMI NOTE 14 8/128 BLACK LTE] encoded=153 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,534 [INFO] [REDMI NOTE 14 8/128 GREEN] encoded=154 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,539 [INFO] [REDMI NOTE 14 8/128 PURPLE] encoded=155 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,542 [INFO] [REDMI NOTE 14 8/128 PURPLE LTE] encoded=156 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,544 [INFO] [REDMI NOTE 14 8/256 BLACK] encoded=157 lag1=1.0 lag2=2.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,547 [INFO] [REDMI NOTE 14 8/256 LTE BLACK] encoded=158 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,550 [INFO] [REDMI NOTE 14 8/256 LTE PURPLE] encoded=159 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,554 [INFO] [REDMI NOTE 14 8/256 PURPLE LTE] encoded=160 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,557 [INFO] [REDMI NOTE 14 LTE 8/1128 GREEN] encoded=161 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,559 [INFO] [REDMI NOTE 14 LTE 8/128] encoded=162 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,562 [INFO] [REDMI NOTE 14 LTE 8/128 BLACK] encoded=163 lag1=1.0 lag2=2.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=3.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,564 [INFO] [REDMI NOTE 14 LTE 8/128 GOLD] encoded=164 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,567 [INFO] [REDMI NOTE 14 LTE 8/128 GREEN] encoded=165 lag1=4.0 lag2=1.0 lag3=2.0 | roll3_mean=2.33 roll6_mean=2.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,572 [INFO] [REDMI NOTE 14 LTE 8/128 PURPLE] encoded=166 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.17 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,576 [INFO] [REDMI NOTE 14 LTE 8/256] encoded=167 lag1=3.0 lag2=1.0 lag3=1.0 | roll3_mean=1.67 roll6_mean=1.67 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,579 [INFO] [REDMI NOTE 14 LTE 8/256 BLACK] encoded=168 lag1=2.0 lag2=3.0 lag3=1.0 | roll3_mean=2.00 roll6_mean=2.67 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,582 [INFO] [REDMI NOTE 14 LTE 8/256 GOLD] encoded=169 lag1=1.0 lag2=2.0 lag3=4.0 | roll3_mean=2.33 roll6_mean=2.33 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,584 [INFO] [REDMI NOTE 14 LTE 8/256 GREEN] encoded=170 lag1=5.0 lag2=4.0 lag3=2.0 | roll3_mean=3.67 roll6_mean=3.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,589 [INFO] [REDMI NOTE 14 LTE 8/256 PURPLE] encoded=171 lag1=1.0 lag2=3.0 lag3=1.0 | roll3_mean=1.67 roll6_mean=2.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,591 [INFO] [REDMI NOTE 14 PRO + 12/512 BLACK] encoded=172 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=6000000
+2026-05-09 06:54:59,593 [INFO] [REDMI NOTE 14 PRO + 5G 8//256 PURPLE] encoded=173 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5100000
+2026-05-09 06:54:59,595 [INFO] [REDMI NOTE 14 PRO + 5G 8/256 PURPLE] encoded=174 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5500000
+2026-05-09 06:54:59,598 [INFO] [REDMI NOTE 14 PRO 12/512 5G] encoded=175 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5000000
+2026-05-09 06:54:59,601 [INFO] [REDMI NOTE 14 PRO 12/512 BLACK] encoded=176 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,605 [INFO] [REDMI NOTE 14 PRO 5G 12/512] encoded=177 lag1=2.0 lag2=1.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.33 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,607 [INFO] [REDMI NOTE 14 PRO 5G 12/512 BLACK] encoded=178 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.17 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,610 [INFO] [REDMI NOTE 14 PRO 5G 12/512 GOLD] encoded=179 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,613 [INFO] [REDMI NOTE 14 PRO 5G 12/512 GREEN] encoded=180 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.40 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,616 [INFO] [REDMI NOTE 14 PRO 5G 12/512 PURPLE] encoded=181 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,619 [INFO] [REDMI NOTE 14 PRO 5G 8/256] encoded=182 lag1=1.0 lag2=2.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.33 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,622 [INFO] [REDMI NOTE 14 PRO 5G 8/256 BLACK] encoded=183 lag1=3.0 lag2=1.0 lag3=1.0 | roll3_mean=1.67 roll6_mean=1.67 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,625 [INFO] [REDMI NOTE 14 PRO 5G 8/256 GOLD] encoded=184 lag1=1.0 lag2=3.0 lag3=1.0 | roll3_mean=1.67 roll6_mean=1.50 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,628 [INFO] [REDMI NOTE 14 PRO 5G 8/256 GREEN] encoded=185 lag1=1.0 lag2=1.0 lag3=3.0 | roll3_mean=1.67 roll6_mean=1.75 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,630 [INFO] [REDMI NOTE 14 PRO 5G 8/256 PURPLE] encoded=186 lag1=2.0 lag2=1.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.67 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,632 [INFO] [REDMI NOTE 14 PRO 5G PURPLE] encoded=187 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,635 [INFO] [REDMI NOTE 14 PRO 8/256 PURPLE] encoded=188 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,639 [INFO] [REDMI NOTE 14 PRO PLUS 12 /512 GOLD] encoded=189 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5600000
+2026-05-09 06:54:59,641 [INFO] [REDMI NOTE 14 PRO PLUS 12/512 BLACK] encoded=190 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5600000
+2026-05-09 06:54:59,644 [INFO] [REDMI NOTE 14 PRO PLUS 12/512 BLUE] encoded=191 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5600000
+2026-05-09 06:54:59,646 [INFO] [REDMI NOTE 14 PRO PLUS 12/512 PURPLE] encoded=192 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=6000000
+2026-05-09 06:54:59,648 [INFO] [REDMI NOTE 14 PRO PLUS 8/256] encoded=193 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5100000
+2026-05-09 06:54:59,650 [INFO] [REDMI NOTE 14 PRO PLUS 8/256 BLACK] encoded=194 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5500000
+2026-05-09 06:54:59,653 [INFO] [REDMI NOTE 145G 12/512 PURPLE] encoded=195 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,656 [INFO] [REDMI NOTE 145G 8/256 BLACK] encoded=196 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3200000
+2026-05-09 06:54:59,658 [INFO] [REDMI NOTE 145G 8/256 GREEN] encoded=197 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3200000
+2026-05-09 06:54:59,660 [INFO] [REDMI NOTE 145G 8/256 PURPLE] encoded=198 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=0
+2026-05-09 06:54:59,662 [INFO] [REDMI NOTE 14LTE 8/128] encoded=199 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,665 [INFO] [REDMI NOTE 14LTE 8/128 PURPLE] encoded=200 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,667 [INFO] [REDMI NOTE 14LTE 8/256] encoded=201 lag1=2.0 lag2=2.0 lag3=1.0 | roll3_mean=1.67 roll6_mean=1.50 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,671 [INFO] [REDMI NOTE 14LTE 8/256 BLACK] encoded=202 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,673 [INFO] [REDMI NOTE 14LTE 8/256 GOLD] encoded=203 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,675 [INFO] [REDMI NOTE 14PRO + 5G 12/512] encoded=204 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5600000
+2026-05-09 06:54:59,677 [INFO] [REDMI NOTE 14PRO 5G 12/512] encoded=205 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,680 [INFO] [REDMI NOTE 14PRO 5G 8/256] encoded=206 lag1=3.0 lag2=0.0 lag3=0.0 | roll3_mean=3.00 roll6_mean=3.00 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,682 [INFO] [REDMI NOTE 14PRO 5G 8/256 BLACK] encoded=207 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4400000
+2026-05-09 06:54:59,684 [INFO] [REDMI NOTE 14PRO 5G 8/256 GREEN] encoded=208 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,687 [INFO] [REDMI NOTE 14PRO 5G 8/256 PURPLE] encoded=209 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4000000
+2026-05-09 06:54:59,690 [INFO] [REDMI NOTE 14PRO 8/256] encoded=210 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4400000
+2026-05-09 06:54:59,692 [INFO] [REDMI NOTE 14PRO PLUS 12/512 PURPLE] encoded=211 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=6000000
+2026-05-09 06:54:59,695 [INFO] [REDMI NOTE 14PRO5G 12/512 GREEN] encoded=212 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,697 [INFO] [REDMI NOTE 15 5G 12/512] encoded=213 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,699 [INFO] [REDMI NOTE 15 5G 12/512 PURPLE] encoded=214 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4600000
+2026-05-09 06:54:59,702 [INFO] [REDMI NOTE 15 5G 8/256] encoded=215 lag1=2.0 lag2=2.0 lag3=3.0 | roll3_mean=2.33 roll6_mean=2.33 | time_idx=24317 harga_avg=3800000
+2026-05-09 06:54:59,705 [INFO] [REDMI NOTE 15 5G 8/256 BLACK] encoded=216 lag1=2.0 lag2=4.0 lag3=1.0 | roll3_mean=2.33 roll6_mean=2.33 | time_idx=24317 harga_avg=3800000
+2026-05-09 06:54:59,707 [INFO] [REDMI NOTE 15 5G 8/256 BLUE] encoded=217 lag1=3.0 lag2=2.0 lag3=0.0 | roll3_mean=2.50 roll6_mean=2.50 | time_idx=24317 harga_avg=2533333
+2026-05-09 06:54:59,710 [INFO] [REDMI NOTE 15 5G 8/256 PURPLE] encoded=218 lag1=3.0 lag2=1.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=3800000
+2026-05-09 06:54:59,712 [INFO] [REDMI NOTE 15 8/256 LTE] encoded=219 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3100000
+2026-05-09 06:54:59,714 [INFO] [REDMI NOTE 15 8/256 PURPLE] encoded=220 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3100000
+2026-05-09 06:54:59,716 [INFO] [REDMI NOTE 15 LTE 8/128] encoded=221 lag1=3.0 lag2=0.0 lag3=0.0 | roll3_mean=3.00 roll6_mean=3.00 | time_idx=24317 harga_avg=3200000
+2026-05-09 06:54:59,719 [INFO] [REDMI NOTE 15 LTE 8/128 BLACK] encoded=222 lag1=1.0 lag2=2.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=2900000
+2026-05-09 06:54:59,722 [INFO] [REDMI NOTE 15 LTE 8/128 PURPLE] encoded=223 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2900000
+2026-05-09 06:54:59,724 [INFO] [REDMI NOTE 15 LTE 8/256] encoded=224 lag1=2.0 lag2=2.0 lag3=1.0 | roll3_mean=1.67 roll6_mean=1.67 | time_idx=24317 harga_avg=3100000
+2026-05-09 06:54:59,726 [INFO] [REDMI NOTE 15 LTE 8/256 BLUE] encoded=225 lag1=3.0 lag2=0.0 lag3=0.0 | roll3_mean=3.00 roll6_mean=3.00 | time_idx=24317 harga_avg=3100000
+2026-05-09 06:54:59,728 [INFO] [REDMI NOTE 15 LTE 8/256 PURPLE] encoded=226 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=3100000
+2026-05-09 06:54:59,731 [INFO] [REDMI NOTE 15 PRO 12/512] encoded=227 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5500000
+2026-05-09 06:54:59,733 [INFO] [REDMI NOTE 15 PRO 5G 12/512] encoded=228 lag1=1.0 lag2=3.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=5600000
+2026-05-09 06:54:59,737 [INFO] [REDMI NOTE 15 PRO 5G 12/512 BLACK] encoded=229 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=5600000
+2026-05-09 06:54:59,739 [INFO] [REDMI NOTE 15 PRO 5G 12/512 TITANIUM] encoded=230 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=5600000
+2026-05-09 06:54:59,742 [INFO] [REDMI NOTE 15 PRO 5G 8/256] encoded=231 lag1=3.0 lag2=2.0 lag3=0.0 | roll3_mean=2.50 roll6_mean=2.50 | time_idx=24317 harga_avg=4700000
+2026-05-09 06:54:59,744 [INFO] [REDMI NOTE 15 PRO 5G 8/256 BLACK] encoded=232 lag1=1.0 lag2=2.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.33 | time_idx=24317 harga_avg=4700000
+2026-05-09 06:54:59,746 [INFO] [REDMI NOTE 15 PRO 5G 8/256 PURPLE] encoded=233 lag1=2.0 lag2=1.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=4700000
+2026-05-09 06:54:59,748 [INFO] [REDMI NOTE 15 PRO 8/256 BLACK] encoded=234 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4700000
+2026-05-09 06:54:59,751 [INFO] [REDMI NOTE 15 PRO 8/256 GREY] encoded=235 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4700000
+2026-05-09 06:54:59,754 [INFO] [REDMI NOTE 15 PRO 8/256 TITANIUM] encoded=236 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=4700000
+2026-05-09 06:54:59,756 [INFO] [REDMI NOTE 15 PRO PLUS 12/512 BROWN] encoded=237 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=6800000
+2026-05-09 06:54:59,758 [INFO] [REDMI NOTE 155G 8/256] encoded=238 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3800000
+2026-05-09 06:54:59,760 [INFO] [REDMI NOTE 15LTE 8/256] encoded=239 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3100000
+2026-05-09 06:54:59,762 [INFO] [REDMI NOTE 15PRO 5G 12/512] encoded=240 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5600000
+2026-05-09 06:54:59,765 [INFO] [REDMI OTE 15 PRO 8/256] encoded=241 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4700000
+2026-05-09 06:54:59,768 [INFO] [REDMI PAAD SE 4/128  GREEN] encoded=242 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:54:59,771 [INFO] [REDMI PAD 2 4/128] encoded=243 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.20 | time_idx=24317 harga_avg=2300000
+2026-05-09 06:54:59,773 [INFO] [REDMI PAD 2 4/128 GRAY] encoded=244 lag1=5.0 lag2=1.0 lag3=1.0 | roll3_mean=2.33 roll6_mean=1.83 | time_idx=24317 harga_avg=2300000
+2026-05-09 06:54:59,776 [INFO] [REDMI PAD 2 4/128 GREEN] encoded=245 lag1=4.0 lag2=3.0 lag3=2.0 | roll3_mean=3.00 roll6_mean=2.83 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:54:59,778 [INFO] [REDMI PAD 2 4/128 GREY] encoded=246 lag1=1.0 lag2=1.0 lag3=2.0 | roll3_mean=1.33 roll6_mean=1.25 | time_idx=24317 harga_avg=2300000
+2026-05-09 06:54:59,780 [INFO] [REDMI PAD 2 4/128 PURPLE] encoded=247 lag1=1.0 lag2=3.0 lag3=2.0 | roll3_mean=2.00 roll6_mean=2.17 | time_idx=24317 harga_avg=2300000
+2026-05-09 06:54:59,783 [INFO] [REDMI PAD 2 4/128 UNGU] encoded=248 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2300000
+2026-05-09 06:54:59,785 [INFO] [REDMI PAD 2 4G 6/128 GRAY] encoded=249 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:54:59,788 [INFO] [REDMI PAD 2 4G 6/128 GREY] encoded=250 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:54:59,790 [INFO] [REDMI PAD 2 6/128 GRAY] encoded=251 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:54:59,793 [INFO] [REDMI PAD 2 6/128 LTE] encoded=252 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:54:59,795 [INFO] [REDMI PAD 2 6/128 PURPLE] encoded=253 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:54:59,797 [INFO] [REDMI PAD 2 LTE 6/128] encoded=254 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:54:59,800 [INFO] [REDMI PAD 2 PRO 8/25] encoded=255 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4500000
+2026-05-09 06:54:59,803 [INFO] [REDMI PAD 2 PRO 8/256] encoded=256 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4500000
+2026-05-09 06:54:59,806 [INFO] [REDMI PAD 2 PRO 8/256 SILVER] encoded=257 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4500000
+2026-05-09 06:54:59,808 [INFO] [REDMI PAD 2 PURPLE] encoded=258 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:54:59,810 [INFO] [REDMI PAD 24/128] encoded=259 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2300000
+2026-05-09 06:54:59,812 [INFO] [REDMI PAD 24G 6/128] encoded=260 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:54:59,815 [INFO] [REDMI PAD 6/128 GREEN] encoded=261 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:54:59,819 [INFO] [REDMI PAD 7 8/256 BLUE] encoded=262 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5500000
+2026-05-09 06:54:59,822 [INFO] [REDMI PAD PRO  8/256 GREY] encoded=263 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4300000
+2026-05-09 06:54:59,825 [INFO] [REDMI PAD PRO 8/256] encoded=264 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4300000
+2026-05-09 06:54:59,827 [INFO] [REDMI PAD PRO 8/256 GREEN] encoded=265 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4300000
+2026-05-09 06:54:59,829 [INFO] [REDMI PAD PRO 8/256 GREY] encoded=266 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=4300000
+2026-05-09 06:54:59,833 [INFO] [REDMI PAD SE 4/128 GRAY] encoded=267 lag1=3.0 lag2=4.0 lag3=1.0 | roll3_mean=2.67 roll6_mean=2.40 | time_idx=24317 harga_avg=1999667
+2026-05-09 06:54:59,837 [INFO] [REDMI PAD SE 4/128 GREEN] encoded=268 lag1=5.0 lag2=5.0 lag3=7.0 | roll3_mean=5.67 roll6_mean=3.83 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:54:59,841 [INFO] [REDMI PAD SE 4/128 GREY] encoded=269 lag1=1.0 lag2=8.0 lag3=3.0 | roll3_mean=4.00 roll6_mean=3.50 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:54:59,843 [INFO] [REDMI PAD SE 8.7] encoded=270 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,847 [INFO] [REDMI PAD SE 8.7 4/128] encoded=271 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:54:59,850 [INFO] [REDMI PAD SE 8.7 4/128 GRAY] encoded=272 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,855 [INFO] [REDMI PAD SE 8.7 4/128 GREEN] encoded=273 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,858 [INFO] [REDMI PAD SE 8.7 4/128 GREY] encoded=274 lag1=2.0 lag2=1.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,861 [INFO] [REDMI POWERBANK 10.000 MAH] encoded=275 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=180000
+2026-05-09 06:54:59,864 [INFO] [REDMI POWERBANK 10000MAH] encoded=276 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=180000
+2026-05-09 06:54:59,867 [INFO] [REDMI SMART BAND 9 ACTIVE] encoded=277 lag1=2.0 lag2=1.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.33 | time_idx=24317 harga_avg=350000
+2026-05-09 06:54:59,871 [INFO] [REDMI SMART PEN] encoded=278 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=700000
+2026-05-09 06:54:59,874 [INFO] [REDMI SMARTBAND 9 ACTIVE] encoded=279 lag1=2.0 lag2=1.0 lag3=2.0 | roll3_mean=1.67 roll6_mean=1.67 | time_idx=24317 harga_avg=350000
+2026-05-09 06:54:59,877 [INFO] [REDMI SMARTPEN] encoded=280 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=700000
+2026-05-09 06:54:59,879 [INFO] [REDMI WATCH 4] encoded=281 lag1=1.0 lag2=3.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=1200000
+2026-05-09 06:54:59,883 [INFO] [REDMI WATCH 4 BLACK] encoded=282 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=1199500
+2026-05-09 06:54:59,887 [INFO] [REDMI WATCH 5] encoded=283 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.17 | time_idx=24317 harga_avg=1400000
+2026-05-09 06:54:59,889 [INFO] [REDMI WATCH 5 ACTIVE] encoded=284 lag1=2.0 lag2=5.0 lag3=2.0 | roll3_mean=3.00 roll6_mean=2.83 | time_idx=24317 harga_avg=450000
+2026-05-09 06:54:59,891 [INFO] [REDMI WATCH 5 ACTIVE BLACK] encoded=285 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=450000
+2026-05-09 06:54:59,894 [INFO] [REDMI WATCH 5 LITE] encoded=286 lag1=5.0 lag2=4.0 lag3=5.0 | roll3_mean=4.67 roll6_mean=3.67 | time_idx=24317 harga_avg=700000
+2026-05-09 06:54:59,897 [INFO] [REDMI WATCH 5 LITE BLACK] encoded=287 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=700000
+2026-05-09 06:54:59,899 [INFO] [REDMI WATCH 5 LITE GOLD] encoded=288 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=700000
+2026-05-09 06:54:59,903 [INFO] [REDMI WATCH 5ACTIVE] encoded=289 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=450000
+2026-05-09 06:54:59,906 [INFO] [REDMI WATCH 5LITE] encoded=290 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=700000
+2026-05-09 06:54:59,908 [INFO] [REDMI15 8/256 GRAY] encoded=291 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2300000
+2026-05-09 06:54:59,910 [INFO] [REDMINOTE 14LTE 8/256 GOLD] encoded=292 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2600000
+2026-05-09 06:54:59,912 [INFO] [SAMSUNG A07 6/128] encoded=293 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:54:59,915 [INFO] [SAMSUNG A07 6/128 BLACK] encoded=294 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,917 [INFO] [SAMSUNG A16 LTE 8/256 BLACK] encoded=295 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:54:59,921 [INFO] [SAMSUNG A36 8/256 LAVENDER] encoded=296 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5300000
+2026-05-09 06:54:59,923 [INFO] [SAMSUNG S25 FE 8/256] encoded=297 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=10000000
+2026-05-09 06:54:59,925 [INFO] [SIAOMI SMARTBAND 9] encoded=298 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=520000
+2026-05-09 06:54:59,927 [INFO] [SMART BAND 9] encoded=299 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=520000
+2026-05-09 06:54:59,929 [INFO] [SMART BAND 9 ACTIVE] encoded=300 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=340000
+2026-05-09 06:54:59,931 [INFO] [SMART BAND 9 ACTIVE WHITE] encoded=301 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=330000
+2026-05-09 06:54:59,934 [INFO] [SMART BAND 9 BLACK] encoded=302 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=520000
+2026-05-09 06:54:59,937 [INFO] [SMARTBAND 9 ACTIVE] encoded=303 lag1=1.0 lag2=1.0 lag3=2.0 | roll3_mean=1.33 roll6_mean=1.33 | time_idx=24317 harga_avg=350000
+2026-05-09 06:54:59,940 [INFO] [TECNO POVA 6 8/256 BLUE] encoded=304 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2400000
+2026-05-09 06:54:59,942 [INFO] [TECNO SPARK 40 6/128] encoded=305 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1900000
+2026-05-09 06:54:59,945 [INFO] [TECNO SPARK GO 1 4/64] encoded=306 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1100000
+2026-05-09 06:54:59,947 [INFO] [TECNO SPARK GO 2 4/128 BLACK] encoded=307 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1200000
+2026-05-09 06:54:59,949 [INFO] [TECNO SPARK GO 3 4/128] encoded=308 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1600000
+2026-05-09 06:54:59,953 [INFO] [TV XIAOMI 32 INCH QLED 2026] encoded=309 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2200000
+2026-05-09 06:54:59,955 [INFO] [TYPE C TO C CABLE] encoded=310 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=60000
+2026-05-09 06:54:59,958 [INFO] [USB TYPE C 100 CM] encoded=311 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=50000
+2026-05-09 06:54:59,960 [INFO] [USB TYPE C TO TYPE C] encoded=312 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=60000
+2026-05-09 06:54:59,962 [INFO] [XIAOMI  GTV A PRO 32"] encoded=313 lag1=3.0 lag2=0.0 lag3=0.0 | roll3_mean=3.00 roll6_mean=3.00 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:54:59,964 [INFO] [XIAOMI  SAMRT BAND 9 ACTIVE] encoded=314 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=345000
+2026-05-09 06:54:59,966 [INFO] [XIAOMI 120W HYPERCHARGER] encoded=315 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=300000
+2026-05-09 06:54:59,969 [INFO] [XIAOMI 14T 12/512] encoded=316 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=7000000
+2026-05-09 06:54:59,972 [INFO] [XIAOMI 14T 12/512 BLACK] encoded=317 lag1=3.0 lag2=1.0 lag3=2.0 | roll3_mean=2.00 roll6_mean=1.83 | time_idx=24317 harga_avg=6500000
+2026-05-09 06:54:59,974 [INFO] [XIAOMI 14T 12/512 GRAY] encoded=318 lag1=3.0 lag2=1.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=6500000
+2026-05-09 06:54:59,977 [INFO] [XIAOMI 14T 12/512 GREEN] encoded=319 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.17 | time_idx=24317 harga_avg=6500000
+2026-05-09 06:54:59,979 [INFO] [XIAOMI 14T 12/512 GREY] encoded=320 lag1=2.0 lag2=1.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.25 | time_idx=24317 harga_avg=6500000
+2026-05-09 06:54:59,982 [INFO] [XIAOMI 14T PRO 12/512 BLACK] encoded=321 lag1=1.0 lag2=2.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=9000000
+2026-05-09 06:54:59,984 [INFO] [XIAOMI 14T PRO 12/512 GRAY] encoded=322 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=9000000
+2026-05-09 06:54:59,987 [INFO] [XIAOMI 14T PRO 12/512 GREY] encoded=323 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=9000000
+2026-05-09 06:54:59,990 [INFO] [XIAOMI 15 12 /512 BLACK] encoded=324 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=13000000
+2026-05-09 06:54:59,992 [INFO] [XIAOMI 15 12/256 BLACK] encoded=325 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=12000000
+2026-05-09 06:54:59,994 [INFO] [XIAOMI 15 12/512 BLACK] encoded=326 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=13000000
+2026-05-09 06:54:59,996 [INFO] [XIAOMI 15 12/512 GREEN] encoded=327 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=13000000
+2026-05-09 06:54:59,998 [INFO] [XIAOMI 15 12/512 WHITE] encoded=328 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=13000000
+2026-05-09 06:55:00,000 [INFO] [XIAOMI 15T 12/512] encoded=329 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=8000000
+2026-05-09 06:55:00,003 [INFO] [XIAOMI 15T 12/512 BLACK] encoded=330 lag1=1.0 lag2=2.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.33 | time_idx=24317 harga_avg=8000000
+2026-05-09 06:55:00,006 [INFO] [XIAOMI 15T 12/512 GRAY] encoded=331 lag1=1.0 lag2=2.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=8000000
+2026-05-09 06:55:00,008 [INFO] [XIAOMI 15T 12/512 GREY] encoded=332 lag1=2.0 lag2=1.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=8000000
+2026-05-09 06:55:00,010 [INFO] [XIAOMI 15T 12/512 ROSE GOLD] encoded=333 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=8000000
+2026-05-09 06:55:00,015 [INFO] [XIAOMI 15T PRO 12/512 BLACK] encoded=334 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=10500000
+2026-05-09 06:55:00,019 [INFO] [XIAOMI 15T PRO 12/512 GOLD] encoded=335 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=8000000
+2026-05-09 06:55:00,023 [INFO] [XIAOMI 15T PRO 12/512 GRAY] encoded=336 lag1=1.0 lag2=2.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=10500000
+2026-05-09 06:55:00,026 [INFO] [XIAOMI 15T PRO 12/512 GREY] encoded=337 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=10500000
+2026-05-09 06:55:00,030 [INFO] [XIAOMI 15T PRO 12/512 MOCCA GOLD] encoded=338 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=10000000
+2026-05-09 06:55:00,033 [INFO] [XIAOMI 22,5 PB 10000] encoded=339 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=210000
+2026-05-09 06:55:00,037 [INFO] [XIAOMI 22.5W POWERBANK 10000MAH] encoded=340 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=210000
+2026-05-09 06:55:00,040 [INFO] [XIAOMI 33W POWERBANK 20.000 MAH] encoded=341 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=310000
+2026-05-09 06:55:00,044 [INFO] [XIAOMI 6A TYPE A TO TYPE C] encoded=342 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=75000
+2026-05-09 06:55:00,047 [INFO] [XIAOMI BAND 10] encoded=343 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=650000
+2026-05-09 06:55:00,050 [INFO] [XIAOMI BAND 10 SILVER] encoded=344 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=650000
+2026-05-09 06:55:00,055 [INFO] [XIAOMI BAND 9 ACTIVE] encoded=345 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=330000
+2026-05-09 06:55:00,059 [INFO] [XIAOMI C TO C CABLE] encoded=346 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=70000
+2026-05-09 06:55:00,063 [INFO] [XIAOMI CABLE TYPE C 6A] encoded=347 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=75000
+2026-05-09 06:55:00,067 [INFO] [XIAOMI GTV A PRO 2026] encoded=348 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3600000
+2026-05-09 06:55:00,071 [INFO] [XIAOMI GTV A PRO 32"] encoded=349 lag1=1.0 lag2=2.0 lag3=2.0 | roll3_mean=1.67 roll6_mean=1.67 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:55:00,076 [INFO] [XIAOMI GTV A PRO 32" QLED] encoded=350 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2200000
+2026-05-09 06:55:00,079 [INFO] [XIAOMI GTV A PRO 43" 2026] encoded=351 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3600000
+2026-05-09 06:55:00,084 [INFO] [XIAOMI GTV A PRO 43" UHD] encoded=352 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=3900000
+2026-05-09 06:55:00,088 [INFO] [XIAOMI GTV A PRO 55"] encoded=353 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5500000
+2026-05-09 06:55:00,091 [INFO] [XIAOMI GTV A SERIES 43"] encoded=354 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:55:00,094 [INFO] [XIAOMI GTV A SERIES 43" FHD] encoded=355 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3100000
+2026-05-09 06:55:00,096 [INFO] [XIAOMI GTV APRO 32] encoded=356 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:55:00,099 [INFO] [XIAOMI GTV APRO 32"] encoded=357 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:55:00,102 [INFO] [XIAOMI GTV APRO 32" QLED] encoded=358 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2200000
+2026-05-09 06:55:00,105 [INFO] [XIAOMI GTV APRO 43 4K] encoded=359 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=3900000
+2026-05-09 06:55:00,109 [INFO] [XIAOMI GTV APRO QLED 32"] encoded=360 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2200000
+2026-05-09 06:55:00,111 [INFO] [XIAOMI OUTDOR CAMERA AW200] encoded=361 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=450000
+2026-05-09 06:55:00,115 [INFO] [XIAOMI PAD 7 8/256 BLUE] encoded=362 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5500000
+2026-05-09 06:55:00,120 [INFO] [XIAOMI PAD 7 8/256 GRAY] encoded=363 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5500000
+2026-05-09 06:55:00,124 [INFO] [XIAOMI PAD 7 8/256 GREEN] encoded=364 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5500000
+2026-05-09 06:55:00,128 [INFO] [XIAOMI PAD 7 8/256 GREY] encoded=365 lag1=1.0 lag2=1.0 lag3=1.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5500000
+2026-05-09 06:55:00,132 [INFO] [XIAOMI PAD 7 KEYBOARD] encoded=366 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1000000
+2026-05-09 06:55:00,137 [INFO] [XIAOMI PAD 7 PRO 12/512] encoded=367 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=7500000
+2026-05-09 06:55:00,141 [INFO] [XIAOMI PAD 7 PRO 12/512 GREEN] encoded=368 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=7500000
+2026-05-09 06:55:00,144 [INFO] [XIAOMI PAD 7/7 PRO KEYBOARD] encoded=369 lag1=1.0 lag2=1.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1000000
+2026-05-09 06:55:00,147 [INFO] [XIAOMI PAD 8 8/256 GRAY] encoded=370 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=7500000
+2026-05-09 06:55:00,150 [INFO] [XIAOMI PB 22,5W 10000MAH] encoded=371 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=210000
+2026-05-09 06:55:00,153 [INFO] [XIAOMI POWERBANK 20.000 MAH] encoded=372 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=310000
+2026-05-09 06:55:00,156 [INFO] [XIAOMI SMART  BAND 9 ACTIVE] encoded=373 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=330000
+2026-05-09 06:55:00,159 [INFO] [XIAOMI SMART BAND 10] encoded=374 lag1=1.0 lag2=2.0 lag3=1.0 | roll3_mean=1.33 roll6_mean=1.50 | time_idx=24317 harga_avg=650000
+2026-05-09 06:55:00,162 [INFO] [XIAOMI SMART BAND 10  BLACK] encoded=375 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=650000
+2026-05-09 06:55:00,164 [INFO] [XIAOMI SMART BAND 10 BLACK] encoded=376 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=650000
+2026-05-09 06:55:00,167 [INFO] [XIAOMI SMART BAND 7] encoded=377 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=400000
+2026-05-09 06:55:00,171 [INFO] [XIAOMI SMART BAND 9] encoded=378 lag1=1.0 lag2=1.0 lag3=2.0 | roll3_mean=1.33 roll6_mean=1.67 | time_idx=24317 harga_avg=520000
+2026-05-09 06:55:00,176 [INFO] [XIAOMI SMART BAND 9 ACTIVE] encoded=379 lag1=2.0 lag2=2.0 lag3=1.0 | roll3_mean=1.67 roll6_mean=2.00 | time_idx=24317 harga_avg=350000
+2026-05-09 06:55:00,180 [INFO] [XIAOMI SMART BAND 9 PRO] encoded=380 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=950000
+2026-05-09 06:55:00,183 [INFO] [XIAOMI SMART BAND 9ACTIVE] encoded=381 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=350000
+2026-05-09 06:55:00,188 [INFO] [XIAOMI SMART CAMERA C400] encoded=382 lag1=1.0 lag2=2.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=650000
+2026-05-09 06:55:00,191 [INFO] [XIAOMI SMARTBAND 10] encoded=383 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=650000
+2026-05-09 06:55:00,194 [INFO] [XIAOMI SMARTBAND 8] encoded=384 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=460000
+2026-05-09 06:55:00,198 [INFO] [XIAOMI SMARTBAND 9] encoded=385 lag1=1.0 lag2=1.0 lag3=3.0 | roll3_mean=1.67 roll6_mean=1.40 | time_idx=24317 harga_avg=520000
+2026-05-09 06:55:00,204 [INFO] [XIAOMI SMARTBAND 9 ACTIVE] encoded=386 lag1=6.0 lag2=2.0 lag3=1.0 | roll3_mean=3.00 roll6_mean=2.17 | time_idx=24317 harga_avg=350000
+2026-05-09 06:55:00,207 [INFO] [XIAOMI SMARTBAND 9 PRO] encoded=387 lag1=3.0 lag2=0.0 lag3=0.0 | roll3_mean=3.00 roll6_mean=3.00 | time_idx=24317 harga_avg=1000000
+2026-05-09 06:55:00,211 [INFO] [XIAOMI TV  APRO 32] encoded=388 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:55:00,214 [INFO] [XIAOMI TV 43 ASERIES] encoded=389 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2700000
+2026-05-09 06:55:00,219 [INFO] [XIAOMI TV 55 A PRO] encoded=390 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=5500000
+2026-05-09 06:55:00,222 [INFO] [XIAOMI TV A PRO 32''] encoded=393 lag1=3.0 lag2=0.0 lag3=0.0 | roll3_mean=3.00 roll6_mean=3.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:55:00,225 [INFO] [XIAOMI TV A PRO 32"] encoded=391 lag1=1.0 lag2=1.0 lag3=2.0 | roll3_mean=1.33 roll6_mean=1.50 | time_idx=24317 harga_avg=2200000
+2026-05-09 06:55:00,227 [INFO] [XIAOMI TV A PRO 32" 2026] encoded=392 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2200000
+2026-05-09 06:55:00,230 [INFO] [XIAOMI TV A PRO 43] encoded=394 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3600000
+2026-05-09 06:55:00,233 [INFO] [XIAOMI TV A PRO 43 QLED] encoded=395 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=3900000
+2026-05-09 06:55:00,237 [INFO] [XIAOMI TV A PRO 43" 2026] encoded=396 lag1=2.0 lag2=0.0 lag3=0.0 | roll3_mean=2.00 roll6_mean=2.00 | time_idx=24317 harga_avg=3600000
+2026-05-09 06:55:00,239 [INFO] [XIAOMI TV A PRO 43" QLED] encoded=397 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3650000
+2026-05-09 06:55:00,242 [INFO] [XIAOMI TV A PRO 44" QLED] encoded=398 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3650000
+2026-05-09 06:55:00,244 [INFO] [XIAOMI TV A SERIES 43" FHD] encoded=399 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:55:00,247 [INFO] [XIAOMI TV A SERIES FHD 43"] encoded=400 lag1=3.0 lag2=0.0 lag3=0.0 | roll3_mean=3.00 roll6_mean=3.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:55:00,250 [INFO] [XIAOMI TV A SERIES FHD 43" 2025] encoded=401 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=3000000
+2026-05-09 06:55:00,254 [INFO] [XIAOMI TV APRO 32] encoded=402 lag1=1.0 lag2=2.0 lag3=0.0 | roll3_mean=1.50 roll6_mean=1.50 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:55:00,258 [INFO] [XIAOMI TV APRO 32"] encoded=403 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=1800000
+2026-05-09 06:55:00,262 [INFO] [XIOMI TV A PRO 32"] encoded=404 lag1=1.0 lag2=0.0 lag3=0.0 | roll3_mean=1.00 roll6_mean=1.00 | time_idx=24317 harga_avg=2000000
+2026-05-09 06:55:00,327 [INFO] Inferensi 405 produk…
+2026-05-09 06:55:00,327 [INFO] Fitur sample[0]: {'bulan': np.float64(5.0), 'kuartal': np.float64(2.0), 'produk_encoded': np.float64(0.0), 'time_idx': np.float64(24317.0), 'harga_avg': np.float64(180000.0), 'harga_std': np.float64(0.0), 'promo_avg': np.float64(0.0), 'n_transaksi': np.float64(1.0), 'qty_lag1': np.float64(1.0), 'qty_lag2': np.float64(0.0), 'qty_lag3': np.float64(0.0), 'qty_roll3_mean': np.float64(1.0), 'qty_roll3_std': np.float64(0.0), 'qty_roll6_mean': np.float64(1.0), 'bulan_sin': np.float64(0.49999999999999994), 'bulan_cos': np.float64(-0.8660254037844387)}
+2026-05-09 06:55:00,537 [INFO] y_log : [0.71540673 0.71540673 0.71540673 0.71540673 0.7347866  0.71608251
+ 0.6934006  0.6934006  0.6934006  0.6934006  0.6934006  0.6934006
+ 0.6934006  0.69373848 0.69373848 0.69449873 0.6934006  0.71540673
+ 0.7347866  0.71782826 0.69470146 0.69470146 0.71540673 0.71540673
+ 0.71873251 0.71540673 0.71540673 0.71540673 0.71873251 1.41160411
+ 0.71540673 0.71540673 1.10292804 1.10448799 1.1053746  0.69449873
+ 0.71540673 0.71540673 0.69373848 0.69449873 1.10172866 0.6934006
+ 0.71540673 1.10525947 0.6934006  1.10132929 0.6934006  0.6934006
+ 0.6934006  0.6934006  0.70051795 0.69635711 0.69782451 0.6934006
+ 0.70656707 1.10116791 1.1018976  0.6934006  1.0994154  0.69593475
+ 0.69416084 0.7347866  0.69983058 1.09669806 0.69314718 0.6934006
+ 0.69416084 0.69449873 0.69373848 1.10017267 1.39080454 0.69424532
+ 0.69416084 0.69365401 1.61549705 0.69416084 0.6934006  0.6945832
+ 0.6934006  1.38826538 0.6964633  1.10235052 1.40028502 0.69365401
+ 1.61738173 0.69466767 0.6934006  0.6934006  0.69714874 0.69365401
+ 1.10656952 1.10051266 0.69638849 0.6960506  1.10051266 1.10292362
+ 1.39040579 1.0994154  0.6934006  1.10612805 0.69373848 0.69424532
+ 1.09872877 1.10458015 1.38854431 0.69500556 0.6934006  0.6934006
+ 0.6934006  0.6934006  0.69416084 0.69416084 0.6995586  0.69470146
+ 0.73450301 1.10495297 0.71540673 0.7109973  0.71540673 0.71732143
+ 1.10359518 0.71873251 0.71873251 1.10617478 0.6934006  0.6934006
+ 0.6934006  1.9297521  0.6934006  1.10149824 1.10149824 2.16215634
+ 1.38635927 0.6934006  0.6934006  0.69314718 0.6934006  0.69638849
+ 0.6934006  0.6934006  0.6934006  0.6934006  0.6934006  0.69638849
+ 0.69498867 0.69314718 1.10288992 0.69314718 1.60286795 0.6934006
+ 1.10235052 0.69314718 1.1020736  0.6934006  0.6934006  0.6934006
+ 0.6934006  0.69314718 1.10149824 1.10149824 0.6934006  0.6934006
+ 0.6934006  0.69432979 0.69638849 1.61652346 0.69498867 1.38969633
+ 1.09996372 0.69466767 1.79589504 0.69314718 0.6934006  0.6934006
+ 0.6934006  0.6934006  0.6934006  1.10013461 0.69498867 0.6960506
+ 0.6945832  0.6934006  0.69314718 1.3896453  0.69314718 0.69550874
+ 1.09995481 0.6934006  0.6934006  0.6934006  0.69638849 0.69638849
+ 0.6934006  0.6934006  0.6934006  0.6934006  0.6934006  0.6934006
+ 0.71689344 1.10149824 0.69638849 1.0992356  0.69638849 0.69638849
+ 0.69638849 0.69638849 1.38890704 0.6934006  0.6934006  0.6934006
+ 0.6934006  0.6934006  0.6934006  0.6934006  0.6934006  1.0965576
+ 1.10701176 1.39524874 1.38893225 0.6934006  0.6934006  1.39701013
+ 0.69365401 0.69689532 1.0992356  1.38988783 1.10153232 0.6934006
+ 0.69314718 1.10225721 1.10225721 1.38852739 0.69365401 1.09891009
+ 0.6934006  0.6934006  1.10225721 1.10185784 0.6934006  0.6934006
+ 0.6934006  0.6934006  0.6934006  0.69509003 1.8080562  1.60963736
+ 0.69669134 0.69382296 0.6934006  0.6934006  0.6934006  0.69424532
+ 0.69424532 0.69424532 1.1020736  0.69424532 0.69841581 0.69841581
+ 0.69424532 0.69424532 0.69424532 0.69559687 0.69559687 0.69625575
+ 0.69625575 0.69625575 0.69625575 1.39549826 1.79828171 0.70723709
+ 1.10149824 0.7053401  0.7053401  0.70643823 1.10024249 0.73807175
+ 0.73288759 0.76327414 0.7125009  1.10518211 0.70765463 0.70677612
+ 1.11153667 0.71022257 1.11815272 0.72966076 1.81091189 0.71511953
+ 0.70765463 0.73450704 0.7125009  0.70567798 0.70567798 0.70567798
+ 0.70643823 0.70567798 0.70432643 0.70432643 0.70765463 0.70765463
+ 1.10956532 0.73381678 0.70765463 0.74435522 0.70567798 0.7053401
+ 0.70669165 0.70669165 0.7053401  0.7053401  0.73288759 0.73288759
+ 0.73288759 1.11808186 1.11524455 0.73874752 0.70432643 1.38969107
+ 1.38838598 0.70777289 1.10405427 0.706291   0.70398855 0.70432643
+ 0.70432643 0.70432643 0.70917271 0.70432643 0.70432643 1.10331204
+ 0.70696678 0.706291   1.10053017 1.10331204 0.70398855 0.70849693
+ 0.70595311 0.70432643 0.70432643 0.73288759 0.73288759 0.73356336
+ 0.73111368 0.70588072 0.70588072 0.73204287 0.73111368 0.73060685
+ 0.70238358 0.703647   0.70120097 0.70018731 1.10261681 0.70018731
+ 0.70103203 0.70486464 0.70103203 0.7058783  0.70103203 1.10255307
+ 0.70027178 0.73026051 0.69892023 0.7037665  0.7037665  0.70444228
+ 0.7070947  1.10163982 0.70135624 0.7070947  0.70135624 0.72748139
+ 0.72815716 0.72841058 0.70385339 0.70224842 0.70224842 0.7286471
+ 0.70537023 1.10609397 0.7262674  1.10973858 0.7404257  0.73617958
+ 0.71786567 0.70269609 1.82659483 1.39974457 0.70264544 0.69589614
+ 0.70332121 1.39974193 0.70519283 0.70264544 0.70264544 1.1210062
+ 1.12694611 0.69589614 0.69589614 0.69589614 1.1372282  0.70276531
+ 0.70148696 0.69589614 0.70276531]
+2026-05-09 06:55:00,553 [INFO] y_pred: [1.04501829 1.04501829 1.04501829 1.04501829 1.08503699 1.04640073
+ 1.0005069  1.0005069  1.0005069  1.0005069  1.0005069  1.0005069
+ 1.0005069  1.00118296 1.00118296 1.00270493 1.0005069  1.04501829
+ 1.08503699 1.04997636 1.00311098 1.00311098 1.04501829 1.04501829
+ 1.05183089 1.04501829 1.04501829 1.04501829 1.05183089 3.10253105
+ 1.04501829 1.04501829 2.01297523 2.01767899 2.02035569 1.00270493
+ 1.04501829 1.04501829 1.00118296 1.00270493 2.0093637  1.0005069
+ 1.04501829 2.02000797 1.0005069  2.00816209 1.0005069  1.0005069
+ 1.0005069  1.0005069  1.014796   1.00643018 1.00937657 1.0005069
+ 1.02702068 2.00767666 2.00987215 1.0005069  2.00241031 1.00558292
+ 1.00202835 1.08503699 1.01341157 1.99426279 1.         1.0005069
+ 1.00202835 1.00270493 1.00118296 2.0046848  3.01808145 1.00219748
+ 1.00202835 1.00101392 4.03038765 1.00202835 1.0005069  1.00287411
+ 1.0005069  3.00789184 1.00664325 2.01123567 3.05635596 1.00101392
+ 4.03987727 1.0030433  1.0005069  1.0005069  1.00801914 1.00101392
+ 2.02396691 2.00570655 1.00649313 1.00581528 2.00570655 2.01296193
+ 3.01647956 2.00241031 1.0005069  2.02263224 1.00118296 1.00219748
+ 2.00034946 2.0179571  3.00900992 1.00372022 1.0005069  1.0005069
+ 1.0005069  1.0005069  1.00202835 1.00202835 1.01286403 1.00311098
+ 1.08444579 2.01908247 1.04501829 1.03602077 1.04501829 1.04893763
+ 2.01498599 1.05183089 1.05183089 2.02277348 1.0005069  1.0005069
+ 1.0005069  5.88780252 1.0005069  2.00867035 2.00867035 7.68985579
+ 3.00025963 1.0005069  1.0005069  1.         1.0005069  1.00649313
+ 1.0005069  1.0005069  1.0005069  1.0005069  1.0005069  1.00649313
+ 1.00368637 1.         2.01286038 1.         3.96725784 1.0005069
+ 2.01123567 1.         2.01040192 1.0005069  1.0005069  1.0005069
+ 1.0005069  1.         2.00867035 2.00867035 1.0005069  1.0005069
+ 1.0005069  1.00236661 1.00649313 4.03555353 1.00368637 3.01363104
+ 2.00405704 1.0030433  5.0248648  1.         1.0005069  1.0005069
+ 1.0005069  1.0005069  1.0005069  2.00457043 1.00368637 1.00581528
+ 1.00287411 1.0005069  1.         3.01342624 1.         1.0047287
+ 2.00403025 1.0005069  1.0005069  1.0005069  1.00649313 1.00649313
+ 1.0005069  1.0005069  1.0005069  1.0005069  1.0005069  1.0005069
+ 1.04806089 2.00867035 1.00649313 2.00187052 1.00649313 1.00649313
+ 1.00649313 1.00649313 3.01046438 1.0005069  1.0005069  1.0005069
+ 1.0005069  1.0005069  1.0005069  1.0005069  1.0005069  1.99384227
+ 2.02530455 3.03597836 3.01056547 1.0005069  1.0005069  3.04309354
+ 1.00101392 1.00751034 2.00187052 3.01439974 2.00877291 1.0005069
+ 1.         2.01095471 2.01095471 3.0089421  1.00101392 2.00089352
+ 1.0005069  1.0005069  2.01095471 2.00975247 1.0005069  1.0005069
+ 1.0005069  1.0005069  1.0005069  1.00388948 5.09858147 4.00099735
+ 1.0071009  1.00135201 1.0005069  1.0005069  1.0005069  1.00219748
+ 1.00219748 1.00219748 2.01040192 1.00219748 1.01056507 1.01056507
+ 1.00219748 1.00219748 1.00219748 1.00490538 1.00490538 1.0062268
+ 1.0062268  1.0062268  1.0062268  3.03698553 5.03926134 1.02837927
+ 2.00867035 1.0245351  1.0245351  1.02675954 2.00489458 1.09189792
+ 1.08108125 1.14528871 1.03908443 2.01977434 1.02922638 1.02744447
+ 2.03902477 1.03444402 2.0591978  1.07437678 5.11602202 1.04443103
+ 1.02922638 1.08445418 1.03908443 1.02521928 1.02521928 1.02521928
+ 1.02675954 1.02521928 1.02248395 1.02248395 1.02922638 1.02922638
+ 2.03303971 1.08301587 1.02922638 1.10508367 1.02521928 1.0245351
+ 1.02727321 1.02727321 1.0245351  1.0245351  1.08108125 1.08108125
+ 1.08108125 2.05898101 2.05031405 1.09331205 1.02248395 3.01360995
+ 3.00837521 1.02946637 2.01637046 1.02646116 1.02180069 1.02248395
+ 1.02248395 1.02248395 1.03230925 1.02248395 1.02248395 2.01413244
+ 1.02783106 1.02646116 2.00575916 2.01413244 1.02180069 1.03093633
+ 1.02577656 1.02248395 1.02248395 1.08108125 1.08108125 1.08248806
+ 1.07739287 1.0256299  1.0256299  1.07932406 1.07739287 1.07634025
+ 1.01855837 1.02111028 1.01617262 1.01412994 2.01203765 1.01412994
+ 1.01583203 1.02357275 1.01583203 1.02562501 1.01583203 2.01184567
+ 1.01430008 1.07562126 1.01157949 1.02135182 1.02135182 1.02271826
+ 1.02809047 2.00909635 1.01648568 1.02809047 1.01648568 1.06986086
+ 1.07126009 1.07178505 1.02152745 1.01828557 1.01828557 1.07227513
+ 1.02459611 2.02252921 1.06734961 2.03356526 1.09682793 1.08794343
+ 1.05005305 1.01918929 5.21269534 3.05416427 1.01908702 1.00550548
+ 1.02045193 3.05415358 1.02423699 1.01908702 1.01908702 2.06793961
+ 2.08621713 1.00550548 1.00550548 1.00550548 2.11811359 1.01932906
+ 1.01674931 1.00550548 1.01932906]
+2026-05-09 06:55:00,564 [INFO]   10.000 MAH REDMI POWERBANK: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,572 [INFO]   10000MAH REDMI POWERBANK: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,574 [INFO]   20.000 MAH POWERBANK 18W: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,580 [INFO]   DP XIAOMI 14T 12/512 BLACK: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,582 [INFO]   DP XIAOMI PAD 7 PRO 12/512 GREEN: y_log=0.7348 → qty=1.09
+2026-05-09 06:55:00,596 [INFO]   DP XIAOMI TV A PRO QLED 55": y_log=0.7161 → qty=1.05
+2026-05-09 06:55:00,598 [INFO]   GTV A PRO 32": y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,599 [INFO]   HUAWEI MATEPAD SE 11" 6/128: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,612 [INFO]   INFINIX GT 30 PRO 8/256 WHITE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,614 [INFO]   INFINIX HOT 50 PRO PLUS 8/256: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,620 [INFO]   INFINIX HOT 60 PRO 8/256 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,622 [INFO]   INFINIX HOT 60I 6/128 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,628 [INFO]   INFINIX HOT 60I 8/256 SILVER: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,630 [INFO]   INFINIX SMART 10 + 8/128: y_log=0.6937 → qty=1.0
+2026-05-09 06:55:00,631 [INFO]   INFINIX SMART 10 PLUS 8/128: y_log=0.6937 → qty=1.0
+2026-05-09 06:55:00,637 [INFO]   INFINIX SMART 20 4/64: y_log=0.6945 → qty=1.0
+2026-05-09 06:55:00,640 [INFO]   IPHONE 13 128: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,646 [INFO]   MI 1M BRAIDED CABLE: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,647 [INFO]   MI EXTENDER PRO: y_log=0.7348 → qty=1.09
+2026-05-09 06:55:00,661 [INFO]   MI IN EAR HEADPHONES BASIC: y_log=0.7178 → qty=1.05
+2026-05-09 06:55:00,663 [INFO]   MI TV STICK: y_log=0.6947 → qty=1.0
+2026-05-09 06:55:00,665 [INFO]   MI TV STICK FHD: y_log=0.6947 → qty=1.0
+2026-05-09 06:55:00,670 [INFO]   MI TYPE C 18W: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,672 [INFO]   MI TYPE C BRAIDED CABLE: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,683 [INFO]   MI TYPE C TO TYPE C CABLE: y_log=0.7187 → qty=1.05
+2026-05-09 06:55:00,685 [INFO]   MI USB CABLE 100CM TYPE C: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,686 [INFO]   MI USB TYPE C: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,699 [INFO]   MI USB TYPE C 100 CM: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,701 [INFO]   MI USB TYPE C 100CM: y_log=0.7187 → qty=1.05
+2026-05-09 06:55:00,715 [INFO]   MI USB TYPE C CABLE 100CM: y_log=1.4116 → qty=3.1
+2026-05-09 06:55:00,716 [INFO]   MI USB TYPE C TO TYPEC: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,731 [INFO]   MI USB TYPE C100CFM: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,732 [INFO]   MI WIFI EXTENDER PRO: y_log=1.1029 → qty=2.01
+2026-05-09 06:55:00,733 [INFO]   MI WIFI RANGE EXTENDER AC1200: y_log=1.1045 → qty=2.02
+2026-05-09 06:55:00,747 [INFO]   MI WIFI RANGE EXTENDER PRO: y_log=1.1054 → qty=2.02
+2026-05-09 06:55:00,748 [INFO]   OPPO A3X 4/64 NEBULA: y_log=0.6945 → qty=1.0
+2026-05-09 06:55:00,763 [INFO]   PB 10000 MAH 22.5W: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,764 [INFO]   PB 10000MAH: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,778 [INFO]   POCO C71 4/128 BLACK: y_log=0.6937 → qty=1.0
+2026-05-09 06:55:00,780 [INFO]   POCO C71 4/128 BLUE: y_log=0.6945 → qty=1.0
+2026-05-09 06:55:00,781 [INFO]   POCO C85 6/128 BLACK: y_log=1.1017 → qty=2.01
+2026-05-09 06:55:00,787 [INFO]   POCO X8 PRO 8/256 WHITE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,789 [INFO]   POWER BANK REDMI 10000MAH: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:00,795 [INFO]   PRE ORDER REDMI NOTE 15 PRO 8/256: y_log=1.1053 → qty=2.02
+2026-05-09 06:55:00,796 [INFO]   REALME C71 6/128 WHITE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,798 [INFO]   REDMI  13X 8/256 BLACK: y_log=1.1013 → qty=2.01
+2026-05-09 06:55:00,803 [INFO]   REDMI  NOTE 14 5G 8/256 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,805 [INFO]   REDMI  NOTE 14 PRO 5G 12/512 GOLD: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,812 [INFO]   REDMI  NOTE 14 PRO 5G 8/256 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,813 [INFO]   REDMI  NOTE 145G 12/512: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,827 [INFO]   REDMI 13 8/128 BLACK: y_log=0.7005 → qty=1.01
+2026-05-09 06:55:00,829 [INFO]   REDMI 13 8/128 BLUE: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:00,831 [INFO]   REDMI 13 8/128 GOLD: y_log=0.6978 → qty=1.01
+2026-05-09 06:55:00,837 [INFO]   REDMI 13 8/256: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,839 [INFO]   REDMI 13 8/256 BLACK: y_log=0.7066 → qty=1.03
+2026-05-09 06:55:00,851 [INFO]   REDMI 13 8/256 BLUE: y_log=1.1012 → qty=2.01
+2026-05-09 06:55:00,853 [INFO]   REDMI 13 8/256 GOLD: y_log=1.1019 → qty=2.01
+2026-05-09 06:55:00,858 [INFO]   REDMI 13X  8/256 GOLD: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,860 [INFO]   REDMI 13X 8/128 BLACK: y_log=1.0994 → qty=2.0
+2026-05-09 06:55:00,861 [INFO]   REDMI 13X 8/128 BLUE: y_log=0.6959 → qty=1.01
+2026-05-09 06:55:00,867 [INFO]   REDMI 13X 8/128 GOLD: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:00,869 [INFO]   REDMI 13X 8/256: y_log=0.7348 → qty=1.09
+2026-05-09 06:55:00,875 [INFO]   REDMI 13X 8/256 BLACK: y_log=0.6998 → qty=1.01
+2026-05-09 06:55:00,877 [INFO]   REDMI 13X 8/256 BLUE: y_log=1.0967 → qty=1.99
+2026-05-09 06:55:00,883 [INFO]   REDMI 13X 8/256 GOLD: y_log=0.6931 → qty=1.0
+2026-05-09 06:55:00,886 [INFO]   REDMI 14 C 8/256 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,888 [INFO]   REDMI 145 6/128 ORANGE: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:00,899 [INFO]   REDMI 14C 4/128 PURPLE: y_log=0.6945 → qty=1.0
+2026-05-09 06:55:00,901 [INFO]   REDMI 14C 6/128 B;ACK: y_log=0.6937 → qty=1.0
+2026-05-09 06:55:00,906 [INFO]   REDMI 14C 6/128 BLACK: y_log=1.1002 → qty=2.0
+2026-05-09 06:55:00,907 [INFO]   REDMI 14C 6/128 BLUE: y_log=1.3908 → qty=3.02
+2026-05-09 06:55:00,909 [INFO]   REDMI 14C 6/128 PURPLE: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:00,915 [INFO]   REDMI 14C 8/256: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:00,916 [INFO]   REDMI 14C 8/256 BLACK: y_log=0.6937 → qty=1.0
+2026-05-09 06:55:00,923 [INFO]   REDMI 14C 8/256 BLUE: y_log=1.6155 → qty=4.03
+2026-05-09 06:55:00,925 [INFO]   REDMI 14C 8/256 PURPLE: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:00,939 [INFO]   REDMI 15  8/256: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,940 [INFO]   REDMI 15 8/128 BLACK: y_log=0.6946 → qty=1.0
+2026-05-09 06:55:00,942 [INFO]   REDMI 15 8/128 BLUE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,947 [INFO]   REDMI 15 8/128 GRAY: y_log=1.3883 → qty=3.01
+2026-05-09 06:55:00,948 [INFO]   REDMI 15 8/128 PURPLE: y_log=0.6965 → qty=1.01
+2026-05-09 06:55:00,955 [INFO]   REDMI 15 8/256: y_log=1.1024 → qty=2.01
+2026-05-09 06:55:00,956 [INFO]   REDMI 15 8/256 BLACK: y_log=1.4003 → qty=3.06
+2026-05-09 06:55:00,957 [INFO]   REDMI 15 8/256 GRAY: y_log=0.6937 → qty=1.0
+2026-05-09 06:55:00,963 [INFO]   REDMI 15 8/256 GREY: y_log=1.6174 → qty=4.04
+2026-05-09 06:55:00,965 [INFO]   REDMI 15 8/256 PURPLE: y_log=0.6947 → qty=1.0
+2026-05-09 06:55:00,971 [INFO]   REDMI 15 8/256 UNGU: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,972 [INFO]   REDMI 15/256 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:00,979 [INFO]   REDMI 15C 6/128: y_log=0.6971 → qty=1.01
+2026-05-09 06:55:00,981 [INFO]   REDMI 15C 6/128 BLACK: y_log=0.6937 → qty=1.0
+2026-05-09 06:55:00,982 [INFO]   REDMI 15C 6/128 BLUE: y_log=1.1066 → qty=2.02
+2026-05-09 06:55:00,995 [INFO]   REDMI 15C 6/128 GREEN: y_log=1.1005 → qty=2.01
+2026-05-09 06:55:00,997 [INFO]   REDMI 15C 6/128 ORANGE: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,004 [INFO]   REDMI 15C 8/256: y_log=0.6961 → qty=1.01
+2026-05-09 06:55:01,005 [INFO]   REDMI 15C 8/256 BLACK: y_log=1.1005 → qty=2.01
+2026-05-09 06:55:01,012 [INFO]   REDMI 15C 8/256 BLUE: y_log=1.1029 → qty=2.01
+2026-05-09 06:55:01,014 [INFO]   REDMI 15C 8/256 GREEN: y_log=1.3904 → qty=3.02
+2026-05-09 06:55:01,016 [INFO]   REDMI 15C 8/256 ORANGE: y_log=1.0994 → qty=2.0
+2026-05-09 06:55:01,021 [INFO]   REDMI 15C 88/256 BLUE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,022 [INFO]   REDMI A3 4/128 BLACK: y_log=1.1061 → qty=2.02
+2026-05-09 06:55:01,035 [INFO]   REDMI A3 4/128 BLUE: y_log=0.6937 → qty=1.0
+2026-05-09 06:55:01,037 [INFO]   REDMI A5 4/128: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:01,038 [INFO]   REDMI A5 4/128 BLACK: y_log=1.0987 → qty=2.0
+2026-05-09 06:55:01,043 [INFO]   REDMI A5 4/128 GOLD: y_log=1.1046 → qty=2.02
+2026-05-09 06:55:01,045 [INFO]   REDMI A5 4/128 GREEN: y_log=1.3885 → qty=3.01
+2026-05-09 06:55:01,051 [INFO]   REDMI A5 4/129 GOLD: y_log=0.6950 → qty=1.0
+2026-05-09 06:55:01,053 [INFO]   REDMI A7 PRO 4/128: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,059 [INFO]   REDMI A7 PRO 4/128 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,060 [INFO]   REDMI A7 PRO 4/128 BLUE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,062 [INFO]   REDMI A7 PRO 4/128 ORANGE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,068 [INFO]   REDMI A7 PRO 4/64 GREEN: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:01,069 [INFO]   REDMI A7PRO 4/64: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:01,075 [INFO]   REDMI BAND 10: y_log=0.6996 → qty=1.01
+2026-05-09 06:55:01,077 [INFO]   REDMI BAND 9: y_log=0.6947 → qty=1.0
+2026-05-09 06:55:01,084 [INFO]   REDMI BAND 9 ACTIVE: y_log=0.7345 → qty=1.08
+2026-05-09 06:55:01,086 [INFO]   REDMI BUDS 4: y_log=1.1050 → qty=2.02
+2026-05-09 06:55:01,087 [INFO]   REDMI BUDS 4LITE: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:01,100 [INFO]   REDMI BUDS 5: y_log=0.7110 → qty=1.04
+2026-05-09 06:55:01,102 [INFO]   REDMI BUDS 6 BLACK: y_log=0.7154 → qty=1.05
+2026-05-09 06:55:01,108 [INFO]   REDMI BUDS 6 LITE: y_log=0.7173 → qty=1.05
+2026-05-09 06:55:01,110 [INFO]   REDMI BUDS 6 PLAY: y_log=1.1036 → qty=2.01
+2026-05-09 06:55:01,112 [INFO]   REDMI BUDS 6LITE: y_log=0.7187 → qty=1.05
+2026-05-09 06:55:01,116 [INFO]   REDMI BUDS 6PLAY: y_log=0.7187 → qty=1.05
+2026-05-09 06:55:01,118 [INFO]   REDMI BUDS 8 LITE: y_log=1.1062 → qty=2.02
+2026-05-09 06:55:01,124 [INFO]   REDMI NOOTE 14 LTE 8/128 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,125 [INFO]   REDMI NOOTE 15 LTE 8/256: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,132 [INFO]   REDMI NOTE 13 4G 8/256 BLUE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,135 [INFO]   REDMI NOTE 13 5G 8/256 BLACK: y_log=1.9298 → qty=5.89
+2026-05-09 06:55:01,137 [INFO]   REDMI NOTE 13 8/256 ICE BLUE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,149 [INFO]   REDMI NOTE 13 8/256 LTE: y_log=1.1015 → qty=2.01
+2026-05-09 06:55:01,150 [INFO]   REDMI NOTE 13 LTE 8/256 BLACK: y_log=1.1015 → qty=2.01
+2026-05-09 06:55:01,157 [INFO]   REDMI NOTE 13 LTE 8/256 BLUE: y_log=2.1622 → qty=7.69
+2026-05-09 06:55:01,158 [INFO]   REDMI NOTE 13 PRO 4G 8/256 BLACK: y_log=1.3864 → qty=3.0
+2026-05-09 06:55:01,165 [INFO]   REDMI NOTE 13 PRO 5G 12/512: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,166 [INFO]   REDMI NOTE 13 PRO 5G 12/512 GREEN: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,168 [INFO]   REDMI NOTE 13 PRO 5G 12/512 PURPLE: y_log=0.6931 → qty=1.0
+2026-05-09 06:55:01,173 [INFO]   REDMI NOTE 13 PRO 8/256 BLACK 4G: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,175 [INFO]   REDMI NOTE 13 PRO LTE 8/256 BLACK: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,181 [INFO]   REDMI NOTE 13 PRO LTE 8/356 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,182 [INFO]   REDMI NOTE 135G 8/256 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,196 [INFO]   REDMI NOTE 13LTE 8/256: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,198 [INFO]   REDMI NOTE 14  8/256 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,199 [INFO]   REDMI NOTE 14 4G 8/256 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,205 [INFO]   REDMI NOTE 14 5G 12/512: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,206 [INFO]   REDMI NOTE 14 5G 12/512 BLACK: y_log=0.6950 → qty=1.0
+2026-05-09 06:55:01,213 [INFO]   REDMI NOTE 14 5G 12/512 GREEN: y_log=0.6931 → qty=1.0
+2026-05-09 06:55:01,215 [INFO]   REDMI NOTE 14 5G 12/512 PURPLE: y_log=1.1029 → qty=2.01
+2026-05-09 06:55:01,221 [INFO]   REDMI NOTE 14 5G 8/256: y_log=0.6931 → qty=1.0
+2026-05-09 06:55:01,222 [INFO]   REDMI NOTE 14 5G 8/256 BLACK: y_log=1.6029 → qty=3.97
+2026-05-09 06:55:01,223 [INFO]   REDMI NOTE 14 5G 8/256 BLUE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,230 [INFO]   REDMI NOTE 14 5G 8/256 GREEN: y_log=1.1024 → qty=2.01
+2026-05-09 06:55:01,231 [INFO]   REDMI NOTE 14 5G 8/256 PURPLE: y_log=0.6931 → qty=1.0
+2026-05-09 06:55:01,245 [INFO]   REDMI NOTE 14 5G 8/256 PUTPLE: y_log=1.1021 → qty=2.01
+2026-05-09 06:55:01,246 [INFO]   REDMI NOTE 14 8/128 BLACK LTE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,253 [INFO]   REDMI NOTE 14 8/128 GREEN: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,259 [INFO]   REDMI NOTE 14 8/128 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,260 [INFO]   REDMI NOTE 14 8/128 PURPLE LTE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,262 [INFO]   REDMI NOTE 14 8/256 BLACK: y_log=0.6931 → qty=1.0
+2026-05-09 06:55:01,264 [INFO]   REDMI NOTE 14 8/256 LTE BLACK: y_log=1.1015 → qty=2.01
+2026-05-09 06:55:01,270 [INFO]   REDMI NOTE 14 8/256 LTE PURPLE: y_log=1.1015 → qty=2.01
+2026-05-09 06:55:01,271 [INFO]   REDMI NOTE 14 8/256 PURPLE LTE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,279 [INFO]   REDMI NOTE 14 LTE 8/1128 GREEN: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,281 [INFO]   REDMI NOTE 14 LTE 8/128: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,282 [INFO]   REDMI NOTE 14 LTE 8/128 BLACK: y_log=0.6943 → qty=1.0
+2026-05-09 06:55:01,293 [INFO]   REDMI NOTE 14 LTE 8/128 GOLD: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,294 [INFO]   REDMI NOTE 14 LTE 8/128 GREEN: y_log=1.6165 → qty=4.04
+2026-05-09 06:55:01,302 [INFO]   REDMI NOTE 14 LTE 8/128 PURPLE: y_log=0.6950 → qty=1.0
+2026-05-09 06:55:01,303 [INFO]   REDMI NOTE 14 LTE 8/256: y_log=1.3897 → qty=3.01
+2026-05-09 06:55:01,309 [INFO]   REDMI NOTE 14 LTE 8/256 BLACK: y_log=1.1000 → qty=2.0
+2026-05-09 06:55:01,311 [INFO]   REDMI NOTE 14 LTE 8/256 GOLD: y_log=0.6947 → qty=1.0
+2026-05-09 06:55:01,313 [INFO]   REDMI NOTE 14 LTE 8/256 GREEN: y_log=1.7959 → qty=5.02
+2026-05-09 06:55:01,319 [INFO]   REDMI NOTE 14 LTE 8/256 PURPLE: y_log=0.6931 → qty=1.0
+2026-05-09 06:55:01,321 [INFO]   REDMI NOTE 14 PRO + 12/512 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,326 [INFO]   REDMI NOTE 14 PRO + 5G 8//256 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,327 [INFO]   REDMI NOTE 14 PRO + 5G 8/256 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,329 [INFO]   REDMI NOTE 14 PRO 12/512 5G: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,337 [INFO]   REDMI NOTE 14 PRO 12/512 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,340 [INFO]   REDMI NOTE 14 PRO 5G 12/512: y_log=1.1001 → qty=2.0
+2026-05-09 06:55:01,350 [INFO]   REDMI NOTE 14 PRO 5G 12/512 BLACK: y_log=0.6950 → qty=1.0
+2026-05-09 06:55:01,353 [INFO]   REDMI NOTE 14 PRO 5G 12/512 GOLD: y_log=0.6961 → qty=1.01
+2026-05-09 06:55:01,355 [INFO]   REDMI NOTE 14 PRO 5G 12/512 GREEN: y_log=0.6946 → qty=1.0
+2026-05-09 06:55:01,358 [INFO]   REDMI NOTE 14 PRO 5G 12/512 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,360 [INFO]   REDMI NOTE 14 PRO 5G 8/256: y_log=0.6931 → qty=1.0
+2026-05-09 06:55:01,367 [INFO]   REDMI NOTE 14 PRO 5G 8/256 BLACK: y_log=1.3896 → qty=3.01
+2026-05-09 06:55:01,369 [INFO]   REDMI NOTE 14 PRO 5G 8/256 GOLD: y_log=0.6931 → qty=1.0
+2026-05-09 06:55:01,375 [INFO]   REDMI NOTE 14 PRO 5G 8/256 GREEN: y_log=0.6955 → qty=1.0
+2026-05-09 06:55:01,377 [INFO]   REDMI NOTE 14 PRO 5G 8/256 PURPLE: y_log=1.1000 → qty=2.0
+2026-05-09 06:55:01,378 [INFO]   REDMI NOTE 14 PRO 5G PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,384 [INFO]   REDMI NOTE 14 PRO 8/256 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,388 [INFO]   REDMI NOTE 14 PRO PLUS 12 /512 GOLD: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,399 [INFO]   REDMI NOTE 14 PRO PLUS 12/512 BLACK: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,405 [INFO]   REDMI NOTE 14 PRO PLUS 12/512 BLUE: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,410 [INFO]   REDMI NOTE 14 PRO PLUS 12/512 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,412 [INFO]   REDMI NOTE 14 PRO PLUS 8/256: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,416 [INFO]   REDMI NOTE 14 PRO PLUS 8/256 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,418 [INFO]   REDMI NOTE 145G 12/512 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,424 [INFO]   REDMI NOTE 145G 8/256 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,425 [INFO]   REDMI NOTE 145G 8/256 GREEN: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,427 [INFO]   REDMI NOTE 145G 8/256 PURPLE: y_log=0.7169 → qty=1.05
+2026-05-09 06:55:01,440 [INFO]   REDMI NOTE 14LTE 8/128: y_log=1.1015 → qty=2.01
+2026-05-09 06:55:01,442 [INFO]   REDMI NOTE 14LTE 8/128 PURPLE: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,447 [INFO]   REDMI NOTE 14LTE 8/256: y_log=1.0992 → qty=2.0
+2026-05-09 06:55:01,449 [INFO]   REDMI NOTE 14LTE 8/256 BLACK: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,455 [INFO]   REDMI NOTE 14LTE 8/256 GOLD: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,457 [INFO]   REDMI NOTE 14PRO + 5G 12/512: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,459 [INFO]   REDMI NOTE 14PRO 5G 12/512: y_log=0.6964 → qty=1.01
+2026-05-09 06:55:01,463 [INFO]   REDMI NOTE 14PRO 5G 8/256: y_log=1.3889 → qty=3.01
+2026-05-09 06:55:01,464 [INFO]   REDMI NOTE 14PRO 5G 8/256 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,471 [INFO]   REDMI NOTE 14PRO 5G 8/256 GREEN: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,473 [INFO]   REDMI NOTE 14PRO 5G 8/256 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,479 [INFO]   REDMI NOTE 14PRO 8/256: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,480 [INFO]   REDMI NOTE 14PRO PLUS 12/512 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,481 [INFO]   REDMI NOTE 14PRO5G 12/512 GREEN: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,495 [INFO]   REDMI NOTE 15 5G 12/512: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,497 [INFO]   REDMI NOTE 15 5G 12/512 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,505 [INFO]   REDMI NOTE 15 5G 8/256: y_log=1.0966 → qty=1.99
+2026-05-09 06:55:01,507 [INFO]   REDMI NOTE 15 5G 8/256 BLACK: y_log=1.1070 → qty=2.03
+2026-05-09 06:55:01,513 [INFO]   REDMI NOTE 15 5G 8/256 BLUE: y_log=1.3952 → qty=3.04
+2026-05-09 06:55:01,514 [INFO]   REDMI NOTE 15 5G 8/256 PURPLE: y_log=1.3889 → qty=3.01
+2026-05-09 06:55:01,515 [INFO]   REDMI NOTE 15 8/256 LTE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,526 [INFO]   REDMI NOTE 15 8/256 PURPLE: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,528 [INFO]   REDMI NOTE 15 LTE 8/128: y_log=1.3970 → qty=3.04
+2026-05-09 06:55:01,543 [INFO]   REDMI NOTE 15 LTE 8/128 BLACK: y_log=0.6937 → qty=1.0
+2026-05-09 06:55:01,544 [INFO]   REDMI NOTE 15 LTE 8/128 PURPLE: y_log=0.6969 → qty=1.01
+2026-05-09 06:55:01,550 [INFO]   REDMI NOTE 15 LTE 8/256: y_log=1.0992 → qty=2.0
+2026-05-09 06:55:01,552 [INFO]   REDMI NOTE 15 LTE 8/256 BLUE: y_log=1.3899 → qty=3.01
+2026-05-09 06:55:01,554 [INFO]   REDMI NOTE 15 LTE 8/256 PURPLE: y_log=1.1015 → qty=2.01
+2026-05-09 06:55:01,559 [INFO]   REDMI NOTE 15 PRO 12/512: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,561 [INFO]   REDMI NOTE 15 PRO 5G 12/512: y_log=0.6931 → qty=1.0
+2026-05-09 06:55:01,568 [INFO]   REDMI NOTE 15 PRO 5G 12/512 BLACK: y_log=1.1023 → qty=2.01
+2026-05-09 06:55:01,569 [INFO]   REDMI NOTE 15 PRO 5G 12/512 TITANIUM: y_log=1.1023 → qty=2.01
+2026-05-09 06:55:01,575 [INFO]   REDMI NOTE 15 PRO 5G 8/256: y_log=1.3885 → qty=3.01
+2026-05-09 06:55:01,576 [INFO]   REDMI NOTE 15 PRO 5G 8/256 BLACK: y_log=0.6937 → qty=1.0
+2026-05-09 06:55:01,578 [INFO]   REDMI NOTE 15 PRO 5G 8/256 PURPLE: y_log=1.0989 → qty=2.0
+2026-05-09 06:55:01,584 [INFO]   REDMI NOTE 15 PRO 8/256 BLACK: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,586 [INFO]   REDMI NOTE 15 PRO 8/256 GREY: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,601 [INFO]   REDMI NOTE 15 PRO 8/256 TITANIUM: y_log=1.1023 → qty=2.01
+2026-05-09 06:55:01,603 [INFO]   REDMI NOTE 15 PRO PLUS 12/512 BROWN: y_log=1.1019 → qty=2.01
+2026-05-09 06:55:01,607 [INFO]   REDMI NOTE 155G 8/256: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,609 [INFO]   REDMI NOTE 15LTE 8/256: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,610 [INFO]   REDMI NOTE 15PRO 5G 12/512: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,616 [INFO]   REDMI OTE 15 PRO 8/256: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,618 [INFO]   REDMI PAAD SE 4/128  GREEN: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,624 [INFO]   REDMI PAD 2 4/128: y_log=0.6951 → qty=1.0
+2026-05-09 06:55:01,625 [INFO]   REDMI PAD 2 4/128 GRAY: y_log=1.8081 → qty=5.1
+2026-05-09 06:55:01,632 [INFO]   REDMI PAD 2 4/128 GREEN: y_log=1.6096 → qty=4.0
+2026-05-09 06:55:01,635 [INFO]   REDMI PAD 2 4/128 GREY: y_log=0.6967 → qty=1.01
+2026-05-09 06:55:01,637 [INFO]   REDMI PAD 2 4/128 PURPLE: y_log=0.6938 → qty=1.0
+2026-05-09 06:55:01,648 [INFO]   REDMI PAD 2 4/128 UNGU: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,650 [INFO]   REDMI PAD 2 4G 6/128 GRAY: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,656 [INFO]   REDMI PAD 2 4G 6/128 GREY: y_log=0.6934 → qty=1.0
+2026-05-09 06:55:01,657 [INFO]   REDMI PAD 2 6/128 GRAY: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:01,659 [INFO]   REDMI PAD 2 6/128 LTE: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:01,665 [INFO]   REDMI PAD 2 6/128 PURPLE: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:01,666 [INFO]   REDMI PAD 2 LTE 6/128: y_log=1.1021 → qty=2.01
+2026-05-09 06:55:01,673 [INFO]   REDMI PAD 2 PRO 8/25: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:01,675 [INFO]   REDMI PAD 2 PRO 8/256: y_log=0.6984 → qty=1.01
+2026-05-09 06:55:01,676 [INFO]   REDMI PAD 2 PRO 8/256 SILVER: y_log=0.6984 → qty=1.01
+2026-05-09 06:55:01,682 [INFO]   REDMI PAD 2 PURPLE: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:01,683 [INFO]   REDMI PAD 24/128: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:01,698 [INFO]   REDMI PAD 24G 6/128: y_log=0.6942 → qty=1.0
+2026-05-09 06:55:01,699 [INFO]   REDMI PAD 6/128 GREEN: y_log=0.6956 → qty=1.0
+2026-05-09 06:55:01,705 [INFO]   REDMI PAD 7 8/256 BLUE: y_log=0.6956 → qty=1.0
+2026-05-09 06:55:01,707 [INFO]   REDMI PAD PRO  8/256 GREY: y_log=0.6963 → qty=1.01
+2026-05-09 06:55:01,708 [INFO]   REDMI PAD PRO 8/256: y_log=0.6963 → qty=1.01
+2026-05-09 06:55:01,714 [INFO]   REDMI PAD PRO 8/256 GREEN: y_log=0.6963 → qty=1.01
+2026-05-09 06:55:01,715 [INFO]   REDMI PAD PRO 8/256 GREY: y_log=0.6963 → qty=1.01
+2026-05-09 06:55:01,721 [INFO]   REDMI PAD SE 4/128 GRAY: y_log=1.3955 → qty=3.04
+2026-05-09 06:55:01,723 [INFO]   REDMI PAD SE 4/128 GREEN: y_log=1.7983 → qty=5.04
+2026-05-09 06:55:01,724 [INFO]   REDMI PAD SE 4/128 GREY: y_log=0.7072 → qty=1.03
+2026-05-09 06:55:01,730 [INFO]   REDMI PAD SE 8.7: y_log=1.1015 → qty=2.01
+2026-05-09 06:55:01,732 [INFO]   REDMI PAD SE 8.7 4/128: y_log=0.7053 → qty=1.02
+2026-05-09 06:55:01,746 [INFO]   REDMI PAD SE 8.7 4/128 GRAY: y_log=0.7053 → qty=1.02
+2026-05-09 06:55:01,747 [INFO]   REDMI PAD SE 8.7 4/128 GREEN: y_log=0.7064 → qty=1.03
+2026-05-09 06:55:01,754 [INFO]   REDMI PAD SE 8.7 4/128 GREY: y_log=1.1002 → qty=2.0
+2026-05-09 06:55:01,756 [INFO]   REDMI POWERBANK 10.000 MAH: y_log=0.7381 → qty=1.09
+2026-05-09 06:55:01,757 [INFO]   REDMI POWERBANK 10000MAH: y_log=0.7329 → qty=1.08
+2026-05-09 06:55:01,762 [INFO]   REDMI SMART BAND 9 ACTIVE: y_log=0.7633 → qty=1.15
+2026-05-09 06:55:01,763 [INFO]   REDMI SMART PEN: y_log=0.7125 → qty=1.04
+2026-05-09 06:55:01,771 [INFO]   REDMI SMARTBAND 9 ACTIVE: y_log=1.1052 → qty=2.02
+2026-05-09 06:55:01,772 [INFO]   REDMI SMARTPEN: y_log=0.7077 → qty=1.03
+2026-05-09 06:55:01,779 [INFO]   REDMI WATCH 4: y_log=0.7068 → qty=1.03
+2026-05-09 06:55:01,780 [INFO]   REDMI WATCH 4 BLACK: y_log=1.1115 → qty=2.04
+2026-05-09 06:55:01,782 [INFO]   REDMI WATCH 5: y_log=0.7102 → qty=1.03
+2026-05-09 06:55:01,795 [INFO]   REDMI WATCH 5 ACTIVE: y_log=1.1182 → qty=2.06
+2026-05-09 06:55:01,797 [INFO]   REDMI WATCH 5 ACTIVE BLACK: y_log=0.7297 → qty=1.07
+2026-05-09 06:55:01,804 [INFO]   REDMI WATCH 5 LITE: y_log=1.8109 → qty=5.12
+2026-05-09 06:55:01,806 [INFO]   REDMI WATCH 5 LITE BLACK: y_log=0.7151 → qty=1.04
+2026-05-09 06:55:01,812 [INFO]   REDMI WATCH 5 LITE GOLD: y_log=0.7077 → qty=1.03
+2026-05-09 06:55:01,814 [INFO]   REDMI WATCH 5ACTIVE: y_log=0.7345 → qty=1.08
+2026-05-09 06:55:01,816 [INFO]   REDMI WATCH 5LITE: y_log=0.7125 → qty=1.04
+2026-05-09 06:55:01,821 [INFO]   REDMI15 8/256 GRAY: y_log=0.7057 → qty=1.03
+2026-05-09 06:55:01,822 [INFO]   REDMINOTE 14LTE 8/256 GOLD: y_log=0.7057 → qty=1.03
+2026-05-09 06:55:01,829 [INFO]   SAMSUNG A07 6/128: y_log=0.7057 → qty=1.03
+2026-05-09 06:55:01,830 [INFO]   SAMSUNG A07 6/128 BLACK: y_log=0.7064 → qty=1.03
+2026-05-09 06:55:01,844 [INFO]   SAMSUNG A16 LTE 8/256 BLACK: y_log=0.7057 → qty=1.03
+2026-05-09 06:55:01,845 [INFO]   SAMSUNG A36 8/256 LAVENDER: y_log=0.7043 → qty=1.02
+2026-05-09 06:55:01,846 [INFO]   SAMSUNG S25 FE 8/256: y_log=0.7043 → qty=1.02
+2026-05-09 06:55:01,853 [INFO]   SIAOMI SMARTBAND 9: y_log=0.7077 → qty=1.03
+2026-05-09 06:55:01,855 [INFO]   SMART BAND 9: y_log=0.7077 → qty=1.03
+2026-05-09 06:55:01,861 [INFO]   SMART BAND 9 ACTIVE: y_log=1.1096 → qty=2.03
+2026-05-09 06:55:01,863 [INFO]   SMART BAND 9 ACTIVE WHITE: y_log=0.7338 → qty=1.08
+2026-05-09 06:55:01,871 [INFO]   SMART BAND 9 BLACK: y_log=0.7077 → qty=1.03
+2026-05-09 06:55:01,872 [INFO]   SMARTBAND 9 ACTIVE: y_log=0.7444 → qty=1.11
+2026-05-09 06:55:01,873 [INFO]   TECNO POVA 6 8/256 BLUE: y_log=0.7057 → qty=1.03
+2026-05-09 06:55:01,885 [INFO]   TECNO SPARK 40 6/128: y_log=0.7053 → qty=1.02
+2026-05-09 06:55:01,887 [INFO]   TECNO SPARK GO 1 4/64: y_log=0.7067 → qty=1.03
+2026-05-09 06:55:01,892 [INFO]   TECNO SPARK GO 2 4/128 BLACK: y_log=0.7067 → qty=1.03
+2026-05-09 06:55:01,894 [INFO]   TECNO SPARK GO 3 4/128: y_log=0.7053 → qty=1.02
+2026-05-09 06:55:01,896 [INFO]   TV XIAOMI 32 INCH QLED 2026: y_log=0.7053 → qty=1.02
+2026-05-09 06:55:01,901 [INFO]   TYPE C TO C CABLE: y_log=0.7329 → qty=1.08
+2026-05-09 06:55:01,904 [INFO]   USB TYPE C 100 CM: y_log=0.7329 → qty=1.08
+2026-05-09 06:55:01,916 [INFO]   USB TYPE C TO TYPE C: y_log=0.7329 → qty=1.08
+2026-05-09 06:55:01,919 [INFO]   XIAOMI  GTV A PRO 32": y_log=1.1181 → qty=2.06
+2026-05-09 06:55:01,920 [INFO]   XIAOMI  SAMRT BAND 9 ACTIVE: y_log=1.1152 → qty=2.05
+2026-05-09 06:55:01,925 [INFO]   XIAOMI 120W HYPERCHARGER: y_log=0.7387 → qty=1.09
+2026-05-09 06:55:01,927 [INFO]   XIAOMI 14T 12/512: y_log=0.7043 → qty=1.02
+2026-05-09 06:55:01,933 [INFO]   XIAOMI 14T 12/512 BLACK: y_log=1.3897 → qty=3.01
+2026-05-09 06:55:01,936 [INFO]   XIAOMI 14T 12/512 GRAY: y_log=1.3884 → qty=3.01
+2026-05-09 06:55:01,938 [INFO]   XIAOMI 14T 12/512 GREEN: y_log=0.7078 → qty=1.03
+2026-05-09 06:55:01,950 [INFO]   XIAOMI 14T 12/512 GREY: y_log=1.1041 → qty=2.02
+2026-05-09 06:55:01,952 [INFO]   XIAOMI 14T PRO 12/512 BLACK: y_log=0.7063 → qty=1.03
+2026-05-09 06:55:01,957 [INFO]   XIAOMI 14T PRO 12/512 GRAY: y_log=0.7040 → qty=1.02
+2026-05-09 06:55:01,959 [INFO]   XIAOMI 14T PRO 12/512 GREY: y_log=0.7043 → qty=1.02
+2026-05-09 06:55:01,965 [INFO]   XIAOMI 15 12 /512 BLACK: y_log=0.7043 → qty=1.02
+2026-05-09 06:55:01,967 [INFO]   XIAOMI 15 12/256 BLACK: y_log=0.7043 → qty=1.02
+2026-05-09 06:55:01,969 [INFO]   XIAOMI 15 12/512 BLACK: y_log=0.7092 → qty=1.03
+2026-05-09 06:55:01,974 [INFO]   XIAOMI 15 12/512 GREEN: y_log=0.7043 → qty=1.02
+2026-05-09 06:55:01,975 [INFO]   XIAOMI 15 12/512 WHITE: y_log=0.7043 → qty=1.02
+2026-05-09 06:55:01,982 [INFO]   XIAOMI 15T 12/512: y_log=1.1033 → qty=2.01
+2026-05-09 06:55:01,984 [INFO]   XIAOMI 15T 12/512 BLACK: y_log=0.7070 → qty=1.03
+2026-05-09 06:55:01,998 [INFO]   XIAOMI 15T 12/512 GRAY: y_log=0.7063 → qty=1.03
+2026-05-09 06:55:02,000 [INFO]   XIAOMI 15T 12/512 GREY: y_log=1.1005 → qty=2.01
+2026-05-09 06:55:02,002 [INFO]   XIAOMI 15T 12/512 ROSE GOLD: y_log=1.1033 → qty=2.01
+2026-05-09 06:55:02,007 [INFO]   XIAOMI 15T PRO 12/512 BLACK: y_log=0.7040 → qty=1.02
+2026-05-09 06:55:02,009 [INFO]   XIAOMI 15T PRO 12/512 GOLD: y_log=0.7085 → qty=1.03
+2026-05-09 06:55:02,014 [INFO]   XIAOMI 15T PRO 12/512 GRAY: y_log=0.7060 → qty=1.03
+2026-05-09 06:55:02,016 [INFO]   XIAOMI 15T PRO 12/512 GREY: y_log=0.7043 → qty=1.02
+2026-05-09 06:55:02,023 [INFO]   XIAOMI 15T PRO 12/512 MOCCA GOLD: y_log=0.7043 → qty=1.02
+2026-05-09 06:55:02,025 [INFO]   XIAOMI 22,5 PB 10000: y_log=0.7329 → qty=1.08
+2026-05-09 06:55:02,027 [INFO]   XIAOMI 22.5W POWERBANK 10000MAH: y_log=0.7329 → qty=1.08
+2026-05-09 06:55:02,032 [INFO]   XIAOMI 33W POWERBANK 20.000 MAH: y_log=0.7336 → qty=1.08
+2026-05-09 06:55:02,035 [INFO]   XIAOMI 6A TYPE A TO TYPE C: y_log=0.7311 → qty=1.08
+2026-05-09 06:55:02,048 [INFO]   XIAOMI BAND 10: y_log=0.7059 → qty=1.03
+2026-05-09 06:55:02,050 [INFO]   XIAOMI BAND 10 SILVER: y_log=0.7059 → qty=1.03
+2026-05-09 06:55:02,055 [INFO]   XIAOMI BAND 9 ACTIVE: y_log=0.7320 → qty=1.08
+2026-05-09 06:55:02,057 [INFO]   XIAOMI C TO C CABLE: y_log=0.7311 → qty=1.08
+2026-05-09 06:55:02,059 [INFO]   XIAOMI CABLE TYPE C 6A: y_log=0.7306 → qty=1.08
+2026-05-09 06:55:02,064 [INFO]   XIAOMI GTV A PRO 2026: y_log=0.7024 → qty=1.02
+2026-05-09 06:55:02,066 [INFO]   XIAOMI GTV A PRO 32": y_log=0.7036 → qty=1.02
+2026-05-09 06:55:02,072 [INFO]   XIAOMI GTV A PRO 32" QLED: y_log=0.7012 → qty=1.02
+2026-05-09 06:55:02,074 [INFO]   XIAOMI GTV A PRO 43" 2026: y_log=0.7002 → qty=1.01
+2026-05-09 06:55:02,080 [INFO]   XIAOMI GTV A PRO 43" UHD: y_log=1.1026 → qty=2.01
+2026-05-09 06:55:02,082 [INFO]   XIAOMI GTV A PRO 55": y_log=0.7002 → qty=1.01
+2026-05-09 06:55:02,093 [INFO]   XIAOMI GTV A SERIES 43": y_log=0.7010 → qty=1.02
+2026-05-09 06:55:02,096 [INFO]   XIAOMI GTV A SERIES 43" FHD: y_log=0.7049 → qty=1.02
+2026-05-09 06:55:02,098 [INFO]   XIAOMI GTV APRO 32: y_log=0.7010 → qty=1.02
+2026-05-09 06:55:02,104 [INFO]   XIAOMI GTV APRO 32": y_log=0.7059 → qty=1.03
+2026-05-09 06:55:02,106 [INFO]   XIAOMI GTV APRO 32" QLED: y_log=0.7010 → qty=1.02
+2026-05-09 06:55:02,107 [INFO]   XIAOMI GTV APRO 43 4K: y_log=1.1026 → qty=2.01
+2026-05-09 06:55:02,113 [INFO]   XIAOMI GTV APRO QLED 32": y_log=0.7003 → qty=1.01
+2026-05-09 06:55:02,115 [INFO]   XIAOMI OUTDOR CAMERA AW200: y_log=0.7303 → qty=1.08
+2026-05-09 06:55:02,121 [INFO]   XIAOMI PAD 7 8/256 BLUE: y_log=0.6989 → qty=1.01
+2026-05-09 06:55:02,123 [INFO]   XIAOMI PAD 7 8/256 GRAY: y_log=0.7038 → qty=1.02
+2026-05-09 06:55:02,129 [INFO]   XIAOMI PAD 7 8/256 GREEN: y_log=0.7038 → qty=1.02
+2026-05-09 06:55:02,130 [INFO]   XIAOMI PAD 7 8/256 GREY: y_log=0.7044 → qty=1.02
+2026-05-09 06:55:02,132 [INFO]   XIAOMI PAD 7 KEYBOARD: y_log=0.7071 → qty=1.03
+2026-05-09 06:55:02,145 [INFO]   XIAOMI PAD 7 PRO 12/512: y_log=1.1016 → qty=2.01
+2026-05-09 06:55:02,147 [INFO]   XIAOMI PAD 7 PRO 12/512 GREEN: y_log=0.7014 → qty=1.02
+2026-05-09 06:55:02,153 [INFO]   XIAOMI PAD 7/7 PRO KEYBOARD: y_log=0.7071 → qty=1.03
+2026-05-09 06:55:02,155 [INFO]   XIAOMI PAD 8 8/256 GRAY: y_log=0.7014 → qty=1.02
+2026-05-09 06:55:02,161 [INFO]   XIAOMI PB 22,5W 10000MAH: y_log=0.7275 → qty=1.07
+2026-05-09 06:55:02,162 [INFO]   XIAOMI POWERBANK 20.000 MAH: y_log=0.7282 → qty=1.07
+2026-05-09 06:55:02,163 [INFO]   XIAOMI SMART  BAND 9 ACTIVE: y_log=0.7284 → qty=1.07
+2026-05-09 06:55:02,170 [INFO]   XIAOMI SMART BAND 10: y_log=0.7039 → qty=1.02
+2026-05-09 06:55:02,171 [INFO]   XIAOMI SMART BAND 10  BLACK: y_log=0.7022 → qty=1.02
+2026-05-09 06:55:02,178 [INFO]   XIAOMI SMART BAND 10 BLACK: y_log=0.7022 → qty=1.02
+2026-05-09 06:55:02,180 [INFO]   XIAOMI SMART BAND 7: y_log=0.7286 → qty=1.07
+2026-05-09 06:55:02,193 [INFO]   XIAOMI SMART BAND 9: y_log=0.7054 → qty=1.02
+2026-05-09 06:55:02,195 [INFO]   XIAOMI SMART BAND 9 ACTIVE: y_log=1.1061 → qty=2.02
+2026-05-09 06:55:02,196 [INFO]   XIAOMI SMART BAND 9 PRO: y_log=0.7263 → qty=1.07
+2026-05-09 06:55:02,202 [INFO]   XIAOMI SMART BAND 9ACTIVE: y_log=1.1097 → qty=2.03
+2026-05-09 06:55:02,204 [INFO]   XIAOMI SMART CAMERA C400: y_log=0.7404 → qty=1.1
+2026-05-09 06:55:02,210 [INFO]   XIAOMI SMARTBAND 10: y_log=0.7362 → qty=1.09
+2026-05-09 06:55:02,211 [INFO]   XIAOMI SMARTBAND 8: y_log=0.7179 → qty=1.05
+2026-05-09 06:55:02,218 [INFO]   XIAOMI SMARTBAND 9: y_log=0.7027 → qty=1.02
+2026-05-09 06:55:02,220 [INFO]   XIAOMI SMARTBAND 9 ACTIVE: y_log=1.8266 → qty=5.21
+2026-05-09 06:55:02,221 [INFO]   XIAOMI SMARTBAND 9 PRO: y_log=1.3997 → qty=3.05
+2026-05-09 06:55:02,226 [INFO]   XIAOMI TV  APRO 32: y_log=0.7026 → qty=1.02
+2026-05-09 06:55:02,228 [INFO]   XIAOMI TV 43 ASERIES: y_log=0.6959 → qty=1.01
+2026-05-09 06:55:02,235 [INFO]   XIAOMI TV 55 A PRO: y_log=0.7033 → qty=1.02
+2026-05-09 06:55:02,238 [INFO]   XIAOMI TV A PRO 32'': y_log=1.3997 → qty=3.05
+2026-05-09 06:55:02,239 [INFO]   XIAOMI TV A PRO 32": y_log=0.7052 → qty=1.02
+2026-05-09 06:55:02,251 [INFO]   XIAOMI TV A PRO 32" 2026: y_log=0.7026 → qty=1.02
+2026-05-09 06:55:02,252 [INFO]   XIAOMI TV A PRO 43: y_log=0.7026 → qty=1.02
+2026-05-09 06:55:02,258 [INFO]   XIAOMI TV A PRO 43 QLED: y_log=1.1210 → qty=2.07
+2026-05-09 06:55:02,260 [INFO]   XIAOMI TV A PRO 43" 2026: y_log=1.1269 → qty=2.09
+2026-05-09 06:55:02,261 [INFO]   XIAOMI TV A PRO 43" QLED: y_log=0.6959 → qty=1.01
+2026-05-09 06:55:02,268 [INFO]   XIAOMI TV A PRO 44" QLED: y_log=0.6959 → qty=1.01
+2026-05-09 06:55:02,270 [INFO]   XIAOMI TV A SERIES 43" FHD: y_log=0.6959 → qty=1.01
+2026-05-09 06:55:02,275 [INFO]   XIAOMI TV A SERIES FHD 43": y_log=1.1372 → qty=2.12
+2026-05-09 06:55:02,277 [INFO]   XIAOMI TV A SERIES FHD 43" 2025: y_log=0.7028 → qty=1.02
+2026-05-09 06:55:02,278 [INFO]   XIAOMI TV APRO 32: y_log=0.7015 → qty=1.02
+2026-05-09 06:55:02,284 [INFO]   XIAOMI TV APRO 32": y_log=0.6959 → qty=1.01
+2026-05-09 06:55:02,287 [INFO]   XIOMI TV A PRO 32": y_log=0.7028 → qty=1.02
+2026-05-09 06:55:02,299 [INFO] Prediksi selesai: 405 produk, 0 dilewati.
+2026-05-09 06:55:02,303 [INFO] === predict_rf.py v3 selesai ===
