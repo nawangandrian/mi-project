@@ -42,54 +42,6 @@
             <span class="predict-label">Prediksi</span>
         </a>
 
-        <!-- Notifications -->
-        <div class="header-notif-wrapper">
-            <button class="header-icon-btn" id="notif-btn" title="Notifikasi" aria-label="Notifikasi">
-                <i class="bi bi-bell-fill"></i>
-                <?php if (($notif_count ?? 0) > 0): ?>
-                <span class="notif-dot"><?= $notif_count ?></span>
-                <?php endif; ?>
-            </button>
-            <div class="notif-dropdown" id="notif-dropdown" role="menu">
-                <div class="notif-header">
-                    <span>Notifikasi</span>
-                    <a href="#">Tandai semua dibaca</a>
-                </div>
-                <div class="notif-list">
-                    <div class="notif-item unread">
-                        <div class="notif-icon" style="background:rgba(0,151,184,0.1);color:var(--accent-cyan)">
-                            <i class="bi bi-graph-up-arrow"></i>
-                        </div>
-                        <div>
-                            <div class="notif-text">Model prediksi selesai dilatih</div>
-                            <div class="notif-time">2 menit yang lalu</div>
-                        </div>
-                    </div>
-                    <div class="notif-item">
-                        <div class="notif-icon" style="background:rgba(16,183,127,0.1);color:var(--accent-green)">
-                            <i class="bi bi-check-circle-fill"></i>
-                        </div>
-                        <div>
-                            <div class="notif-text">Data penjualan bulan ini berhasil diimport</div>
-                            <div class="notif-time">1 jam yang lalu</div>
-                        </div>
-                    </div>
-                    <div class="notif-item">
-                        <div class="notif-icon" style="background:rgba(212,160,23,0.1);color:var(--accent-yellow)">
-                            <i class="bi bi-exclamation-triangle-fill"></i>
-                        </div>
-                        <div>
-                            <div class="notif-text">Akurasi model turun 2% dari bulan lalu</div>
-                            <div class="notif-time">3 jam yang lalu</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="notif-footer">
-                    <a href="<?= base_url('notifikasi') ?>">Lihat semua notifikasi</a>
-                </div>
-            </div>
-        </div>
-
         <!-- User Menu -->
         <div class="header-user-wrapper">
             <button class="header-user-btn" id="user-btn" aria-label="Menu pengguna">
@@ -113,12 +65,6 @@
                     </div>
                 </div>
                 <div class="user-dropdown-menu">
-                    <a href="<?= base_url('profil') ?>" class="user-menu-item">
-                        <i class="bi bi-person-fill"></i> Profil Saya
-                    </a>
-                    <a href="<?= base_url('pengaturan') ?>" class="user-menu-item">
-                        <i class="bi bi-gear-fill"></i> Pengaturan
-                    </a>
                     <div class="user-menu-divider"></div>
                     <a href="<?= base_url('auth/logout') ?>" class="user-menu-item item-danger">
                         <i class="bi bi-box-arrow-right"></i> Keluar

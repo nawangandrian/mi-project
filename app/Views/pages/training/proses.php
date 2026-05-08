@@ -15,19 +15,14 @@
             <p class="page-subtitle">Latih ulang model Random Forest dari data training terbaru</p>
         </div>
         <div class="header-actions">
-            <a href="<?= base_url('prediksi/akurasi') ?>" class="btn-mg btn-outline-mg">
-                <i class="bi bi-bullseye"></i> Evaluasi Model
+            <a href="<?= base_url('prediksi/jalankan') ?>" class="btn-mg btn-outline-mg">
+                <i class="bi bi-play-circle-fill"></i> Jalankan Prediksi
             </a>
         </div>
     </div>
 
     <!-- ── Quick Nav Pills ── -->
     <div class="quick-nav-row">
-        <a href="<?= base_url('training') ?>"
-            class="quick-nav-pill">
-            <i class="bi bi-database-fill"></i>
-            <span>Dataset Training</span>
-        </a>
         <a href="<?= base_url('training/proses') ?>"
             class="quick-nav-pill active">
             <i class="bi bi-play-circle-fill"></i>
@@ -160,10 +155,9 @@
             <div class="trn-feature-list">
                 <div class="trn-feature-label">Fitur yang digunakan:</div>
                 <div class="trn-feature-tags">
-                    <span class="trn-ftag trn-ftag-blue">produk_encoded</span>
-                    <span class="trn-ftag trn-ftag-blue">tahun</span>
                     <span class="trn-ftag trn-ftag-blue">bulan</span>
                     <span class="trn-ftag trn-ftag-blue">kuartal</span>
+                    <span class="trn-ftag trn-ftag-blue">produk_encoded</span>
                     <span class="trn-ftag trn-ftag-blue">time_idx</span>
                     <span class="trn-ftag trn-ftag-cyan">harga_avg</span>
                     <span class="trn-ftag trn-ftag-cyan">harga_std</span>
@@ -175,7 +169,8 @@
                     <span class="trn-ftag trn-ftag-green">qty_roll3_mean</span>
                     <span class="trn-ftag trn-ftag-green">qty_roll3_std</span>
                     <span class="trn-ftag trn-ftag-green">qty_roll6_mean</span>
-                    <span class="trn-ftag trn-ftag-yellow">trend</span>
+                    <span class="trn-ftag trn-ftag-yellow">bulan_sin</span> <!-- tambah -->
+                    <span class="trn-ftag trn-ftag-yellow">bulan_cos</span>
                 </div>
             </div>
 
@@ -184,11 +179,6 @@
                 <span class="btn-trn-icon"><i class="bi bi-play-fill"></i></span>
                 <span class="btn-trn-text">Mulai Training</span>
             </button>
-
-            <div class="trn-warning-note">
-                <i class="bi bi-exclamation-triangle-fill"></i>
-                Model yang ada akan <strong>diganti</strong> dengan hasil training baru. Proses membutuhkan beberapa menit.
-            </div>
         </div>
 
         <!-- Status & Progress -->
@@ -288,8 +278,8 @@
                 </div>
 
                 <div class="trn-success-actions">
-                    <button class="btn-mg btn-primary-mg" onclick="window.location.href='<?= base_url('prediksi/akurasi') ?>'">
-                        <i class="bi bi-bullseye"></i> Lihat Evaluasi
+                    <button class="btn-mg btn-primary-mg" onclick="window.location.href='<?= base_url('training/riwayat_model') ?>'">
+                        <i class="bi bi-clock-history"></i> Lihat Riwayat Model
                     </button>
                     <button class="btn-mg btn-outline-mg" id="btnResetTraining">
                         <i class="bi bi-arrow-repeat"></i> Latih Ulang
@@ -1290,7 +1280,9 @@
                 if (!el) return;
                 if (s.step === stepId) {
                     el.className = 'trn-step step-active';
-                    el.innerHTML = '<i class="bi bi-arrow-right-circle-fill"></i> ' + el.textContent.trim();
+                    const originalText = el.textContent.trim()
+                        .replace(/^\S+\s*/, ''); // buang icon lama jika ada
+                    el.innerHTML = '<i class="bi bi-arrow-right-circle-fill"></i> ' + originalText;
                 } else if (el.classList.contains('step-active') || el.classList.contains('step-done')) {
                     el.className = 'trn-step step-done';
                     el.innerHTML = '<i class="bi bi-check-circle-fill"></i> ' + el.textContent.trim();
@@ -1362,22 +1354,17 @@
         function handleStatus(data) {
             if (!data || !data.status) return;
 
-            if (data.status === 'running' && currentState !== 'running') {
-                // sudah running dari sebelumnya (refresh page saat running)
-                enterRunning(false);
-            }
-
-            if (data.status === 'success' && currentState === 'running') {
-                enterSuccess(data);
-            }
-
-            if (data.status === 'error' && currentState === 'running') {
-                enterError(data.message || 'Terjadi kesalahan.');
+            if (data.status === 'running') {
+                if (currentState !== 'running') enterRunning();
+            } else if (data.status === 'success') {
+                if (currentState === 'running') enterSuccess(data);
+            } else if (data.status === 'error') {
+                if (currentState === 'running') enterError(data.message || 'Terjadi kesalahan.');
             }
         }
 
         // ── State transitions ─────────────────────────────────────────────────────
-        function enterRunning(doFetch = true) {
+        function enterRunning() {
             showState('running');
             btnStart.disabled = true;
             const logDot = $('logDot');
@@ -1535,7 +1522,9 @@
                             'X-Requested-With': 'XMLHttpRequest',
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
-                        body: '<?= csrf_token() ?>=<?= csrf_hash() ?>',
+                        body: new URLSearchParams({
+                            '<?= csrf_token() ?>': '<?= csrf_hash() ?>'
+                        }),
                     })
                     .then(res => res.json())
                     .then(data => {
@@ -1555,11 +1544,11 @@
                                 confirmButtonColor: '#2e6da4'
                             });
                             // Tetap tampilkan running kalau memang sudah running
-                            if (currentState !== 'running') enterRunning(false);
+                            if (currentState !== 'running') enterRunning();
                             return;
                         }
                         // success → masuk running
-                        enterRunning(false);
+                        enterRunning();
                     })
                     .catch(() => {
                         Swal.fire({
@@ -1597,7 +1586,7 @@
             .then(data => {
                 if (!data) return;
                 if (data.status === 'running') {
-                    enterRunning(false);
+                    enterRunning();
                     addLog('Ditemukan proses training yang sedang berjalan…', 'info');
                 } else if (data.status === 'success' && data.finished_at) {
                     // Ada hasil sebelumnya — tampilkan saja di idle state (sudah ada di lastStatus PHP)

@@ -27,7 +27,7 @@
             <span class="pill-badge ai-badge">AI</span>
         </a>
         <a href="<?= base_url('prediksi/jalankan') ?>" class="quick-nav-pill active">
-            <i class="bi bi-play-circle-fill"></i><span>Jalankan Model</span>
+            <i class="bi bi-play-circle-fill"></i><span>Jalankan Prediksi</span>
         </a>
         <a href="<?= base_url('prediksi/riwayat') ?>" class="quick-nav-pill">
             <i class="bi bi-clock-history"></i><span>Riwayat Prediksi</span>

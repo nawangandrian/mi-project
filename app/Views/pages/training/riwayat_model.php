@@ -15,19 +15,14 @@
             <p class="page-subtitle">Semua versi model Random Forest yang telah dilatih</p>
         </div>
         <div class="header-actions">
-            <a href="<?= base_url('prediksi/akurasi') ?>" class="btn-mg btn-outline-mg">
-                <i class="bi bi-bullseye"></i> Evaluasi Model
+            <a href="<?= base_url('prediksi/jalankan') ?>" class="btn-mg btn-outline-mg">
+                <i class="bi bi-play-circle-fill"></i> Jalankan Prediksi
             </a>
         </div>
     </div>
 
     <!-- ── Quick Nav Pills ── -->
     <div class="quick-nav-row">
-        <a href="<?= base_url('training') ?>"
-            class="quick-nav-pill">
-            <i class="bi bi-database-fill"></i>
-            <span>Dataset Training</span>
-        </a>
         <a href="<?= base_url('training/proses') ?>"
             class="quick-nav-pill">
             <i class="bi bi-play-circle-fill"></i>

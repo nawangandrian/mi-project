@@ -34,7 +34,7 @@
 
         <a href="<?= base_url('prediksi/jalankan') ?>" class="nav-item <?= (uri_string() === 'prediksi/jalankan') ? 'active' : '' ?>" data-tooltip="Jalankan Model">
             <i class="bi bi-play-circle-fill"></i>
-            <span>Jalankan Model</span>
+            <span>Jalankan Prediksi</span>
         </a>
 
         <a href="<?= base_url('prediksi/riwayat') ?>" class="nav-item <?= (uri_string() === 'prediksi/riwayat') ? 'active' : '' ?>" data-tooltip="Riwayat Prediksi">
@@ -49,9 +49,9 @@
 
         <div class="nav-section-label">Data</div>
 
-        <a href="<?= base_url('penjualan') ?>" class="nav-item <?= str_starts_with(uri_string(), 'penjualan') ? 'active' : '' ?>" data-tooltip="Data Penjualan">
-            <i class="bi bi-cart3"></i>
-            <span>Data Penjualan</span>
+        <a href="<?= base_url('import') ?>" class="nav-item <?= str_starts_with(uri_string(), 'import') ? 'active' : '' ?>" data-tooltip="Import Data">
+            <i class="bi bi-cloud-arrow-up"></i>
+            <span>Import Data</span>
         </a>
 
         <a href="<?= base_url('produk') ?>" class="nav-item <?= str_starts_with(uri_string(), 'produk') ? 'active' : '' ?>" data-tooltip="Data Produk">
@@ -59,21 +59,15 @@
             <span>Data Produk</span>
         </a>
 
+        <a href="<?= base_url('penjualan') ?>" class="nav-item <?= str_starts_with(uri_string(), 'penjualan') ? 'active' : '' ?>" data-tooltip="Data Penjualan">
+            <i class="bi bi-cart3"></i>
+            <span>Data Penjualan</span>
+        </a>
+
         <a href="<?= base_url('training') ?>" class="nav-item <?= str_starts_with(uri_string(), 'training') ? 'active' : '' ?>" data-tooltip="Data Training">
             <i class="bi bi-cpu-fill"></i>
-            <span>Data Training</span>
-        </a>
-
-        <div class="nav-section-label">Laporan</div>
-
-        <a href="<?= base_url('laporan/bulanan') ?>" class="nav-item <?= (uri_string() === 'laporan/bulanan') ? 'active' : '' ?>" data-tooltip="Laporan Bulanan">
-            <i class="bi bi-file-earmark-bar-graph-fill"></i>
-            <span>Laporan Bulanan</span>
-        </a>
-
-        <a href="<?= base_url('laporan/export') ?>" class="nav-item <?= (uri_string() === 'laporan/export') ? 'active' : '' ?>" data-tooltip="Export Laporan">
-            <i class="bi bi-download"></i>
-            <span>Export Laporan</span>
+            <span>Latih Model</span>
+            <span class="nav-badge">ML</span>
         </a>
 
         <div class="nav-section-label">Sistem</div>

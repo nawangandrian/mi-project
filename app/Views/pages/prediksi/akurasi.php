@@ -34,7 +34,7 @@
         <a href="<?= base_url('prediksi/jalankan') ?>"
             class="quick-nav-pill">
             <i class="bi bi-play-circle-fill"></i>
-            <span>Jalankan Model</span>
+            <span>Jalankan Prediksi</span>
         </a>
         <a href="<?= base_url('prediksi/riwayat') ?>"
             class="quick-nav-pill">
