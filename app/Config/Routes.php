@@ -64,21 +64,29 @@ $routes->group('training', function ($routes) {
     $routes->post('hapus/(:segment)',    'TrainingController::hapus/$1');
     $routes->post('hapusSemua',          'TrainingController::hapusSemua');
     $routes->post('generate',            'TrainingController::generate');
+    $routes->get('proses',               'TrainingController::prosesView');
     $routes->post('proses',              'TrainingController::proses');
     $routes->get('status',               'TrainingController::status');
+    $routes->get('riwayat_model',        'TrainingController::riwayatModel');
     $routes->get('export',               'TrainingController::export');
     $routes->get('downloadTemplate',     'TrainingController::downloadTemplate');
     $routes->post('prosesImport',        'TrainingController::prosesImport');
+    $routes->get('model/detail/(:num)',  'TrainingController::detailModel/$1');
+    $routes->post('model/aktifkan',      'TrainingController::aktifkanModel');
+    $routes->post('model/arsipkan',      'TrainingController::arsipkanModel');
+    $routes->get('model/diagram/(:num)/(:segment)', 'TrainingController::serveDiagram/$1/$2');
 });
 
 // ─── PREDIKSI ─────────────────────────────────────────────────────────────────
+
 $routes->group('prediksi', static function ($routes) {
-    $routes->get('/',          'PrediksiController::index');
-    $routes->get('jalankan',   'PrediksiController::jalankan');
-    $routes->post('jalankan',  'PrediksiController::prosesJalankan');
-    $routes->get('riwayat',    'PrediksiController::riwayat');
-    $routes->get('akurasi',    'PrediksiController::akurasi');
-    $routes->get('detail/(:num)', 'PrediksiController::detail/$1');
+    $routes->get('/',                'PrediksiController::index');
+    $routes->get('jalankan',         'PrediksiController::jalankan');
+    $routes->post('jalankan',        'PrediksiController::prosesJalankan');
+    $routes->get('riwayat',          'PrediksiController::riwayat');
+    $routes->get('akurasi',          'PrediksiController::akurasi');
+    $routes->get('detail/(:num)',    'PrediksiController::detail/$1');
+    $routes->post('sinkron-aktual',  'PrediksiController::sinkronAktual');  // ← BARU
 });
 
 // ─── LAPORAN ──────────────────────────────────────────────────────────────────

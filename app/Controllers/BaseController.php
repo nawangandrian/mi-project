@@ -55,6 +55,7 @@ class BaseController extends Controller
         $this->globalData = [
             'notif_count' => $this->getNotifCount(),
         ];
+        db_connect()->query("SET time_zone = '+07:00'");
     }
 
     // ──────────────────────────────────────────────────────────────────────

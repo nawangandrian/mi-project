@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\TrainingModel;
+use App\Models\ModelTrainingModel;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx as XlsxWriter;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -13,11 +14,13 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 
 class TrainingController extends BaseController
 {
-    protected TrainingModel $trainingModel;
+    protected TrainingModel      $trainingModel;
+    protected ModelTrainingModel $modelTrainingModel;
 
     public function __construct()
     {
-        $this->trainingModel = new TrainingModel();
+        $this->trainingModel      = new TrainingModel();
+        $this->modelTrainingModel = new ModelTrainingModel();
         helper(['form']);
     }
 
@@ -261,17 +264,118 @@ class TrainingController extends BaseController
         }
     }
 
-    // ══════════════════════════════════════════════════════════════════════════
-    // PROSES TRAINING  (AJAX — trigger Python/notebook)
-    // ══════════════════════════════════════════════════════════════════════════
-    public function proses()
+    public function riwayatModel(): string
+    {
+        $modelAktif = $this->modelTrainingModel->getAktif();
+        $riwayat    = $this->modelTrainingModel->getSukses();
+        $ringkasan  = $this->modelTrainingModel->getRingkasan();
+
+        return $this->renderPage('pages/training/riwayat_model', [
+            'title'      => 'Riwayat Model Training',
+            'page_title' => 'Riwayat Model',
+            'modelAktif' => $modelAktif,
+            'riwayat'    => $riwayat,
+            'ringkasan'  => $ringkasan,
+        ]);
+    }
+
+    /**
+     * Serve file PNG diagram ke browser.
+     * GET training/model/diagram/{id}/{key}
+     */
+    public function serveDiagram(int $id, string $key): \CodeIgniter\HTTP\ResponseInterface
+    {
+        $db  = \Config\Database::connect();
+
+        // Cari di tabel model_training_diagram terlebih dahulu
+        $row = $db->table('model_training_diagram')
+            ->where('training_id', $id)
+            ->where('diagram_key', $key)
+            ->get()->getRowArray();
+
+        // Fallback: cari di kolom JSON diagram_paths di model_training
+        if (! $row) {
+            $model = $this->modelTrainingModel->find($id);
+            if ($model) {
+                $diagramPaths = json_decode($model['diagram_paths'] ?? '{}', true);
+                if (! empty($diagramPaths[$key])) {
+                    $row = ['path' => $diagramPaths[$key]];
+                }
+            }
+        }
+
+        if (! $row) {
+            return $this->response->setStatusCode(404)
+                ->setJSON(['error' => "Diagram '{$key}' tidak ditemukan untuk training ID {$id}"]);
+        }
+
+        // Normalisasi path: konversi backslash Windows → forward slash
+        $path = str_replace('\\', '/', $row['path']);
+
+        // Jika path absolut Windows (C:/...) tapi server Linux, coba cari relatif dari ROOTPATH
+        if (! file_exists($path)) {
+            // Ambil bagian setelah 'python/' dan gabung dengan ROOTPATH
+            if (preg_match('#python[/\\\\](.+)$#i', $row['path'], $m)) {
+                $path = ROOTPATH . 'python/' . str_replace('\\', '/', $m[1]);
+            }
+        }
+
+        if (! file_exists($path)) {
+            log_message('error', "[serveDiagram] File tidak ada: {$path} (original: {$row['path']})");
+            return $this->response->setStatusCode(404)
+                ->setJSON(['error' => 'File diagram tidak ada di server', 'path_debug' => $path]);
+        }
+
+        return $this->response
+            ->setHeader('Content-Type', 'image/png')
+            ->setHeader('Cache-Control', 'private, max-age=3600')
+            ->setBody(file_get_contents($path));
+    }
+
+    /**
+     * Halaman view untuk menjalankan training.
+     * GET training/proses
+     */
+    public function prosesView(): string
+    {
+        $summary    = $this->trainingModel->getSummary();
+        $modelAktif = $this->modelTrainingModel->getAktif();
+        $riwayat    = $this->modelTrainingModel->getSukses();      // semua model sukses
+        $ringkasan  = $this->modelTrainingModel->getRingkasan();
+
+        // Status file JSON (untuk deteksi running saat refresh)
+        $statusFile = ROOTPATH . 'python/models/train_status.json';
+        $lastStatus = null;
+        if (file_exists($statusFile)) {
+            $raw = file_get_contents($statusFile);
+            $dec = json_decode($raw, true);
+            if ($dec && ($dec['status'] ?? '') !== 'running') {
+                $lastStatus = $dec;
+            }
+        }
+
+        return $this->renderPage('pages/training/proses', [
+            'summary'     => $summary,
+            'modelAktif'  => $modelAktif,
+            'riwayat'     => $riwayat,
+            'ringkasan'   => $ringkasan,
+            'lastStatus'  => $lastStatus,
+            'title'       => 'Jalankan Training',
+        ]);
+    }
+
+    /**
+     * Polling status training — dibaca dari train_status.json.
+     * GET training/status
+     */
+    public function proses(): \CodeIgniter\HTTP\ResponseInterface
     {
         if (! $this->request->isAJAX()) {
             return $this->response->setStatusCode(403)
                 ->setJSON(['status' => 'error', 'message' => 'Forbidden']);
         }
 
-        // Cek data training tersedia
+        // ── Cek data training tersedia ─────────────────────────────────────
         $count = $this->trainingModel->countAll();
         if ($count === 0) {
             return $this->response->setJSON([
@@ -280,35 +384,225 @@ class TrainingController extends BaseController
             ]);
         }
 
-        // TODO: Panggil script Python / Jupyter notebook
-        // Contoh: shell_exec('python3 /path/to/train.py > /tmp/train.log 2>&1 &');
-        // Untuk sekarang, simpan status ke session/cache sebagai simulasi
-        $session = session();
-        $session->set('training_status', 'running');
-        $session->set('training_started', date('Y-m-d H:i:s'));
+        // ── Path config ────────────────────────────────────────────────────
+        $pythonBin  = env('PYTHON_BIN', 'python3');
+        $scriptPath = ROOTPATH . 'python/train_rf.py';
+        $modelDir   = ROOTPATH . 'python/models';
+        $logFile    = ROOTPATH . 'python/logs/train.log';
+        $statusFile = $modelDir . '/train_status.json';
+
+        foreach ([$modelDir, dirname($logFile)] as $dir) {
+            if (! is_dir($dir)) mkdir($dir, 0755, true);
+        }
+
+        // ── Cek running ────────────────────────────────────────────────────
+        if (file_exists($statusFile)) {
+            $prev = json_decode(file_get_contents($statusFile), true);
+            if (($prev['status'] ?? '') === 'running') {
+                return $this->response->setJSON([
+                    'status'  => 'warning',
+                    'message' => 'Proses training sedang berjalan. Tunggu hingga selesai.',
+                ]);
+            }
+        }
+
+        // ── Buat baris model_training (status = running) ───────────────────
+        $summary  = $this->trainingModel->getSummary();
+        $userId = session()->get('id_user');
+
+        $trainingId = $this->modelTrainingModel->buatSesi([
+            'mulai_at'      => date('Y-m-d H:i:s'),
+            'total_record'  => (int) ($summary['total_record'] ?? 0),
+            'total_produk'  => (int) ($summary['total_produk'] ?? 0),
+            'total_fitur'   => 16,
+            'cv_splits'     => 5,
+            'dibuat_oleh'   => $userId ?: null,
+            'config_snapshot' => json_encode([
+                'python_bin'  => $pythonBin,
+                'script_path' => $scriptPath,
+                'model_dir'   => $modelDir,
+                'started_by'  => 'web',
+            ]),
+        ]);
+
+        // ── Tulis status awal ke JSON ──────────────────────────────────────
+        file_put_contents($statusFile, json_encode([
+            'status'      => 'running',
+            'training_id' => $trainingId,
+            'message'     => 'Proses training dimulai...',
+            'updated_at'  => date('Y-m-d H:i:s'),
+        ], JSON_PRETTY_PRINT));
+
+        // ── Ambil konfigurasi DB ───────────────────────────────────────────
+        $dbConf = config('Database')->default;
+        $dbHost = $dbConf['hostname'] ?? '127.0.0.1';
+        $dbPort = $dbConf['port']     ?? 3306;
+        $dbName = $dbConf['database'] ?? 'mi_store';
+        $dbUser = $dbConf['username'] ?? 'root';
+        $dbPass = $dbConf['password'] ?? '';
+
+        // ── Bangun command ─────────────────────────────────────────────────
+        $cmd = sprintf(
+            '%s %s --training-id %d --db-host %s --db-port %d --db-name %s --db-user %s --db-pass %s --model-dir %s --log-file %s',
+            escapeshellcmd($pythonBin),
+            escapeshellarg($scriptPath),
+            (int) $trainingId,
+            escapeshellarg($dbHost),
+            (int) $dbPort,
+            escapeshellarg($dbName),
+            escapeshellarg($dbUser),
+            escapeshellarg($dbPass),
+            escapeshellarg($modelDir),
+            escapeshellarg($logFile)
+        );
+
+        // ── Jalankan non-blocking ──────────────────────────────────────────
+        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+            pclose(popen('start /B ' . $cmd, 'r'));
+        } else {
+            exec($cmd . ' > /dev/null 2>&1 &');
+        }
+
+        log_message('info', "[Training] ID={$trainingId} command: {$cmd}");
 
         return $this->response->setJSON([
-            'status'  => 'success',
-            'message' => 'Proses training dimulai. Silakan pantau status di halaman ini.',
+            'status'      => 'success',
+            'training_id' => $trainingId,
+            'message'     => 'Proses training dimulai. Pantau status di halaman ini.',
         ]);
     }
 
-    // ══════════════════════════════════════════════════════════════════════════
-    // STATUS POLLING  (AJAX)
-    // ══════════════════════════════════════════════════════════════════════════
-    public function status()
+    // =========================================================================
+    // AJAX — Polling status (GET training/status)
+    // =========================================================================
+    public function status(): \CodeIgniter\HTTP\ResponseInterface
     {
-        if (! $this->request->isAJAX()) {
-            return $this->response->setStatusCode(403)
-                ->setJSON(['status' => 'error', 'message' => 'Forbidden']);
+        $statusFile = ROOTPATH . 'python/models/train_status.json';
+
+        if (! file_exists($statusFile)) {
+            return $this->response->setJSON(['status' => 'idle', 'message' => 'Belum ada proses training.']);
         }
 
-        $session = session();
-        $status  = $session->get('training_status') ?? 'idle';
+        $data = json_decode(file_get_contents($statusFile), true);
+        if (! $data) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Status file tidak dapat dibaca.']);
+        }
+
+        // Kalau success & ada training_id → sinkron DB (jaga-jaga kalau webhook gagal)
+        if ($data['status'] === 'success' && ! empty($data['training_id'])) {
+            $id  = (int) $data['training_id'];
+            $row = $this->modelTrainingModel->find($id);
+            if ($row && $row['status'] === 'running') {
+                // Python sudah tulis status file tapi DB belum keupdate (race condition)
+                // tandai dari PHP juga
+                $this->modelTrainingModel->tandaiSukses($id, $data);
+            }
+        }
+
+        return $this->response->setJSON($data);
+    }
+
+    // =========================================================================
+    // AJAX — Aktifkan model (POST training/model/aktifkan)
+    // =========================================================================
+    public function aktifkanModel(): \CodeIgniter\HTTP\ResponseInterface
+    {
+        if (! $this->request->isAJAX()) {
+            return $this->response->setStatusCode(403)->setJSON(['status' => 'error', 'message' => 'Forbidden']);
+        }
+
+        $id = (int) $this->request->getPost('id');
+        if (! $id) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'ID tidak valid.']);
+        }
+
+        $model = $this->modelTrainingModel->find($id);
+        if (! $model || $model['status'] !== 'success') {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Model tidak ditemukan atau belum sukses.']);
+        }
+
+        $ok = $this->modelTrainingModel->aktifkan($id);
+        if (! $ok) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Gagal mengaktifkan model.']);
+        }
 
         return $this->response->setJSON([
-            'status'  => $status,
-            'started' => $session->get('training_started'),
+            'status'  => 'success',
+            'message' => "Model {$model['versi']} berhasil diaktifkan sebagai model prediksi.",
+        ]);
+    }
+
+    // =========================================================================
+    // AJAX — Arsipkan model (POST training/model/arsipkan)
+    // =========================================================================
+    public function arsipkanModel(): \CodeIgniter\HTTP\ResponseInterface
+    {
+        if (! $this->request->isAJAX()) {
+            return $this->response->setStatusCode(403)->setJSON(['status' => 'error', 'message' => 'Forbidden']);
+        }
+
+        $id = (int) $this->request->getPost('id');
+        $model = $this->modelTrainingModel->find($id);
+
+        if (! $model) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Model tidak ditemukan.']);
+        }
+        if ((int) $model['is_active'] === 1) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Model aktif tidak bisa diarsipkan. Aktifkan model lain terlebih dahulu.']);
+        }
+
+        $this->modelTrainingModel->arsipkan($id);
+
+        return $this->response->setJSON([
+            'status'  => 'success',
+            'message' => "Model {$model['versi']} berhasil diarsipkan.",
+        ]);
+    }
+
+    // =========================================================================
+    // AJAX — Detail model (GET training/model/detail/{id})
+    // =========================================================================
+    public function detailModel(int $id): \CodeIgniter\HTTP\ResponseInterface
+    {
+        $model = $this->modelTrainingModel->find($id);
+        if (! $model) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Model tidak ditemukan.']);
+        }
+
+        $model['best_params']        = json_decode($model['best_params'] ?? '{}', true);
+        $model['feature_importance'] = json_decode($model['feature_importance'] ?? '{}', true);
+
+        $db = \Config\Database::connect();
+
+        // Ambil diagram dari tabel model_training_diagram
+        $diagRows = $db->table('model_training_diagram')
+            ->where('training_id', $id)
+            ->orderBy('id', 'ASC')
+            ->get()->getResultArray();
+
+        // Bentuk dict {diagram_key: path} — prioritaskan tabel diagram, fallback ke JSON kolom
+        $diagramPaths = [];
+        if (! empty($diagRows)) {
+            foreach ($diagRows as $row) {
+                $diagramPaths[$row['diagram_key']] = $row['path'];
+            }
+        } else {
+            // Fallback ke kolom diagram_paths JSON di model_training
+            $diagramPaths = json_decode($model['diagram_paths'] ?? '{}', true) ?: [];
+        }
+
+        // Override diagram_paths di model agar JS bisa baca
+        $model['diagram_paths'] = $diagramPaths;
+
+        $logs = $db->table('model_training_log')
+            ->where('training_id', $id)
+            ->orderBy('logged_at', 'ASC')
+            ->get()->getResultArray();
+
+        return $this->response->setJSON([
+            'status' => 'success',
+            'data'   => $model,
+            'logs'   => $logs,
         ]);
     }
 
@@ -367,22 +661,31 @@ class TrainingController extends BaseController
             if ($namaProduk === '' && $tahun === 0) continue;
 
             if ($namaProduk === '') {
-                $errors[] = "Baris {$rowNum}: Nama produk kosong."; $skipped++; continue;
+                $errors[] = "Baris {$rowNum}: Nama produk kosong.";
+                $skipped++;
+                continue;
             }
             if ($tahun < 2000 || $tahun > 2100) {
-                $errors[] = "Baris {$rowNum}: Tahun tidak valid ({$tahun})."; $skipped++; continue;
+                $errors[] = "Baris {$rowNum}: Tahun tidak valid ({$tahun}).";
+                $skipped++;
+                continue;
             }
             if ($bulan < 1 || $bulan > 12) {
-                $errors[] = "Baris {$rowNum}: Bulan tidak valid ({$bulan})."; $skipped++; continue;
+                $errors[] = "Baris {$rowNum}: Bulan tidak valid ({$bulan}).";
+                $skipped++;
+                continue;
             }
             if (! is_numeric($qtyTotal) || (int) $qtyTotal < 0) {
-                $errors[] = "Baris {$rowNum}: Qty total tidak valid ({$qtyTotal})."; $skipped++; continue;
+                $errors[] = "Baris {$rowNum}: Qty total tidak valid ({$qtyTotal}).";
+                $skipped++;
+                continue;
             }
 
             // Skip duplikat
             if ($this->trainingModel->existsByProdukBulan($namaProduk, $tahun, $bulan)) {
                 $errors[] = "Baris {$rowNum}: {$namaProduk} {$bulan}/{$tahun} sudah ada, dilewati.";
-                $skipped++; continue;
+                $skipped++;
+                continue;
             }
 
             $this->trainingModel->insert([
@@ -429,10 +732,25 @@ class TrainingController extends BaseController
 
         // ── Header ──────────────────────────────────────────────────────────
         $headers = [
-            'No', 'ID Training', 'Nama Produk', 'Tahun', 'Bulan', 'Kuartal',
-            'Time Idx', 'Qty Total', 'Harga Avg', 'Harga Std', 'Promo Avg',
-            'N Transaksi', 'Lag 1', 'Lag 2', 'Lag 3',
-            'Roll3 Mean', 'Roll3 Std', 'Roll6 Mean', 'Trend',
+            'No',
+            'ID Training',
+            'Nama Produk',
+            'Tahun',
+            'Bulan',
+            'Kuartal',
+            'Time Idx',
+            'Qty Total',
+            'Harga Avg',
+            'Harga Std',
+            'Promo Avg',
+            'N Transaksi',
+            'Lag 1',
+            'Lag 2',
+            'Lag 3',
+            'Roll3 Mean',
+            'Roll3 Std',
+            'Roll6 Mean',
+            'Trend',
         ];
         $cols = range('A', 'S');
 
@@ -515,10 +833,21 @@ class TrainingController extends BaseController
         $sheet->setTitle('Template Import Training');
 
         $headers = [
-            'nama_produk', 'tahun', 'bulan', 'qty_total',
-            'harga_avg', 'harga_std', 'promo_avg', 'n_transaksi',
-            'qty_lag1', 'qty_lag2', 'qty_lag3',
-            'qty_roll3_mean', 'qty_roll3_std', 'qty_roll6_mean', 'trend',
+            'nama_produk',
+            'tahun',
+            'bulan',
+            'qty_total',
+            'harga_avg',
+            'harga_std',
+            'promo_avg',
+            'n_transaksi',
+            'qty_lag1',
+            'qty_lag2',
+            'qty_lag3',
+            'qty_roll3_mean',
+            'qty_roll3_std',
+            'qty_roll6_mean',
+            'trend',
         ];
 
         $cols = range('A', 'O');

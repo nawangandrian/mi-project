@@ -158,83 +158,152 @@ class TrainingModel extends Model
     }
 
     /**
-     * Generate data training dari tabel penjualan (agregasi bulanan).
-     * Dipanggil saat proses training otomatis.
+     * Generate data training dari tabel penjualan.
+     *
+     * CATATAN v3:
+     * ───────────
+     * Fungsi ini menghasilkan data preview/audit di tabel data_training.
+     * Proses TRAINING SESUNGGUHNYA (train_rf.py v3) membaca langsung dari
+     * tabel penjualan — tidak bergantung pada data_training lagi.
+     *
+     * Namun nilai di sini dibuat KONSISTEN dengan logika Python pandas agar
+     * data_training berguna sebagai referensi / audit trail:
+     *
+     *   pandas shift(1)            → PHP: nilai dari baris sebelumnya (idx-1)
+     *   rolling(3, min_periods=1)  → PHP: array_slice(prev, max(0,idx-3), min(3,idx))
+     *   rolling(3, min_periods=2).std() → PHP: stddev dengan minimal 2 nilai
+     *   fillna(0)                  → PHP: 0 jika tidak ada histori (TANPA bfill)
      */
     public function generateFromPenjualan(): int
     {
-        // Ambil agregasi dari penjualan
+        // ── Agregasi bulanan dari penjualan (identik dengan agregasi_bulanan() Python) ──
         $rows = $this->db->query("
             SELECT
-                nama_produk,
-                YEAR(tanggal)                        AS tahun,
-                MONTH(tanggal)                       AS bulan,
-                CEIL(MONTH(tanggal) / 3)             AS kuartal,
-                YEAR(tanggal) * 12 + MONTH(tanggal)  AS time_idx,
-                SUM(qty)                             AS qty_total,
-                AVG(harga)                           AS harga_avg,
-                STDDEV(harga)                        AS harga_std,
-                AVG(promo)                           AS promo_avg,
-                COUNT(*)                             AS n_transaksi
+                UPPER(TRIM(nama_produk))              AS nama_produk,
+                YEAR(tanggal)                          AS tahun,
+                MONTH(tanggal)                         AS bulan,
+                CEIL(MONTH(tanggal) / 3)               AS kuartal,
+                YEAR(tanggal) * 12 + MONTH(tanggal)    AS time_idx,
+                SUM(qty)                               AS qty_total,
+                AVG(harga)                             AS harga_avg,
+                STDDEV_SAMP(harga)                     AS harga_std,
+                AVG(CASE
+                    WHEN UPPER(TRIM(promo)) = 'YA'    THEN 1
+                    WHEN UPPER(TRIM(promo)) = 'TIDAK' THEN 0
+                    WHEN promo REGEXP '^[01]\$'        THEN CAST(promo AS UNSIGNED)
+                    ELSE 0
+                END)                                   AS promo_avg,
+                COUNT(*)                               AS n_transaksi
             FROM penjualan
             GROUP BY
-                nama_produk,
+                UPPER(TRIM(nama_produk)),
                 YEAR(tanggal),
                 MONTH(tanggal),
                 CEIL(MONTH(tanggal) / 3),
                 YEAR(tanggal) * 12 + MONTH(tanggal)
-            ORDER BY nama_produk, tahun, bulan
+            ORDER BY nama_produk, tahun, bulan ASC
         ")->getResultArray();
 
         if (empty($rows)) return 0;
 
-        // Kelompokkan per produk untuk hitung lag & rolling
+        // ── Group per produk ──────────────────────────────────────────────────
         $byProduk = [];
         foreach ($rows as $r) {
-            $byProduk[$r['nama_produk']][] = $r;
+            $produk = strtoupper(trim($r['nama_produk']));
+            $byProduk[$produk][] = $r;
         }
 
-        $toInsert = [];
-        foreach ($byProduk as $produk => $series) {
-            // Hitung trend (slope linear sederhana)
-            $n      = count($series);
-            $xMean  = ($n - 1) / 2;
-            $yVals  = array_column($series, 'qty_total');
-            $yMean  = array_sum($yVals) / $n;
-            $num    = 0;
-            $den = 0;
-            foreach ($yVals as $i => $y) {
-                $num += ($i - $xMean) * ($y - $yMean);
-                $den += ($i - $xMean) ** 2;
+        // ── Helper: sample std (ddof=1) — identik pandas rolling std ─────────
+        $sampleStd = static function (array $arr): float {
+            $n = count($arr);
+            if ($n < 2) return 0.0;
+            $mean = array_sum($arr) / $n;
+            $sq   = 0.0;
+            foreach ($arr as $v) {
+                $sq += ($v - $mean) ** 2;
             }
-            $slope = $den > 0 ? $num / $den : 0;
+            return sqrt($sq / ($n - 1));  // ddof=1
+        };
+
+        $toInsert = [];
+
+        foreach ($byProduk as $produk => $series) {
+
+            $n     = count($series);
+            $yVals = array_column($series, 'qty_total');
+
+            // time_idx range untuk trend (disimpan sebagai referensi audit)
+            $timeIdxs = array_column($series, 'time_idx');
+            $minT     = (int) min($timeIdxs);
+            $maxT     = (int) max($timeIdxs);
+            $range    = max($maxT - $minT, 1);
 
             foreach ($series as $idx => $r) {
-                $qty = (float) $r['qty_total'];
+
+                $bulan = (int) $r['bulan'];
+
+                // ── Lag (identik pandas shift(1), shift(2), shift(3)) ─────────
+                // shift(1): nilai idx-1; shift(2): idx-2; dst.
+                // Jika tidak ada histori → 0 (identik fillna(0) Python)
+                $lag1 = $idx >= 1 ? (float) $yVals[$idx - 1] : 0.0;
+                $lag2 = $idx >= 2 ? (float) $yVals[$idx - 2] : 0.0;
+                $lag3 = $idx >= 3 ? (float) $yVals[$idx - 3] : 0.0;
+
+                // ── Rolling (identik pandas shift(1).rolling(N, min_periods=M)) ─
+                // "shift(1) dulu" = nilai yang tersedia SEBELUM baris ini (bukan include baris ini)
+                // rolling(3, min_periods=1): ambil max 3 nilai sebelum idx (tidak include idx)
+                $prevAll = array_slice($yVals, 0, $idx); // semua nilai sebelum idx
+
+                $prev3 = array_slice($prevAll, max(0, $idx - 3)); // max 3 terakhir
+                $prev6 = array_slice($prevAll, max(0, $idx - 6)); // max 6 terakhir
+
+                // roll3_mean — min_periods=1
+                $roll3Mean = count($prev3) >= 1
+                    ? array_sum($prev3) / count($prev3)
+                    : 0.0;
+
+                // roll3_std — min_periods=2 (butuh minimal 2 nilai)
+                $roll3Std  = count($prev3) >= 2
+                    ? $sampleStd($prev3)
+                    : 0.0;
+
+                // roll6_mean — min_periods=1
+                $roll6Mean = count($prev6) >= 1
+                    ? array_sum($prev6) / count($prev6)
+                    : 0.0;
+
+                // ── Trend 0-1 (hanya untuk audit — tidak dipakai model v3) ────
+                $trend = ($r['time_idx'] - $minT) / $range;
+
                 $toInsert[] = [
-                    'nama_produk'    => strtoupper($produk),
-                    'tahun'          => (int) $r['tahun'],
-                    'bulan'          => (int) $r['bulan'],
-                    'kuartal'        => (int) $r['kuartal'],
-                    'time_idx'       => (int) $r['time_idx'],
-                    'qty_total'      => (int) $qty,
+                    'nama_produk'    => $produk,
+                    'tahun'          => (int)   $r['tahun'],
+                    'bulan'          => $bulan,
+                    'kuartal'        => (int)   $r['kuartal'],
+                    'time_idx'       => (int)   $r['time_idx'],
+                    'qty_total'      => (int)   $r['qty_total'],
                     'harga_avg'      => round((float) $r['harga_avg'], 2),
-                    'harga_std'      => $r['harga_std'] !== null ? round((float) $r['harga_std'], 2) : 0,
+                    'harga_std'      => $r['harga_std'] !== null
+                                        ? round((float) $r['harga_std'], 2)
+                                        : 0.0,
                     'promo_avg'      => round((float) $r['promo_avg'], 4),
-                    'n_transaksi'    => (int) $r['n_transaksi'],
-                    'qty_lag1'       => $idx >= 1 ? (float) $series[$idx - 1]['qty_total'] : null,
-                    'qty_lag2'       => $idx >= 2 ? (float) $series[$idx - 2]['qty_total'] : null,
-                    'qty_lag3'       => $idx >= 3 ? (float) $series[$idx - 3]['qty_total'] : null,
-                    'qty_roll3_mean' => $idx >= 2 ? round(array_sum(array_slice($yVals, max(0, $idx - 2), 3)) / min(3, $idx + 1), 2) : null,
-                    'qty_roll3_std'  => null,
-                    'qty_roll6_mean' => $idx >= 5 ? round(array_sum(array_slice($yVals, max(0, $idx - 5), 6)) / min(6, $idx + 1), 2) : null,
-                    'trend'          => round($slope, 4),
+                    'n_transaksi'    => (int)   $r['n_transaksi'],
+                    'qty_lag1'       => round($lag1,     2),
+                    'qty_lag2'       => round($lag2,     2),
+                    'qty_lag3'       => round($lag3,     2),
+                    'qty_roll3_mean' => round($roll3Mean, 2),
+                    'qty_roll3_std'  => round($roll3Std,  2),
+                    'qty_roll6_mean' => round($roll6Mean, 2),
+                    'trend'          => round($trend,     6),
                 ];
             }
         }
 
-        // Hapus lama lalu insert baru
+        // ── Simpan ke DB ──────────────────────────────────────────────────────
         $this->db->table($this->table)->truncate();
-        return $this->bulkInsert($toInsert) ? count($toInsert) : 0;
+
+        return $this->bulkInsert($toInsert)
+            ? count($toInsert)
+            : 0;
     }
 }
