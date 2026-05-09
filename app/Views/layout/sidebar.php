@@ -1,4 +1,16 @@
 <!-- ===== SIDEBAR ===== -->
+<?php
+    /**
+     * Variabel yang tersedia dari BaseController::renderPage():
+     *   $model_aktif  — array|null dari ModelTrainingModel::getAktif()
+     *
+     * Variabel session yang relevan:
+     *   session()->get('role')  — 'admin' | 'cs' | dsb.
+     */
+    $role  = session()->get('role') ?? 'cs';   // default ke role paling terbatas
+    $isCs  = ($role === 'cs');                  // CS hanya lihat Dashboard + Data
+    $uri   = uri_string();
+?>
 <aside id="sidebar">
     <!-- Logo -->
     <div class="sidebar-logo">
@@ -17,54 +29,81 @@
     <!-- Navigation -->
     <nav class="sidebar-nav">
 
+        <!-- ── MAIN (semua role) ── -->
         <div class="nav-section-label">Main</div>
 
-        <a href="<?= base_url('dashboard') ?>" class="nav-item <?= (uri_string() === 'dashboard' || uri_string() === '') ? 'active' : '' ?>" data-tooltip="Dashboard">
+        <a href="<?= base_url('dashboard') ?>"
+           class="nav-item <?= ($uri === 'dashboard' || $uri === '') ? 'active' : '' ?>"
+           data-tooltip="Dashboard">
             <i class="bi bi-grid-1x2-fill"></i>
             <span>Dashboard</span>
         </a>
 
+        <!-- ── PREDIKSI (khusus non-CS) ── -->
+        <?php if (! $isCs): ?>
         <div class="nav-section-label">Prediksi</div>
 
-        <a href="<?= base_url('prediksi') ?>" class="nav-item <?= (uri_string() === 'prediksi') ? 'active' : '' ?>" data-tooltip="Prediksi Penjualan">
+        <a href="<?= base_url('prediksi') ?>"
+           class="nav-item <?= ($uri === 'prediksi') ? 'active' : '' ?>"
+           data-tooltip="Prediksi Penjualan">
             <i class="bi bi-graph-up-arrow"></i>
             <span>Prediksi Penjualan</span>
             <span class="nav-badge">AI</span>
         </a>
 
-        <a href="<?= base_url('prediksi/jalankan') ?>" class="nav-item <?= (uri_string() === 'prediksi/jalankan') ? 'active' : '' ?>" data-tooltip="Jalankan Model">
+        <a href="<?= base_url('prediksi/jalankan') ?>"
+           class="nav-item <?= ($uri === 'prediksi/jalankan') ? 'active' : '' ?>"
+           data-tooltip="Jalankan Model">
             <i class="bi bi-play-circle-fill"></i>
             <span>Jalankan Prediksi</span>
         </a>
 
-        <a href="<?= base_url('prediksi/riwayat') ?>" class="nav-item <?= (uri_string() === 'prediksi/riwayat') ? 'active' : '' ?>" data-tooltip="Riwayat Prediksi">
+        <a href="<?= base_url('prediksi/riwayat') ?>"
+           class="nav-item <?= ($uri === 'prediksi/riwayat') ? 'active' : '' ?>"
+           data-tooltip="Riwayat Prediksi">
             <i class="bi bi-clock-history"></i>
             <span>Riwayat Prediksi</span>
         </a>
 
-        <a href="<?= base_url('prediksi/akurasi') ?>" class="nav-item <?= (uri_string() === 'prediksi/akurasi') ? 'active' : '' ?>" data-tooltip="Evaluasi Model">
+        <a href="<?= base_url('prediksi/akurasi') ?>"
+           class="nav-item <?= ($uri === 'prediksi/akurasi') ? 'active' : '' ?>"
+           data-tooltip="Evaluasi Model">
             <i class="bi bi-bullseye"></i>
             <span>Evaluasi Model</span>
         </a>
+        <?php endif; ?>
 
+        <!-- ── DATA (semua role) ── -->
         <div class="nav-section-label">Data</div>
-
-        <a href="<?= base_url('import') ?>" class="nav-item <?= str_starts_with(uri_string(), 'import') ? 'active' : '' ?>" data-tooltip="Import Data">
+        <?php if ($isCs): ?>
+    
+        <a href="<?= base_url('import') ?>"
+           class="nav-item <?= str_starts_with($uri, 'import') ? 'active' : '' ?>"
+           data-tooltip="Import Data">
             <i class="bi bi-cloud-arrow-up"></i>
             <span>Import Data</span>
         </a>
 
-        <a href="<?= base_url('produk') ?>" class="nav-item <?= str_starts_with(uri_string(), 'produk') ? 'active' : '' ?>" data-tooltip="Data Produk">
+        <a href="<?= base_url('produk') ?>"
+           class="nav-item <?= str_starts_with($uri, 'produk') ? 'active' : '' ?>"
+           data-tooltip="Data Produk">
             <i class="bi bi-phone-fill"></i>
             <span>Data Produk</span>
         </a>
 
-        <a href="<?= base_url('penjualan') ?>" class="nav-item <?= str_starts_with(uri_string(), 'penjualan') ? 'active' : '' ?>" data-tooltip="Data Penjualan">
+        <a href="<?= base_url('penjualan') ?>"
+           class="nav-item <?= str_starts_with($uri, 'penjualan') ? 'active' : '' ?>"
+           data-tooltip="Data Penjualan">
             <i class="bi bi-cart3"></i>
             <span>Data Penjualan</span>
         </a>
+        <?php endif; ?>
 
-        <a href="<?= base_url('training') ?>" class="nav-item <?= str_starts_with(uri_string(), 'training') ? 'active' : '' ?>" data-tooltip="Data Training">
+        <!-- ── TRAINING & SISTEM (khusus non-CS) ── -->
+        <?php if (! $isCs): ?>
+        <a href="<?= base_url('training') ?>"
+           class="nav-item <?= str_starts_with($uri, 'training') ? 'active' : '' ?>"
+           data-tooltip="Data Training">
             <i class="bi bi-cpu-fill"></i>
             <span>Latih Model</span>
             <span class="nav-badge">ML</span>
@@ -72,22 +111,45 @@
 
         <div class="nav-section-label">Sistem</div>
 
-        <a href="<?= base_url('user') ?>" class="nav-item <?= str_starts_with(uri_string(), 'user') ? 'active' : '' ?>" data-tooltip="Manajemen User">
+        <a href="<?= base_url('user') ?>"
+           class="nav-item <?= str_starts_with($uri, 'user') ? 'active' : '' ?>"
+           data-tooltip="Manajemen User">
             <i class="bi bi-people-fill"></i>
             <span>Manajemen User</span>
         </a>
+        <?php endif; ?>
 
     </nav>
 
-    <!-- Sidebar Footer -->
+    <!-- Sidebar Footer — Model Aktif dari DB -->
     <div class="sidebar-footer">
+        <?php if (isset($model_aktif) && $model_aktif): ?>
         <div class="sidebar-footer-card">
             <i class="bi bi-robot" style="font-size:18px;color:var(--accent-cyan);flex-shrink:0"></i>
             <div class="sidebar-footer-text">
-                <div style="font-size:12px;font-weight:600;color:var(--text-on-dark)">Random Forest</div>
-                <div style="font-size:11px;color:var(--text-on-dark-3)">Model Aktif · v2.1</div>
+                <div style="font-size:12px;font-weight:600;color:var(--text-on-dark)">
+                    <?= esc($model_aktif['nama_model'] ?? 'Random Forest') ?>
+                </div>
+                <div style="font-size:11px;color:var(--text-on-dark-3)">
+                    Model Aktif
+                    <?php if (! empty($model_aktif['versi'])): ?>
+                        · <?= esc($model_aktif['versi']) ?>
+                    <?php endif; ?>
+                    <?php if (! empty($model_aktif['akurasi'])): ?>
+                        · <?= number_format((float) $model_aktif['akurasi'], 1) ?>%
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
+        <?php else: ?>
+        <div class="sidebar-footer-card">
+            <i class="bi bi-robot" style="font-size:18px;color:var(--text-on-dark-3);flex-shrink:0"></i>
+            <div class="sidebar-footer-text">
+                <div style="font-size:12px;font-weight:600;color:var(--text-on-dark-3)">Belum Ada Model</div>
+                <div style="font-size:11px;color:var(--text-on-dark-3)">Latih model terlebih dahulu</div>
+            </div>
+        </div>
+        <?php endif; ?>
     </div>
 </aside>
 
@@ -347,7 +409,6 @@
         #sidebar {
             transform: translateX(-100%);
             width: var(--sidebar-width) !important;
-            /* always full width on mobile */
             box-shadow: 6px 0 40px rgba(0, 0, 0, 0.5);
         }
 
@@ -364,7 +425,6 @@
             pointer-events: auto;
         }
 
-        /* Reset collapsed on mobile */
         #sidebar.collapsed.mobile-open {
             width: var(--sidebar-width) !important;
         }
@@ -396,11 +456,7 @@
         }
     }
 
-    /* =====================================================
-   SIDEBAR COLLAPSED FIX — tambahkan di layout CSS
-   ===================================================== */
-
-    /* Saat collapsed, semua nav-item center + ukuran konsisten */
+    /* ── Collapsed fix ── */
     #sidebar.collapsed .nav-item {
         justify-content: center !important;
         padding: 11px 0 !important;
@@ -408,7 +464,6 @@
         width: 100% !important;
     }
 
-    /* Ikon tetap ukuran fix dan center */
     #sidebar.collapsed .nav-item i {
         font-size: 18px !important;
         width: 22px !important;
@@ -417,7 +472,6 @@
         flex-shrink: 0 !important;
     }
 
-    /* Sembunyikan semua teks & badge */
     #sidebar.collapsed .nav-item>span,
     #sidebar.collapsed .nav-item .nav-badge,
     #sidebar.collapsed .nav-section-label,
@@ -426,32 +480,28 @@
         display: none !important;
     }
 
-    /* Logo area center */
     #sidebar.collapsed .sidebar-logo {
         justify-content: center !important;
         padding: 18px 0 !important;
         gap: 0 !important;
     }
 
-    /* Toggle button tetap tampil */
     #sidebar.collapsed #sidebar-toggle {
         display: flex !important;
         margin: 0 auto !important;
     }
 
-    /* Nav padding saat collapsed */
     #sidebar.collapsed .sidebar-nav {
         padding: 14px 6px !important;
     }
 
-    /* Footer card center */
     #sidebar.collapsed .sidebar-footer-card {
         justify-content: center !important;
         padding: 11px 0 !important;
         gap: 0 !important;
     }
 
-    /* Hover tooltip saat collapsed */
+    /* Tooltip saat collapsed */
     #sidebar.collapsed .nav-item {
         position: relative;
     }
@@ -482,8 +532,6 @@
     }
 
     @media (max-width: 768px) {
-
-        /* Sidebar tersembunyi di kiri, slide masuk via mobile-open */
         #sidebar {
             transform: translateX(-100%);
             width: var(--sidebar-width) !important;
@@ -494,12 +542,10 @@
             transform: translateX(0);
         }
 
-        /* Sembunyikan toggle collapse di mobile */
         #sidebar-toggle {
             display: none !important;
         }
 
-        /* Reset SEMUA efek collapsed di mobile */
         #sidebar .logo-text,
         #sidebar .sidebar-footer-text {
             opacity: 1 !important;
@@ -554,12 +600,10 @@
             gap: 12px !important;
         }
 
-        /* Sembunyikan tooltip di mobile */
         #sidebar .nav-item::after {
             display: none !important;
         }
 
-        /* Overlay */
         .sidebar-overlay {
             display: block;
             position: fixed;
@@ -579,3 +623,295 @@
         }
     }
 </style>
+<!-- ===== SIDEBAR + LAYOUT TOGGLE SCRIPT ===== -->
+<!--
+    Solusi: semua elemen layout (sidebar, header, main-content) membaca
+    satu CSS variable --sidebar-current-width yang diupdate JS.
+    Tidak ada lagi set margin/left manual → tidak ada lagi content tergeser/terpotong.
+-->
+<style>
+    /* ── Layout Shell ── */
+    :root {
+        --sidebar-width        : 240px;   /* lebar penuh */
+        --sidebar-collapsed-w  : 70px;    /* lebar collapsed */
+        --sidebar-current-width: var(--sidebar-width); /* diupdate JS */
+        --header-height        : 60px;
+        --transition-sidebar   : 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Sidebar menggunakan width dari variable langsung */
+    #sidebar {
+        width: var(--sidebar-current-width) !important;
+        transition: width var(--transition-sidebar) !important;
+    }
+
+    /* Header ikut geser */
+    #main-header {
+        left: var(--sidebar-current-width) !important;
+        transition: left var(--transition-sidebar) !important;
+    }
+
+    /* Main content ikut geser — KUNCI PERBAIKAN */
+    #main-content {
+        margin-left: var(--sidebar-current-width) !important;
+        transition: margin-left var(--transition-sidebar) !important;
+        min-height: 100vh;
+        padding-top: var(--header-height);
+        box-sizing: border-box;
+        /* Pastikan tidak ada overflow tersembunyi */
+        overflow-x: hidden;
+    }
+
+    /* Mobile: sidebar overlay, content TIDAK bergeser */
+    @media (max-width: 768px) {
+        #main-header {
+            left: 0 !important;
+            transition: none !important;
+        }
+        #main-content {
+            margin-left: 0 !important;
+            transition: none !important;
+        }
+    }
+<!--
+    ===== LAYOUT FIX PATCH =====
+    Tambahkan snippet <style> ini di layout/head.php (setelah CSS utama)
+    ATAU di bagian akhir <head>.
+
+    Ini override semua aturan lama yang hardcode margin-left / left
+    agar semuanya pakai --sidebar-current-width yang dikontrol JS.
+-->
+/* ─────────────────────────────────────────────
+   LAYOUT SHELL — semua gerak via 1 CSS variable
+   ───────────────────────────────────────────── */
+
+/* Hapus override lama yang hardcode nilai px */
+#main-content {
+    margin-left: var(--sidebar-current-width, 240px) !important;
+    transition : margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    min-width  : 0 !important;   /* cegah overflow horizontal */
+    overflow-x : hidden !important;
+}
+
+#main-header {
+    left      : var(--sidebar-current-width, 240px) !important;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Sidebar: biarkan --sidebar-current-width yang mengatur width */
+#sidebar {
+    width     : var(--sidebar-current-width, 240px) !important;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* ── Mobile: content tidak ikut geser ── */
+@media (max-width: 768px) {
+    #main-content {
+        margin-left: 0 !important;
+        transition : none !important;
+    }
+    #main-header {
+        left      : 0 !important;
+        transition: none !important;
+    }
+    /* Sidebar: posisi fixed, keluar dari flow */
+    #sidebar {
+        width    : 240px !important;    /* selalu full saat mobile */
+        transform: translateX(-100%);   /* disembunyikan via transform */
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    #sidebar.mobile-open {
+        transform: translateX(0) !important;
+    }
+}
+
+/* ── Content wrapper: cegah konten terpotong ── */
+.content-wrapper {
+    width    : 100%;
+    min-width: 0;
+    overflow-x: hidden;
+}
+</style>
+
+<script>
+(function () {
+    'use strict';
+
+    // ── Konstanta ────────────────────────────────────────────────────────────
+    const SIDEBAR_FULL      = 240;   // px, harus sama dengan --sidebar-width
+    const SIDEBAR_COLLAPSED = 70;    // px, harus sama dengan --sidebar-collapsed-w
+    const LS_KEY            = 'sidebar_collapsed';
+    const MOBILE_BP         = 768;   // px
+
+    // ── Elemen ──────────────────────────────────────────────────────────────
+    const sidebar        = document.getElementById('sidebar');
+    const overlay        = document.getElementById('sidebar-overlay');
+    const mobileToggle   = document.getElementById('mobile-toggle');
+    const desktopToggle  = document.getElementById('sidebar-toggle');
+
+    if (!sidebar) return; // guard: jika sidebar tidak ada di halaman ini
+
+    // ── Helpers ─────────────────────────────────────────────────────────────
+
+    /** Set CSS variable --sidebar-current-width di :root */
+    function setSidebarWidth(px) {
+        document.documentElement.style.setProperty(
+            '--sidebar-current-width', px + 'px'
+        );
+    }
+
+    function isMobile() {
+        return window.innerWidth <= MOBILE_BP;
+    }
+
+    // ── State awal ───────────────────────────────────────────────────────────
+    let isCollapsed = localStorage.getItem(LS_KEY) === 'true';
+
+    /** Terapkan state collapsed/expanded (desktop) tanpa animasi opsional */
+    function applyDesktopState(animate) {
+        if (!animate) {
+            // Matikan transisi sementara agar tidak flicker saat load
+            sidebar.style.transition = 'none';
+            document.documentElement.style.setProperty('--transition-sidebar', '0s');
+        }
+
+        if (isCollapsed) {
+            sidebar.classList.add('collapsed');
+            setSidebarWidth(SIDEBAR_COLLAPSED);
+        } else {
+            sidebar.classList.remove('collapsed');
+            setSidebarWidth(SIDEBAR_FULL);
+        }
+
+        if (!animate) {
+            // Re-enable transisi setelah satu frame
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    sidebar.style.transition = '';
+                    document.documentElement.style.setProperty(
+                        '--transition-sidebar', '0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                    );
+                });
+            });
+        }
+    }
+
+    /** Toggle collapsed (desktop) */
+    function toggleDesktop() {
+        isCollapsed = !isCollapsed;
+        localStorage.setItem(LS_KEY, isCollapsed);
+        applyDesktopState(true);
+    }
+
+    // ── Mobile: open/close ───────────────────────────────────────────────────
+    function openMobile() {
+        sidebar.classList.add('mobile-open');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // cegah scroll body
+    }
+
+    function closeMobile() {
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function toggleMobile() {
+        sidebar.classList.contains('mobile-open') ? closeMobile() : openMobile();
+    }
+
+    // ── Event listeners ──────────────────────────────────────────────────────
+
+    // Desktop toggle button (di dalam sidebar)
+    if (desktopToggle) {
+        desktopToggle.addEventListener('click', function (e) {
+            e.stopPropagation();
+            if (!isMobile()) toggleDesktop();
+        });
+    }
+
+    // Mobile hamburger button (di header)
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', function () {
+            if (isMobile()) toggleMobile();
+        });
+    }
+
+    // Klik overlay → tutup mobile sidebar
+    if (overlay) {
+        overlay.addEventListener('click', closeMobile);
+    }
+
+    // Klik nav item di mobile → tutup sidebar otomatis
+    sidebar.querySelectorAll('.nav-item').forEach(function (item) {
+        item.addEventListener('click', function () {
+            if (isMobile()) closeMobile();
+        });
+    });
+
+    // Resize: sinkronisasi ulang state
+    let resizeTimer;
+    window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            if (!isMobile()) {
+                // Kembali ke desktop: tutup mobile state, terapkan collapsed state
+                closeMobile();
+                applyDesktopState(false);
+            } else {
+                // Mobile: width content harus 0 offset (sudah dihandle CSS)
+                setSidebarWidth(0); // tidak relevan di mobile (CSS override ke margin-left:0)
+            }
+        }, 100);
+    });
+
+    // ── Init ─────────────────────────────────────────────────────────────────
+    if (isMobile()) {
+        // Mobile: jangan terapkan collapsed state, biarkan sidebar tersembunyi
+        setSidebarWidth(0);
+    } else {
+        applyDesktopState(false); // tanpa animasi saat load
+    }
+
+})();
+</script>
+
+<!-- User Dropdown Toggle -->
+<script>
+(function () {
+    const userBtn      = document.getElementById('user-btn');
+    const userDropdown = document.getElementById('user-dropdown');
+
+    if (!userBtn || !userDropdown) return;
+
+    userBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = userDropdown.classList.toggle('open');
+        userBtn.classList.toggle('open', isOpen);
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!userBtn.contains(e.target) && !userDropdown.contains(e.target)) {
+            userDropdown.classList.remove('open');
+            userBtn.classList.remove('open');
+        }
+    });
+})();
+</script>
+
+<!-- Update tanggal di header -->
+<script>
+(function () {
+    const el = document.getElementById('current-date');
+    if (!el) return;
+
+    const now  = new Date();
+    const days = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+    const mons = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+
+    el.textContent = days[now.getDay()] + ', '
+        + now.getDate() + ' '
+        + mons[now.getMonth()] + ' '
+        + now.getFullYear();
+})();
+</script>

@@ -824,3 +824,42 @@ TypeError: xgboost.sklearn.XGBRegressor() got multiple values for keyword argume
 2026-05-08 22:33:16,170 [INFO] Diagram tersimpan: ['train_actual_vs_pred', 'test_actual_vs_pred', 'train_residual', 'test_residual', 'feature_importance', 'train_timeseries', 'test_timeseries', 'top_products', 'monthly_trend']
 2026-05-08 22:33:16,339 [INFO] Model: C:\laragon\www\ci4-store\python\models\model_rf_v68.pkl (2322 KB)
 2026-05-08 22:33:16,361 [INFO] === Training ID=68 selesai — Train: 98.77% | Test: 98.56% ===
+2026-05-09 07:22:34,059 [INFO] === Training ID=69 dimulai ===
+2026-05-09 07:22:38,017 [INFO] Filter tanggal: 2025-11-09 s/d 2026-05-09
+2026-05-09 07:22:38,042 [INFO] Setelah preprocessing: (586, 9)
+2026-05-09 07:22:38,084 [INFO] Data bulanan: (362, 10), 208 produk
+2026-05-09 07:22:38,723 [INFO] Feature engineering selesai. Shape: (362, 20), Produk: 208
+2026-05-09 07:22:38,786 [INFO] Fitur (16): ['bulan', 'kuartal', 'produk_encoded', 'time_idx', 'harga_avg', 'harga_std', 'promo_avg', 'n_transaksi', 'qty_lag1', 'qty_lag2', 'qty_lag3', 'qty_roll3_mean', 'qty_roll3_std', 'qty_roll6_mean', 'bulan_sin', 'bulan_cos']
+2026-05-09 07:22:38,802 [INFO] Train: (311, 16), Test: (51, 16), cutoff time_idx=24315
+2026-05-09 07:23:35,453 [INFO] Best params: {'n_estimators': 400, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 0.7, 'max_depth': None, 'bootstrap': True, '_filter_date_from': '2025-11-09', '_filter_date_to': '2026-05-09'}
+2026-05-09 07:23:35,666 [INFO] [TRAIN] MAE=0.0276 RMSE=0.1090 R²=0.989141 MAPE=1.0356% Akurasi≈98.96%
+2026-05-09 07:23:35,807 [INFO] [TEST]  MAE=0.0211 RMSE=0.0636 R²=0.992528 MAPE=1.0076% Akurasi≈98.99%
+2026-05-09 07:23:39,693 [INFO] Diagram tersimpan: ['train_actual_vs_pred', 'test_actual_vs_pred', 'train_residual', 'test_residual', 'feature_importance', 'train_timeseries', 'test_timeseries', 'top_products', 'monthly_trend']
+2026-05-09 07:23:39,884 [INFO] Model: C:\laragon\www\ci4-store\python\models\model_rf_v69.pkl (1027 KB)
+2026-05-09 07:23:39,912 [INFO] === Training ID=69 selesai — Train: 98.96% | Test: 98.99% ===
+2026-05-09 07:34:06,252 [INFO] === Training ID=70 dimulai ===
+2026-05-09 07:34:09,670 [INFO] Filter tanggal: 2025-05-09 s/d 2026-05-09
+2026-05-09 07:34:09,690 [INFO] Setelah preprocessing: (1234, 9)
+2026-05-09 07:34:09,724 [INFO] Data bulanan: (711, 10), 318 produk
+2026-05-09 07:34:10,584 [INFO] Feature engineering selesai. Shape: (711, 20), Produk: 318
+2026-05-09 07:34:10,648 [INFO] Fitur (16): ['bulan', 'kuartal', 'produk_encoded', 'time_idx', 'harga_avg', 'harga_std', 'promo_avg', 'n_transaksi', 'qty_lag1', 'qty_lag2', 'qty_lag3', 'qty_roll3_mean', 'qty_roll3_std', 'qty_roll6_mean', 'bulan_sin', 'bulan_cos']
+2026-05-09 07:34:10,659 [INFO] Train: (580, 16), Test: (131, 16), cutoff time_idx=24314
+2026-05-09 07:35:07,533 [INFO] Best params: {'n_estimators': 200, 'min_samples_split': 5, 'min_samples_leaf': 4, 'max_features': 0.7, 'max_depth': 8, 'bootstrap': True, '_filter_date_from': '2025-05-09', '_filter_date_to': '2026-05-09'}
+2026-05-09 07:35:07,679 [INFO] [TRAIN] MAE=0.0469 RMSE=0.2106 R²=0.971050 MAPE=1.4628% Akurasi≈98.54%
+2026-05-09 07:35:07,769 [INFO] [TEST]  MAE=0.0417 RMSE=0.1273 R²=0.984005 MAPE=2.2336% Akurasi≈97.77%
+2026-05-09 07:35:11,235 [INFO] Diagram tersimpan: ['train_actual_vs_pred', 'test_actual_vs_pred', 'train_residual', 'test_residual', 'feature_importance', 'train_timeseries', 'test_timeseries', 'top_products', 'monthly_trend']
+2026-05-09 07:35:11,432 [INFO] Model: C:\laragon\www\ci4-store\python\models\model_rf_v70.pkl (656 KB)
+2026-05-09 07:35:11,453 [INFO] === Training ID=70 selesai — Train: 98.54% | Test: 97.77% ===
+2026-05-09 09:20:52,415 [INFO] === Training ID=71 dimulai ===
+2026-05-09 09:20:56,308 [INFO] Filter tanggal: semua s/d semua
+2026-05-09 09:20:56,325 [INFO] Setelah preprocessing: (1771, 9)
+2026-05-09 09:20:56,358 [INFO] Data bulanan: (968, 10), 405 produk
+2026-05-09 09:20:57,452 [INFO] Feature engineering selesai. Shape: (968, 20), Produk: 405
+2026-05-09 09:20:57,516 [INFO] Fitur (16): ['bulan', 'kuartal', 'produk_encoded', 'time_idx', 'harga_avg', 'harga_std', 'promo_avg', 'n_transaksi', 'qty_lag1', 'qty_lag2', 'qty_lag3', 'qty_roll3_mean', 'qty_roll3_std', 'qty_roll6_mean', 'bulan_sin', 'bulan_cos']
+2026-05-09 09:20:57,527 [INFO] Train: (790, 16), Test: (178, 16), cutoff time_idx=24313
+2026-05-09 09:22:03,806 [INFO] Best params: {'n_estimators': 400, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 0.7, 'max_depth': None, 'bootstrap': True, '_filter_date_from': None, '_filter_date_to': None}
+2026-05-09 09:22:03,996 [INFO] [TRAIN] MAE=0.0434 RMSE=0.2460 R²=0.972156 MAPE=1.2298% Akurasi≈98.77%
+2026-05-09 09:22:04,162 [INFO] [TEST]  MAE=0.0298 RMSE=0.1154 R²=0.987755 MAPE=1.4355% Akurasi≈98.56%
+2026-05-09 09:22:08,382 [INFO] Diagram tersimpan: ['train_actual_vs_pred', 'test_actual_vs_pred', 'train_residual', 'test_residual', 'feature_importance', 'train_timeseries', 'test_timeseries', 'top_products', 'monthly_trend']
+2026-05-09 09:22:08,562 [INFO] Model: C:\laragon\www\ci4-store\python\models\model_rf_v71.pkl (2322 KB)
+2026-05-09 09:22:08,585 [INFO] === Training ID=71 selesai — Train: 98.77% | Test: 98.56% ===

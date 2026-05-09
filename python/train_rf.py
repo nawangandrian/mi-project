@@ -40,6 +40,7 @@ FIX v3 — Hasil IDENTIK dengan Colab:
 import sys, os, json, argparse, logging, traceback
 from datetime import datetime
 from pathlib import Path
+from turtle import pd
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--training-id', required=True, type=int)
@@ -52,6 +53,10 @@ parser.add_argument('--model-dir', default=os.getenv('MODEL_DIR',
     str(Path(__file__).parent / 'models')))
 parser.add_argument('--log-file',  default=os.getenv('LOG_FILE',
     str(Path(__file__).parent / 'logs' / 'train.log')))
+parser.add_argument('--date-from', default=None,
+    help='Filter awal: YYYY-MM-DD (inklusif)')
+parser.add_argument('--date-to',   default=None,
+    help='Filter akhir: YYYY-MM-DD (inklusif)')
 args = parser.parse_args()
 
 MODEL_DIR   = Path(args.model_dir)
@@ -287,24 +292,24 @@ FEATURES = [
     'bulan_sin', 'bulan_cos',
 ]
 
-
-def load_penjualan(conn) -> 'pd.DataFrame':
+def load_penjualan(conn, date_from=None, date_to=None) -> 'pd.DataFrame':
     """
-    Baca data raw dari tabel penjualan — IDENTIK dengan cara Colab membaca Excel.
-
-    Kolom yang dibutuhkan dari tabel penjualan:
-      - nama_produk  → setara df['barang'] di Colab
-      - qty          → setara df['qty']
-      - harga        → setara df['harga']
-      - tanggal      → setara df['tanggal']
-      - promo        → setara df['promo'] (nilai: 'YA'/'TIDAK' atau 1/0)
-
-    Jika kolom promo di DB adalah TINYINT(1), query otomatis mengembalikan 0/1.
-    Jika VARCHAR 'YA'/'TIDAK', mapping dilakukan di Python.
+    Baca data raw dari tabel penjualan dengan filter tanggal opsional.
     """
     import pandas as pd
 
-    df = pd.read_sql("""
+    where_clauses = []
+    params = []
+    if date_from:
+        where_clauses.append("tanggal >= %s")
+        params.append(date_from)
+    if date_to:
+        where_clauses.append("tanggal <= %s")
+        params.append(date_to)
+
+    where_sql = ("WHERE " + " AND ".join(where_clauses)) if where_clauses else ""
+
+    query = f"""
         SELECT
             UPPER(TRIM(nama_produk)) AS nama_produk,
             CAST(qty   AS SIGNED)    AS qty,
@@ -312,11 +317,12 @@ def load_penjualan(conn) -> 'pd.DataFrame':
             tanggal,
             promo
         FROM penjualan
+        {where_sql}
         ORDER BY tanggal ASC
-    """, conn)
+    """
 
+    df = pd.read_sql(query, conn, params=params if params else None)
     return df
-
 
 def preprocess_raw(df, np, pd) -> 'pd.DataFrame':
     """
@@ -475,12 +481,15 @@ def main():
     # ── Step 1: Load data RAW dari tabel penjualan ───────────────────────────
     # (Identik Colab cell 2: df = pd.read_excel(...))
     try:
-        df_raw = load_penjualan(conn)
-        log.info(f'Data penjualan dimuat: {df_raw.shape[0]} baris, '
-                 f'{df_raw["nama_produk"].nunique()} produk unik')
+        df_raw = load_penjualan(conn,
+            date_from=args.date_from or None,
+            date_to=args.date_to   or None)
+
+        date_from_log = args.date_from or 'semua'
+        date_to_log   = args.date_to   or 'semua'
+        log.info(f'Filter tanggal: {date_from_log} s/d {date_to_log}')
         db_log(conn, 'info',
-               f'Data penjualan: {df_raw.shape[0]} baris, '
-               f'{df_raw["nama_produk"].nunique()} produk.')
+            f'Filter tanggal: {date_from_log} s/d {date_to_log}')
     except Exception as e:
         msg = f'Gagal baca tabel penjualan: {e}'
         log.error(msg); write_status('error', msg)
@@ -583,6 +592,8 @@ def main():
 
     rf_model    = search.best_estimator_
     best_params = search.best_params_
+    best_params['_filter_date_from'] = args.date_from or None
+    best_params['_filter_date_to']   = args.date_to   or None
     log.info(f'Best params: {best_params}')
     db_log(conn, 'info',
            f'Best params: {json.dumps(best_params, default=str)}')

@@ -167,6 +167,25 @@
                                     <?php if (!empty($m['total_produk'])): ?>
                                         <span class="model-meta-item"><i class="bi bi-phone"></i> <?= number_format($m['total_produk']) ?> produk</span>
                                     <?php endif; ?>
+                                    <?php
+                                    $tglMulai  = $m['filter_tanggal_mulai']  ?? null;
+                                    $tglAkhir  = $m['filter_tanggal_akhir']  ?? null;
+                                    $adaFilter = $tglMulai || $tglAkhir;
+                                    ?>
+                                    <?php if ($adaFilter): ?>
+                                        <span class="model-meta-item filter-periode-pill">
+                                            <i class="bi bi-funnel-fill"></i>
+                                            <?php
+                                            $fmtMulai = $tglMulai ? date('M Y', strtotime($tglMulai)) : '…';
+                                            $fmtAkhir = $tglAkhir ? date('M Y', strtotime($tglAkhir)) : '…';
+                                            echo esc($fmtMulai === $fmtAkhir ? $fmtMulai : "{$fmtMulai} – {$fmtAkhir}");
+                                            ?>
+                                        </span>
+                                    <?php else: ?>
+                                        <span class="model-meta-item" style="opacity:.5;font-style:italic">
+                                            <i class="bi bi-funnel"></i> Semua data
+                                        </span>
+                                    <?php endif; ?>
                                     <span class="model-meta-item">
                                         <i class="bi bi-clock"></i>
                                         <?= $m['created_at'] ? date('d M Y, H:i', strtotime($m['created_at'])) : '—' ?>
@@ -535,6 +554,21 @@
 
     .spin {
         animation: spin 1.2s linear infinite;
+    }
+
+    .filter-periode-pill {
+        background: rgba(74, 159, 212, 0.08);
+        border: 1px solid rgba(74, 159, 212, 0.2);
+        border-radius: 20px;
+        padding: 2px 8px;
+        color: var(--accent-cyan) !important;
+        font-size: 11px !important;
+        font-weight: 600;
+    }
+
+    .filter-periode-pill i {
+        color: var(--accent-cyan) !important;
+        font-size: 10px;
     }
 
     @keyframes spin {
@@ -1402,13 +1436,45 @@
                         value: d.total_produk ? Number(d.total_produk).toLocaleString() : '—'
                     },
                 ];
+                const fMulai = d.filter_tanggal_mulai || null;
+                const fAkhir = d.filter_tanggal_akhir || null;
+
+                const fmtDate = str => {
+                    if (!str) return null;
+                    const dt = new Date(str);
+                    return dt.toLocaleDateString('id-ID', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric'
+                    });
+                };
+
+                let periodeHtml = '';
+                if (fMulai || fAkhir) {
+                    const from = fmtDate(fMulai) || '…';
+                    const to = fmtDate(fAkhir) || '…';
+                    periodeHtml = `
+                    <div class="detail-item" style="grid-column:1/-1">
+                        <div class="detail-item-label"><i class="bi bi-funnel-fill" style="margin-right:4px"></i>Data yang Digunakan (Filter Periode)</div>
+                        <div class="detail-item-value" style="color:var(--accent-cyan);font-size:13px">
+                            ${escHtml(from)} &nbsp;→&nbsp; ${escHtml(to)}
+                        </div>
+                    </div>`;
+                } else {
+                    periodeHtml = `
+                    <div class="detail-item" style="grid-column:1/-1;opacity:.6">
+                        <div class="detail-item-label"><i class="bi bi-funnel" style="margin-right:4px"></i>Data yang Digunakan</div>
+                        <div class="detail-item-value" style="font-size:13px">Semua data (tanpa filter tanggal)</div>
+                    </div>`;
+                }
                 html += '<div class="detail-grid">';
                 metrics.forEach(m => {
                     html += `<div class="detail-item">
-                <div class="detail-item-label">${m.label}</div>
-                <div class="detail-item-value">${m.value}</div>
-            </div>`;
+                        <div class="detail-item-label">${m.label}</div>
+                        <div class="detail-item-value">${m.value}</div>
+                    </div>`;
                 });
+                html += periodeHtml; // ← periode filter di sini, dalam grid yang sama
                 html += '</div>';
 
                 // Best params

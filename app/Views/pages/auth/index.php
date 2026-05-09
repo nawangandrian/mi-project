@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login · SP2S</title>
+    <title>Login · Mi Store</title>
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/906/906334.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -571,7 +571,7 @@
     <a href="<?= site_url('/') ?>" class="nav-brand">
         <div class="nav-logo"><i class="bi bi-phone-fill"></i></div>
         <div class="nav-brand-text">
-            <span class="nav-title"><b>SP2S</b> · Prediksi Penjualan Smartphone</span>
+            <span class="nav-title"><b>Mi Store</b> · Prediksi Penjualan Smartphone</span>
             <span class="nav-sub">RANDOM FOREST REGRESSOR · <?= date('Y') ?></span>
         </div>
     </a>
@@ -589,8 +589,8 @@
 
         <!-- Header -->
         <div class="sec-head">
-            <div class="sec-eye">// Autentikasi & Akses</div>
-            <h2 class="sec-h2">Masuk ke Sistem SP2S</h2>
+            <div class="sec-eye">Autentikasi & Akses</div>
+            <h2 class="sec-h2">Masuk ke Sistem Mi Store</h2>
             <p class="sec-p">Gunakan akun yang telah diberikan administrator untuk mengakses platform prediksi penjualan smartphone.</p>
         </div>
 
@@ -599,73 +599,104 @@
 
             <!-- Kiri: Tech specs + performa -->
             <div>
-                <div class="spec-head">// Stack Teknologi</div>
+                <div class="spec-head">Stack Teknologi</div>
                 <div>
-                    <?php
-                    $specs = [
-                        ['bi-braces',           'Backend',       'CodeIgniter 4 · PHP 8.3 · MySQL 8'],
-                        ['bi-robot',            'ML Engine',     'Python 3 · scikit-learn · RandomForestRegressor'],
-                        ['bi-bar-chart-line',   'Evaluasi',      'R² · RMSE · MAE · MAPE · CV 5-fold'],
-                        ['bi-funnel',           'Data Pipeline', 'Pandas · NumPy · Pipeline · ColumnTransformer'],
-                        ['bi-globe',            'Frontend',      'Bootstrap 5 · Chart.js · DataTables'],
-                        ['bi-shield-lock',      'Keamanan',      'Session Auth · CSRF · Role-based Access'],
-                    ];
-                    foreach ($specs as [$ico, $lbl, $val]): ?>
+                    <?php foreach ($specs as [$ico, $lbl, $val]): ?>
                         <div class="spec-item">
-                            <div class="spec-ico"><i class="bi <?= $ico ?>"></i></div>
+                            <div class="spec-ico"><i class="bi <?= esc($ico) ?>"></i></div>
                             <div>
-                                <div class="spec-lbl"><?= $lbl ?></div>
-                                <div class="spec-val"><?= $val ?></div>
+                                <div class="spec-lbl"><?= esc($lbl) ?></div>
+                                <div class="spec-val"><?= esc($val) ?></div>
                             </div>
                         </div>
                     <?php endforeach ?>
                 </div>
 
-                <div class="spec-head" style="margin-top:26px;">// Performa Model</div>
+                <div class="spec-head" style="margin-top:26px;">Performa Model</div>
                 <div class="perf-badges">
-                    <?php
-                    $modelAktif = $modelAktif ?? null;
-                    if ($modelAktif && isset($modelAktif['r2_score'])): ?>
+                    <?php if (! empty($modelAktif) && ! empty($modelAktif['r2'])): ?>
                         <div class="pbadge">
                             <span class="pb-l">MODEL AKTIF</span>
                             <span class="pb-v info"><?= esc($modelAktif['nama_model']) ?></span>
                         </div>
                         <div class="pbadge">
-                            <span class="pb-l">R² SCORE</span>
-                            <span class="pb-v good"><?= number_format((float)$modelAktif['r2_score'], 3) ?></span>
-                        </div>
-                        <div class="pbadge">
-                            <span class="pb-l">RMSE</span>
-                            <span class="pb-v info"><?= $modelAktif['rmse'] ? number_format((float)$modelAktif['rmse'], 2) : '–' ?></span>
-                        </div>
-                        <div class="pbadge">
-                            <span class="pb-l">MAPE</span>
-                            <span class="pb-v info"><?= $modelAktif['mape'] ? number_format((float)$modelAktif['mape'], 2) . '%' : '–' ?></span>
-                        </div>
-                    <?php else: ?>
-                        <div class="pbadge">
                             <span class="pb-l">ALGORITMA</span>
-                            <span class="pb-v info">Random Forest</span>
+                            <span class="pb-v info"><?= esc($modelConfig['algoritma']) ?></span>
                         </div>
                         <div class="pbadge">
                             <span class="pb-l">R² SCORE</span>
-                            <span class="pb-v good">~ 0.93–0.97</span>
+                            <span class="pb-v good"><?= number_format((float)$modelAktif['r2'], 3) ?></span>
                         </div>
                         <div class="pbadge">
                             <span class="pb-l">AKURASI</span>
-                            <span class="pb-v good">~ 94–97%</span>
+                            <span class="pb-v good">
+                                <?= ! empty($modelAktif['akurasi']) ? number_format((float)$modelAktif['akurasi'], 2) . '%' : '–' ?>
+                            </span>
                         </div>
                         <div class="pbadge">
-                            <span class="pb-l">CROSS-VAL</span>
-                            <span class="pb-v info">5-fold CV</span>
+                            <span class="pb-l">RMSE</span>
+                            <span class="pb-v info"><?= ! empty($modelAktif['rmse']) ? number_format((float)$modelAktif['rmse'], 4) : '–' ?></span>
+                        </div>
+                        <div class="pbadge">
+                            <span class="pb-l">MAE</span>
+                            <span class="pb-v info"><?= ! empty($modelAktif['mae']) ? number_format((float)$modelAktif['mae'], 4) : '–' ?></span>
+                        </div>
+                        <div class="pbadge">
+                            <span class="pb-l">MAPE</span>
+                            <span class="pb-v <?= ! empty($modelAktif['mape']) && (float)$modelAktif['mape'] < 10 ? 'good' : 'warn' ?>">
+                                <?= ! empty($modelAktif['mape']) ? number_format((float)$modelAktif['mape'], 2) . '%' : '–' ?>
+                            </span>
                         </div>
                         <div class="pbadge">
                             <span class="pb-l">N_ESTIMATORS</span>
-                            <span class="pb-v warn">200 Trees</span>
+                            <span class="pb-v warn"><?= esc($modelConfig['n_estimators']) ?></span>
                         </div>
                         <div class="pbadge">
                             <span class="pb-l">MAX_DEPTH</span>
-                            <span class="pb-v info">15</span>
+                            <span class="pb-v info"><?= esc($modelConfig['max_depth']) ?></span>
+                        </div>
+                        <div class="pbadge">
+                            <span class="pb-l">CROSS-VAL</span>
+                            <span class="pb-v info"><?= esc($modelConfig['cross_val']) ?></span>
+                        </div>
+                        <?php if (! empty($modelAktif['selesai_at'])): ?>
+                        <div class="pbadge">
+                            <span class="pb-l">DILATIH</span>
+                            <span class="pb-v info" style="font-size:12px;">
+                                <?= date('d M Y', strtotime($modelAktif['selesai_at'])) ?>
+                            </span>
+                        </div>
+                        <?php endif ?>
+                    <?php else: ?>
+                        <div class="pbadge">
+                            <span class="pb-l">ALGORITMA</span>
+                            <span class="pb-v info"><?= esc($modelConfig['algoritma']) ?></span>
+                        </div>
+                        <div class="pbadge">
+                            <span class="pb-l">R² SCORE</span>
+                            <span class="pb-v <?= $modelConfig['r2_range'] === 'Belum ada model' ? 'danger' : 'good' ?>">
+                                <?= esc($modelConfig['r2_range']) ?>
+                            </span>
+                        </div>
+                        <div class="pbadge">
+                            <span class="pb-l">AKURASI</span>
+                            <span class="pb-v good"><?= esc($modelConfig['akurasi_range']) ?></span>
+                        </div>
+                        <div class="pbadge">
+                            <span class="pb-l">CROSS-VAL</span>
+                            <span class="pb-v info"><?= esc($modelConfig['cross_val']) ?></span>
+                        </div>
+                        <div class="pbadge">
+                            <span class="pb-l">N_ESTIMATORS</span>
+                            <span class="pb-v warn"><?= esc($modelConfig['n_estimators']) ?></span>
+                        </div>
+                        <div class="pbadge">
+                            <span class="pb-l">MAX_DEPTH</span>
+                            <span class="pb-v info"><?= esc($modelConfig['max_depth']) ?></span>
+                        </div>
+                        <div class="pbadge" style="grid-column: span 2;">
+                            <span class="pb-l">STATUS</span>
+                            <span class="pb-v danger" style="font-size:12px;">Belum ada model aktif</span>
                         </div>
                     <?php endif ?>
                 </div>
@@ -675,7 +706,7 @@
             <div class="login-card" id="form-anchor">
                 <div class="lc-logo"><i class="bi bi-phone-fill"></i></div>
                 <div class="lc-title">Selamat Datang</div>
-                <p class="lc-sub">Masuk ke SP2S untuk mulai menganalisis dan memprediksi penjualan smartphone.</p>
+                <p class="lc-sub">Masuk ke Mi Store untuk mulai menganalisis dan memprediksi penjualan smartphone.</p>
 
                 <form id="formLogin" autocomplete="off">
                     <?= csrf_field() ?>
@@ -737,7 +768,7 @@
 
 <!-- FOOTER -->
 <footer class="sp2s-footer">
-    <span><b>SP2S</b> · Sistem Prediksi Penjualan Smartphone · Random Forest Regressor</span>
+    <span><b>Mi Store</b> · Sistem Prediksi Penjualan Smartphone · Random Forest Regressor</span>
     <span>CodeIgniter 4 + scikit-learn · <?= date('Y') ?></span>
 </footer>
 

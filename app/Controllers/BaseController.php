@@ -45,8 +45,7 @@ class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Redirect ke login jika belum login
-        // (hapus komentar jika fitur auth sudah siap)
-        // if (! session()->get('isLoggedIn')) {
+        // if (! session()->get('logged_in')) {
         //     redirect()->to(base_url('auth/login'))->send();
         //     exit;
         // }
@@ -54,7 +53,9 @@ class BaseController extends Controller
         // Data global yang dilewatkan ke semua view
         $this->globalData = [
             'notif_count' => $this->getNotifCount(),
+            'model_aktif' => $this->getModelAktif(),   // ← model aktif dari DB
         ];
+
         db_connect()->query("SET time_zone = '+07:00'");
     }
 
@@ -82,7 +83,7 @@ class BaseController extends Controller
         $output .= view($viewPath, $viewData);
         $output .= '</div></div>';
 
-        // ↓ Tambah ini — portal untuk modal agar di luar #main-content
+        // Portal untuk modal agar di luar #main-content
         $output .= '<div id="modal-portal"></div>';
 
         $output .= view('layout/footer',  $viewData);
@@ -93,13 +94,30 @@ class BaseController extends Controller
 
     // ──────────────────────────────────────────────────────────────────────
     /**
+     * Helper: ambil model training yang sedang aktif dari DB.
+     * Digunakan di sidebar footer untuk menampilkan info model aktif.
+     *
+     * @return array|null  Row model_training dengan is_active = 1, atau null.
+     */
+    protected function getModelAktif(): ?array
+    {
+        try {
+            return model(\App\Models\ModelTrainingModel::class)->getAktif();
+        } catch (\Throwable $e) {
+            log_message('error', '[BaseController::getModelAktif] ' . $e->getMessage());
+            return null;
+        }
+    }
+
+    // ──────────────────────────────────────────────────────────────────────
+    /**
      * Helper: ambil jumlah notifikasi belum dibaca.
      * Ganti implementasi sesuai model / tabel yang kamu punya.
      */
     protected function getNotifCount(): int
     {
         // Contoh dummy — ganti dengan query nyata:
-        // return model('NotifikasiModel')->countUnread(session()->get('user_id'));
+        // return model('NotifikasiModel')->countUnread(session()->get('id_user'));
         return 3;
     }
 

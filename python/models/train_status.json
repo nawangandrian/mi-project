@@ -1,8 +1,8 @@
 {
   "status": "success",
-  "training_id": 68,
+  "training_id": 71,
   "message": "Training selesai!",
-  "updated_at": "2026-05-08 22:33:16",
+  "updated_at": "2026-05-09 09:22:08",
   "akurasi": 98.56,
   "mae": 0.0298,
   "rmse": 0.1154,
@@ -24,7 +24,9 @@
     "min_samples_leaf": 2,
     "max_features": 0.7,
     "max_depth": null,
-    "bootstrap": true
+    "bootstrap": true,
+    "_filter_date_from": null,
+    "_filter_date_to": null
   },
   "feature_importance": {
     "n_transaksi": 0.92797797,
@@ -45,19 +47,19 @@
     "kuartal": 0.0001685
   },
   "diagram_paths": {
-    "train_actual_vs_pred": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v68\\train_actual_vs_pred.png",
-    "test_actual_vs_pred": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v68\\test_actual_vs_pred.png",
-    "train_residual": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v68\\train_residual.png",
-    "test_residual": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v68\\test_residual.png",
-    "feature_importance": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v68\\feature_importance.png",
-    "train_timeseries": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v68\\train_timeseries.png",
-    "test_timeseries": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v68\\test_timeseries.png",
-    "top_products": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v68\\top_products.png",
-    "monthly_trend": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v68\\monthly_trend.png"
+    "train_actual_vs_pred": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v71\\train_actual_vs_pred.png",
+    "test_actual_vs_pred": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v71\\test_actual_vs_pred.png",
+    "train_residual": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v71\\train_residual.png",
+    "test_residual": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v71\\test_residual.png",
+    "feature_importance": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v71\\feature_importance.png",
+    "train_timeseries": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v71\\train_timeseries.png",
+    "test_timeseries": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v71\\test_timeseries.png",
+    "top_products": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v71\\top_products.png",
+    "monthly_trend": "C:\\laragon\\www\\ci4-store\\python\\models\\diagrams\\v71\\monthly_trend.png"
   },
   "total_sampel": 968,
   "total_produk": 405,
-  "model_path": "C:\\laragon\\www\\ci4-store\\python\\models\\model_rf_v68.pkl",
-  "encoder_path": "C:\\laragon\\www\\ci4-store\\python\\models\\label_encoder_v68.pkl",
-  "finished_at": "2026-05-08 22:33:16"
+  "model_path": "C:\\laragon\\www\\ci4-store\\python\\models\\model_rf_v71.pkl",
+  "encoder_path": "C:\\laragon\\www\\ci4-store\\python\\models\\label_encoder_v71.pkl",
+  "finished_at": "2026-05-09 09:22:08"
 }

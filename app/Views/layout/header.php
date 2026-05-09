@@ -36,32 +36,38 @@
             <span id="current-date">--</span>
         </div>
 
-        <!-- Quick Predict Button -->
+        <!-- Quick Predict Button — sembunyikan untuk role cs -->
+        <?php if (session()->get('role') !== 'cs'): ?>
         <a href="<?= base_url('prediksi/jalankan') ?>" class="header-predict-btn">
             <i class="bi bi-lightning-charge-fill"></i>
             <span class="predict-label">Prediksi</span>
         </a>
+        <?php endif; ?>
 
         <!-- User Menu -->
         <div class="header-user-wrapper">
             <button class="header-user-btn" id="user-btn" aria-label="Menu pengguna">
                 <div class="user-avatar">
-                    <?= strtoupper(substr(session()->get('username') ?? 'A', 0, 1)) ?>
+                    <?php
+                        // Ambil inisial dari nama lengkap, fallback ke username, fallback ke 'U'
+                        $displayName = session()->get('nama') ?: session()->get('username') ?: 'U';
+                        echo strtoupper(substr($displayName, 0, 1));
+                    ?>
                 </div>
                 <div class="user-info">
-                    <span class="user-name"><?= esc(session()->get('nama') ?? 'Administrator') ?></span>
-                    <span class="user-role"><?= esc(session()->get('role') ?? 'Admin') ?></span>
+                    <span class="user-name"><?= esc(session()->get('nama') ?: session()->get('username') ?: 'Pengguna') ?></span>
+                    <span class="user-role"><?= esc(ucfirst(session()->get('role') ?: 'User')) ?></span>
                 </div>
                 <i class="bi bi-chevron-down user-chevron"></i>
             </button>
             <div class="user-dropdown" id="user-dropdown" role="menu">
                 <div class="user-dropdown-header">
                     <div class="user-avatar-lg">
-                        <?= strtoupper(substr(session()->get('username') ?? 'A', 0, 1)) ?>
+                        <?= strtoupper(substr($displayName, 0, 1)) ?>
                     </div>
                     <div>
-                        <div class="ud-name"><?= esc(session()->get('nama') ?? 'Administrator') ?></div>
-                        <div class="ud-email"><?= esc(session()->get('email') ?? 'admin@mistore.id') ?></div>
+                        <div class="ud-name"><?= esc(session()->get('nama') ?: session()->get('username') ?: 'Pengguna') ?></div>
+                        <div class="ud-email"><?= esc(session()->get('email') ?: 'Mi Store') ?></div>
                     </div>
                 </div>
                 <div class="user-dropdown-menu">

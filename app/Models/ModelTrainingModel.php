@@ -47,6 +47,8 @@ class ModelTrainingModel extends Model
         'dibuat_oleh',
         'is_active',
         'catatan',
+        'filter_tanggal_mulai',
+        'filter_tanggal_akhir',
     ];
 
     protected $useTimestamps = true;

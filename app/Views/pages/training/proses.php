@@ -174,6 +174,52 @@
                 </div>
             </div>
 
+            <!-- ── Filter Periode Data Training ── -->
+            <div class="trn-filter-section">
+                <div class="trn-filter-header">
+                    <i class="bi bi-funnel-fill"></i>
+                    <span>Filter Periode Data</span>
+                    <span class="trn-filter-badge">Opsional</span>
+                </div>
+                <div class="trn-filter-desc">
+                    Kosongkan untuk menggunakan <strong>semua data</strong> penjualan.
+                    Isi salah satu atau keduanya untuk membatasi rentang tanggal.
+                </div>
+                <div class="trn-filter-row">
+                    <div class="trn-filter-field">
+                        <label class="trn-filter-label" for="filterDateFrom">
+                            <i class="bi bi-calendar-event"></i> Dari Tanggal
+                        </label>
+                        <input type="date" id="filterDateFrom" name="date_from"
+                            class="trn-filter-input"
+                            min="2020-01-01"
+                            max="<?= date('Y-m-d') ?>">
+                    </div>
+                    <div class="trn-filter-sep">—</div>
+                    <div class="trn-filter-field">
+                        <label class="trn-filter-label" for="filterDateTo">
+                            <i class="bi bi-calendar-event-fill"></i> Sampai Tanggal
+                        </label>
+                        <input type="date" id="filterDateTo" name="date_to"
+                            class="trn-filter-input"
+                            min="2020-01-01"
+                            max="<?= date('Y-m-d') ?>">
+                    </div>
+                </div>
+                <!-- Info ringkas data yang cocok filter -->
+                <div class="trn-filter-info" id="filterInfo" style="display:none">
+                    <i class="bi bi-info-circle"></i>
+                    <span id="filterInfoText">—</span>
+                </div>
+                <div class="trn-filter-preset">
+                    <span class="trn-preset-label">Preset:</span>
+                    <button type="button" class="trn-preset-btn" data-preset="6m">6 Bulan Terakhir</button>
+                    <button type="button" class="trn-preset-btn" data-preset="1y">1 Tahun Terakhir</button>
+                    <button type="button" class="trn-preset-btn" data-preset="2y">2 Tahun Terakhir</button>
+                    <button type="button" class="trn-preset-btn trn-preset-reset" data-preset="all">Semua Data</button>
+                </div>
+            </div>
+
             <!-- Tombol utama -->
             <button class="btn-trn-start" id="btnStartTraining">
                 <span class="btn-trn-icon"><i class="bi bi-play-fill"></i></span>
@@ -1195,6 +1241,171 @@
             min-width: 80px;
         }
     }
+
+    /* ── Filter Periode ── */
+    .trn-filter-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 16px;
+        background: var(--card-bg-alt);
+        border: 1px solid var(--surface-border);
+        border-radius: var(--radius-md);
+    }
+
+    .trn-filter-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text-ink);
+    }
+
+    .trn-filter-header>i {
+        color: var(--accent-cyan);
+        font-size: 14px;
+    }
+
+    .trn-filter-badge {
+        margin-left: auto;
+        padding: 2px 9px;
+        border-radius: 20px;
+        font-size: 10.5px;
+        font-weight: 600;
+        background: rgba(212, 160, 23, 0.1);
+        color: var(--accent-yellow);
+        border: 1px solid rgba(212, 160, 23, 0.2);
+    }
+
+    .trn-filter-desc {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.5;
+    }
+
+    .trn-filter-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .trn-filter-field {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .trn-filter-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .trn-filter-input {
+        width: 100%;
+        padding: 8px 12px;
+        border-radius: var(--radius-sm);
+        background: var(--card-bg);
+        border: 1px solid var(--surface-border);
+        color: var(--text-ink);
+        font-size: 13px;
+        font-family: inherit;
+        transition: border-color .2s, box-shadow .2s;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .trn-filter-input:focus {
+        border-color: rgba(74, 159, 212, 0.5);
+        box-shadow: 0 0 0 3px rgba(74, 159, 212, 0.1);
+    }
+
+    .trn-filter-input::-webkit-calendar-picker-indicator {
+        filter: invert(0.5);
+        cursor: pointer;
+    }
+
+    .trn-filter-sep {
+        font-size: 18px;
+        color: var(--text-placeholder);
+        padding-top: 20px;
+        flex-shrink: 0;
+    }
+
+    .trn-filter-info {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 8px 12px;
+        border-radius: var(--radius-sm);
+        background: rgba(74, 159, 212, 0.07);
+        border: 1px solid rgba(74, 159, 212, 0.2);
+        font-size: 12px;
+        color: var(--mg-light);
+    }
+
+    .trn-filter-info>i {
+        flex-shrink: 0;
+        font-size: 13px;
+    }
+
+    .trn-filter-preset {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .trn-preset-label {
+        font-size: 11px;
+        color: var(--text-placeholder);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        margin-right: 2px;
+    }
+
+    .trn-preset-btn {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11.5px;
+        font-weight: 600;
+        border: 1px solid var(--surface-border);
+        background: var(--card-bg);
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all .18s ease;
+        font-family: inherit;
+    }
+
+    .trn-preset-btn:hover {
+        border-color: rgba(74, 159, 212, 0.4);
+        color: var(--mg-light);
+        background: rgba(74, 159, 212, 0.08);
+    }
+
+    .trn-preset-btn.active {
+        background: rgba(74, 159, 212, 0.15);
+        border-color: rgba(74, 159, 212, 0.4);
+        color: var(--mg-light);
+    }
+
+    .trn-preset-reset {
+        color: var(--text-placeholder) !important;
+    }
+
+    .trn-preset-reset:hover {
+        border-color: rgba(229, 62, 62, 0.35) !important;
+        color: var(--accent-red) !important;
+        background: rgba(229, 62, 62, 0.07) !important;
+    }
 </style>
 
 
@@ -1380,6 +1591,9 @@
             startElapsed();
             startPolling();
             addLog('Proses training dimulai…', 'info');
+            const logFrom = document.getElementById('filterDateFrom').value || 'semua';
+            const logTo = document.getElementById('filterDateTo').value || 'semua';
+            addLog(`Filter periode: ${logFrom} s/d ${logTo}`, 'info');
         }
 
         function enterSuccess(data) {
@@ -1500,6 +1714,94 @@
             });
         }
 
+        // ── Filter Periode ────────────────────────────────────────────────────────
+        const inFrom = document.getElementById('filterDateFrom');
+        const inTo = document.getElementById('filterDateTo');
+        const fiInfo = document.getElementById('filterInfo');
+        const fiTxt = document.getElementById('filterInfoText');
+        let filterDebounce = null;
+
+        function applyPreset(preset) {
+            document.querySelectorAll('.trn-preset-btn').forEach(b => b.classList.remove('active'));
+            const btn = document.querySelector(`.trn-preset-btn[data-preset="${preset}"]`);
+            if (btn) btn.classList.add('active');
+
+            const today = new Date();
+            const fmt = d => d.toISOString().slice(0, 10);
+
+            if (preset === 'all') {
+                inFrom.value = '';
+                inTo.value = '';
+            } else if (preset === '6m') {
+                const d = new Date(today);
+                d.setMonth(d.getMonth() - 6);
+                inFrom.value = fmt(d);
+                inTo.value = fmt(today);
+            } else if (preset === '1y') {
+                const d = new Date(today);
+                d.setFullYear(d.getFullYear() - 1);
+                inFrom.value = fmt(d);
+                inTo.value = fmt(today);
+            } else if (preset === '2y') {
+                const d = new Date(today);
+                d.setFullYear(d.getFullYear() - 2);
+                inFrom.value = fmt(d);
+                inTo.value = fmt(today);
+            }
+            fetchFilterPreview();
+        }
+
+        function fetchFilterPreview() {
+            clearTimeout(filterDebounce);
+            const from = inFrom.value;
+            const to = inTo.value;
+
+            if (!from && !to) {
+                fiInfo.style.display = 'none';
+                return;
+            }
+
+            filterDebounce = setTimeout(() => {
+                const params = new URLSearchParams();
+                if (from) params.set('date_from', from);
+                if (to) params.set('date_to', to);
+
+                fetch(BASE_URL + 'training/filter-preview?' + params.toString(), {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(r => r.json())
+                    .then(data => {
+                        fiInfo.style.display = '';
+                        if (data.status === 'ok') {
+                            fiTxt.textContent =
+                                `${Number(data.total_record).toLocaleString('id-ID')} record, ` +
+                                `${data.total_produk} produk, ` +
+                                `${data.periode_awal} s/d ${data.periode_akhir}`;
+                        } else {
+                            fiTxt.textContent = data.message || 'Tidak ada data pada periode ini.';
+                        }
+                    })
+                    .catch(() => {
+                        fiInfo.style.display = 'none';
+                    });
+            }, 500);
+        }
+
+        document.querySelectorAll('.trn-preset-btn').forEach(btn => {
+            btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+        });
+
+        inFrom.addEventListener('change', () => {
+            document.querySelectorAll('.trn-preset-btn').forEach(b => b.classList.remove('active'));
+            fetchFilterPreview();
+        });
+        inTo.addEventListener('change', () => {
+            document.querySelectorAll('.trn-preset-btn').forEach(b => b.classList.remove('active'));
+            fetchFilterPreview();
+        });
+
         // ── Button handlers ───────────────────────────────────────────────────────
         btnStart?.addEventListener('click', function() {
             if (currentState === 'running') return;
@@ -1523,7 +1825,9 @@
                             'Content-Type': 'application/x-www-form-urlencoded',
                         },
                         body: new URLSearchParams({
-                            '<?= csrf_token() ?>': '<?= csrf_hash() ?>'
+                            '<?= csrf_token() ?>': '<?= csrf_hash() ?>',
+                            'date_from': document.getElementById('filterDateFrom').value,
+                            'date_to': document.getElementById('filterDateTo').value,
                         }),
                     })
                     .then(res => res.json())
